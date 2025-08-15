@@ -1,6 +1,6 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Award, GraduationCap, MapPin } from "lucide-react";
+import { Award, GraduationCap, MapPin, Cloud, GitBranch, Database, TrendingUp } from "lucide-react";
 
 const About = () => {
   const skillCategories = {
@@ -39,8 +39,8 @@ const About = () => {
   };
 
   const certifications = [
-    { name: "Certified Kubernetes Administrator (CKA)", icon: Award },
-    { name: "HashiCorp Certified: Terraform Associate", icon: Award },
+    { name: "Certified Kubernetes Administrator (CKA)", icon: Award, image: "/cka.png" },
+    { name: "HashiCorp Certified: Terraform Associate", icon: Award, image: "/terraform-certification.png" },
   ];
 
   return (
@@ -82,9 +82,13 @@ const About = () => {
                 </h3>
                 <div className="space-y-3">
                   {certifications.map((cert, index) => (
-                    <div key={index} className="flex items-center">
-                      <cert.icon className="mr-3 text-primary" size={20} />
-                      <span>{cert.name}</span>
+                    <div key={index} className="flex items-center p-2 rounded-lg hover:bg-primary/5 transition-colors">
+                      <img 
+                        src={cert.image} 
+                        alt={cert.name}
+                        className="w-10 h-10 mr-3 rounded object-contain bg-white p-1"
+                      />
+                      <span className="text-sm font-medium">{cert.name}</span>
                     </div>
                   ))}
                 </div>
@@ -107,37 +111,63 @@ const About = () => {
           </div>
 
           {/* Skills */}
-          <div className="animate-fade-in" style={{ animationDelay: '600ms' }}>
-            <Card className="glass-effect h-full">
+          <div className="space-y-6 animate-fade-in" style={{ animationDelay: '600ms' }}>
+            <Card className="glass-effect">
               <CardContent className="p-6">
-                <h3 className="text-2xl font-semibold mb-6">Technical Expertise</h3>
-                <div className="space-y-6">
-                  {Object.entries(skillCategories).map(([category, skills], index) => (
-                    <div key={category}>
-                      <h4 className="font-semibold mb-3 text-primary">{category}</h4>
-                      <div className="flex flex-wrap gap-2">
-                        {skills.map((skill, i) => (
-                          <Badge 
-                            key={i} 
-                            variant="secondary" 
-                            className="bg-secondary/50 hover:bg-primary hover:text-primary-foreground transition-colors duration-300 text-xs"
-                          >
-                            {skill}
-                          </Badge>
-                        ))}
-                      </div>
+                <h3 className="text-2xl font-semibold mb-6 text-center">Technical Expertise</h3>
+                
+                <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+                  <div className="text-center p-4 rounded-lg bg-primary/5 hover:bg-primary/10 transition-colors group">
+                    <div className="w-12 h-12 mx-auto mb-3 rounded-full bg-white flex items-center justify-center group-hover:scale-110 transition-transform shadow-sm">
+                      <img src="https://upload.wikimedia.org/wikipedia/commons/9/93/Amazon_Web_Services_Logo.svg" alt="AWS" className="w-8 h-8 object-contain" />
                     </div>
-                  ))}
-
-                  <div className="mt-6 pt-6 border-t border-border">
-                    <h4 className="font-semibold mb-3 text-primary">Leadership & Architecture</h4>
-                    <ul className="space-y-2 text-muted-foreground text-sm">
-                      <li>• Led 10+ product engineering teams across different verticals</li>
-                      <li>• Managed 100+ microservices across 5 environments (dev, qa, stage, performance, preview)</li>
-                      <li>• Designed event-driven architectures handling 500+ concurrent workflows</li>
-                      <li>• Built resilient CRM data migration orchestrator (zero data loss)</li>
-                      <li>• Cross-functional collaboration with frontend teams and stakeholders</li>
-                    </ul>
+                    <h4 className="font-bold text-primary mb-2">Cloud</h4>
+                    <p className="text-xs text-muted-foreground">AWS, Kubernetes, Docker</p>
+                  </div>
+                  <div className="text-center p-4 rounded-lg bg-primary/5 hover:bg-primary/10 transition-colors group">
+                    <div className="w-12 h-12 mx-auto mb-3 rounded-full bg-white flex items-center justify-center group-hover:scale-110 transition-transform shadow-sm">
+                      <img src="/devops.jpg" alt="DevOps" className="w-full h-full object-cover rounded-full" />
+                    </div>
+                    <h4 className="font-bold text-primary mb-2">DevOps</h4>
+                    <p className="text-xs text-muted-foreground">CI/CD, Terraform, Helm</p>
+                  </div>
+                  <div className="text-center p-4 rounded-lg bg-primary/5 hover:bg-primary/10 transition-colors group">
+                    <div className="w-12 h-12 mx-auto mb-3 rounded-full bg-white flex items-center justify-center group-hover:scale-110 transition-transform shadow-sm">
+                      <img src="https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg" alt="Python" className="w-8 h-8 object-contain" />
+                    </div>
+                    <h4 className="font-bold text-primary mb-2">Backend</h4>
+                    <p className="text-xs text-muted-foreground">Python, FastAPI, Kafka</p>
+                  </div>
+                  <div className="text-center p-4 rounded-lg bg-primary/5 hover:bg-primary/10 transition-colors group">
+                    <div className="w-12 h-12 mx-auto mb-3 rounded-full bg-white flex items-center justify-center group-hover:scale-110 transition-transform shadow-sm">
+                      <img src="https://upload.wikimedia.org/wikipedia/commons/3/38/Prometheus_software_logo.svg" alt="Prometheus" className="w-8 h-8 object-contain" />
+                    </div>
+                    <h4 className="font-bold text-primary mb-2">SRE</h4>
+                    <p className="text-xs text-muted-foreground">Prometheus, Grafana</p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+            
+            <Card className="glass-effect">
+              <CardContent className="p-6">
+                <h3 className="text-xl font-semibold mb-4 text-center">Impact Metrics</h3>
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+                  <div className="p-3 rounded-lg bg-primary/5">
+                    <div className="text-2xl font-bold text-primary">95%</div>
+                    <div className="text-xs text-muted-foreground">Cost Reduction</div>
+                  </div>
+                  <div className="p-3 rounded-lg bg-primary/5">
+                    <div className="text-2xl font-bold text-primary">10+</div>
+                    <div className="text-xs text-muted-foreground">Teams Supported</div>
+                  </div>
+                  <div className="p-3 rounded-lg bg-primary/5">
+                    <div className="text-2xl font-bold text-primary">500+</div>
+                    <div className="text-xs text-muted-foreground">Workflows</div>
+                  </div>
+                  <div className="p-3 rounded-lg bg-primary/5">
+                    <div className="text-2xl font-bold text-primary">0%</div>
+                    <div className="text-xs text-muted-foreground">Data Loss</div>
                   </div>
                 </div>
               </CardContent>

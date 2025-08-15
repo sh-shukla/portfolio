@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Download, ExternalLink, Github, Linkedin, Mail } from "lucide-react";
-import profileImage from "@/assets/shashank-profile.jpg";
+// import profileImage from "@/assets/shashank-profile.jpg";
 
 const Hero = () => {
   const scrollToContact = () => {
@@ -9,9 +9,9 @@ const Hero = () => {
   };
 
   const stats = [
-    { number: "4+", label: "Years of Experience" },
+    { number: "4.5+", label: "Years of Experience" },
     { number: "100+", label: "Microservices Managed" },
-    { number: "10+", label: "Product Teams Led" },
+    { number: "10+", label: "Product Teams Supported" },
     { number: "95%", label: "Cost Reduction Achieved" },
   ];
 
@@ -47,6 +47,12 @@ const Hero = () => {
                 variant="outline" 
                 size="lg"
                 className="border-primary text-primary hover:bg-primary hover:text-primary-foreground"
+                onClick={() => {
+                  const link = document.createElement('a');
+                  link.href = '/Shashank_Shukla_DevOps_Resume.pdf';
+                  link.download = 'Shashank_Shukla_DevOps_Resume.pdf';
+                  link.click();
+                }}
               >
                 <Download className="mr-2 h-4 w-4" />
                 Download CV
@@ -55,7 +61,7 @@ const Hero = () => {
 
             <div className="flex space-x-6">
               <a 
-                href="https://linkedin.com/in/shashank-shukla-b84b7a162" 
+                href="https://www.linkedin.com/in/shashank-shukla-b84b7a162/" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="text-muted-foreground hover:text-primary transition-colors duration-300"
@@ -84,7 +90,7 @@ const Hero = () => {
             <div className="relative">
               <div className="w-80 h-80 rounded-full border-4 border-primary glow-effect floating">
                 <img
-                  src={profileImage}
+                  src="/shashank_pic.jpg"
                   alt="Shashank Shukla"
                   className="w-full h-full object-cover rounded-full"
                 />

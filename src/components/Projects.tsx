@@ -71,93 +71,114 @@ const Projects = () => {
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold mb-4">Featured Projects</h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            A selection of impactful projects demonstrating expertise in DevOps, 
-            SRE, and cloud infrastructure optimization
+            Key projects showcasing DevOps automation and Backend development expertise
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {projects.map((project, index) => (
-            <Card 
-              key={index} 
-              className="glass-effect hover:shadow-lg transition-all duration-300 group animate-fade-in"
-              style={{ animationDelay: `${index * 100}ms` }}
-            >
-              <CardHeader>
-                <div className="flex items-center justify-between mb-4">
-                  <div className="p-2 bg-primary/10 rounded-lg">
+        {/* DevOps Projects */}
+        <div className="mb-16">
+          <div className="text-center mb-8">
+            <h3 className="text-2xl font-bold gradient-text mb-2">DevOps & Infrastructure</h3>
+          </div>
+          
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {[
+              {
+                icon: TrendingDown,
+                title: "AWS Cost Optimization",
+                description: "Consolidated 20+ ALBs into single architecture, achieving 95% cost reduction.",
+                metrics: "95% Cost Saved",
+                tech: ["AWS ALB", "Terraform", "Cost Analysis"]
+              },
+              {
+                icon: Zap,
+                title: "Kubernetes Auto-scaling",
+                description: "Implemented KEDA autoscaling with Karpenter for dynamic resource management.",
+                metrics: "25% Compute Savings",
+                tech: ["KEDA", "Karpenter", "Kubernetes"]
+              },
+              {
+                icon: Shield,
+                title: "Infrastructure as Code",
+                description: "Built comprehensive Terraform modules for multi-environment deployments.",
+                metrics: "5 Environments",
+                tech: ["Terraform", "IaC", "Multi-env"]
+              },
+              {
+                icon: GitBranch,
+                title: "CI/CD Automation",
+                description: "Designed CI/CD pipelines with canary deployments and automated workflows.",
+                metrics: "40% Time Saved",
+                tech: ["Jenkins", "GitLab CI", "Helm"]
+              }
+            ].map((project, index) => (
+              <Card key={index} className="glass-effect hover:shadow-xl transition-all duration-300 group">
+                <CardContent className="p-6">
+                  <div className="p-3 rounded-lg bg-primary/10 mb-4 w-fit">
                     <project.icon className="h-6 w-6 text-primary" />
                   </div>
-                  <Badge variant="outline" className="border-primary/50 text-primary">
-                    {project.category}
-                  </Badge>
-                </div>
-                <h3 className="text-xl font-bold group-hover:text-primary transition-colors duration-300">
-                  {project.title}
-                </h3>
-              </CardHeader>
-              
-              <CardContent className="space-y-4">
-                <p className="text-muted-foreground text-sm leading-relaxed">
-                  {project.description}
-                </p>
-
-                <div className="space-y-3">
-                  <div>
-                    <h4 className="text-sm font-semibold mb-2 text-primary">Impact</h4>
-                    <Badge className="bg-primary/20 text-primary hover:bg-primary hover:text-primary-foreground">
-                      {project.metrics}
-                    </Badge>
+                  <h3 className="text-lg font-bold mb-3">{project.title}</h3>
+                  <p className="text-muted-foreground text-sm mb-4">{project.description}</p>
+                  <Badge className="bg-primary/20 text-primary mb-3">{project.metrics}</Badge>
+                  <div className="flex flex-wrap gap-1">
+                    {project.tech.map((tech, i) => (
+                      <Badge key={i} variant="secondary" className="text-xs">{tech}</Badge>
+                    ))}
                   </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
 
+        {/* Backend Project */}
+        <div>
+          <div className="text-center mb-8">
+            <h3 className="text-2xl font-bold gradient-text mb-2">Backend Engineering</h3>
+          </div>
+          
+          <div className="max-w-4xl mx-auto">
+            <Card className="glass-effect hover:shadow-xl transition-all duration-300">
+              <CardContent className="p-8">
+                <div className="flex items-center mb-6">
+                  <div className="p-4 rounded-lg bg-primary/10 mr-6">
+                    <Database className="h-8 w-8 text-primary" />
+                  </div>
                   <div>
-                    <h4 className="text-sm font-semibold mb-2 text-foreground">Technologies</h4>
-                    <div className="flex flex-wrap gap-1">
-                      {project.technologies.map((tech, i) => (
-                        <Badge 
-                          key={i} 
-                          variant="secondary" 
-                          className="text-xs bg-secondary/50"
-                        >
-                          {tech}
-                        </Badge>
+                    <h3 className="text-2xl font-bold mb-2">CRM Data Migration Orchestrator</h3>
+                    <p className="text-muted-foreground">Event-driven orchestration platform for seamless CRM data migration</p>
+                  </div>
+                </div>
+                
+                <div className="grid md:grid-cols-2 gap-8">
+                  <div>
+                    <h4 className="font-semibold text-primary mb-3">Key Features</h4>
+                    <ul className="space-y-2 text-sm text-muted-foreground">
+                      <li>• DAG-based workflow management</li>
+                      <li>• Real-time state tracking and monitoring</li>
+                      <li>• 500+ concurrent process handling</li>
+                      <li>• Zero data loss architecture</li>
+                      <li>• Event-driven microservices design</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-primary mb-3">Technology Stack</h4>
+                    <div className="flex flex-wrap gap-2">
+                      {["Python", "FastAPI", "Apache Kafka", "MongoDB", "Event Architecture", "DAGs", "Microservices"].map((tech, i) => (
+                        <Badge key={i} className="bg-primary/20 text-primary">{tech}</Badge>
                       ))}
+                    </div>
+                    <div className="mt-4">
+                      <Badge className="bg-green-500/20 text-green-400">500+ Concurrent Processes</Badge>
                     </div>
                   </div>
                 </div>
-
-                <div className="flex gap-2 pt-4">
-                  <Button 
-                    size="sm" 
-                    variant="outline" 
-                    className="border-primary/50 text-primary hover:bg-primary hover:text-primary-foreground flex-1"
-                  >
-                    <ExternalLink className="mr-2 h-3 w-3" />
-                    Details
-                  </Button>
-                  <Button 
-                    size="sm" 
-                    variant="ghost" 
-                    className="text-muted-foreground hover:text-primary"
-                  >
-                    <Github className="h-4 w-4" />
-                  </Button>
-                </div>
               </CardContent>
             </Card>
-          ))}
+          </div>
         </div>
 
-        <div className="text-center mt-12">
-          <Button 
-            size="lg"
-            variant="outline" 
-            className="border-primary text-primary hover:bg-primary hover:text-primary-foreground"
-          >
-            View All Projects
-            <ExternalLink className="ml-2 h-4 w-4" />
-          </Button>
-        </div>
+
       </div>
     </section>
   );

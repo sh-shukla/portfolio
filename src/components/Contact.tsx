@@ -16,14 +16,39 @@ const Contact = () => {
 
   const { toast } = useToast();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Here you would typically handle form submission
-    toast({
-      title: "Message sent!",
-      description: "Thank you for reaching out. I'll get back to you soon.",
-    });
-    setFormData({ name: "", email: "", subject: "", message: "" });
+    
+    try {
+      const response = await fetch('https://formspree.io/f/mzzvwyol', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          subject: formData.subject,
+          message: formData.message,
+        }),
+      });
+
+      if (response.ok) {
+        toast({
+          title: "Message sent!",
+          description: "Thank you for reaching out. I'll get back to you soon.",
+        });
+        setFormData({ name: "", email: "", subject: "", message: "" });
+      } else {
+        throw new Error('Failed to send message');
+      }
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Failed to send message. Please try again or contact directly.",
+        variant: "destructive",
+      });
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -50,7 +75,7 @@ const Contact = () => {
       icon: MapPin,
       label: "Location",
       value: "Bangalore, India",
-      href: null
+      href: "https://maps.google.com/?q=Bangalore,India"
     }
   ];
 
@@ -129,41 +154,7 @@ const Contact = () => {
               </CardContent>
             </Card>
 
-            <Card className="glass-effect">
-              <CardContent className="p-6">
-                <h3 className="text-xl font-semibold mb-4">DevOps Architecture Services</h3>
-                <ul className="space-y-3 text-muted-foreground">
-                  <li className="flex items-start">
-                    <span className="text-primary mr-2 mt-1">•</span>
-                    End-to-end DevOps setup and cloud migration strategies
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-primary mr-2 mt-1">•</span>
-                    Cost optimization and cloud spend reduction (up to 95%)
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-primary mr-2 mt-1">•</span>
-                    Microservices architecture design and management (100+ services)
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-primary mr-2 mt-1">•</span>
-                    Custom orchestration and workflow automation platforms
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-primary mr-2 mt-1">•</span>
-                    Event-driven architecture and data migration systems
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-primary mr-2 mt-1">•</span>
-                    Team leadership and multi-environment management
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-primary mr-2 mt-1">•</span>
-                    Backend API development and cross-functional collaboration
-                  </li>
-                </ul>
-              </CardContent>
-            </Card>
+
           </div>
 
           {/* Contact Form */}
@@ -171,7 +162,7 @@ const Contact = () => {
             <Card className="glass-effect">
               <CardContent className="p-6">
                 <h3 className="text-2xl font-semibold mb-6">Send a Message</h3>
-                <form onSubmit={handleSubmit} className="space-y-6">
+                <form onSubmit={handleSubmit} className="space-y-6" action="https://formspree.io/f/mzzvwyol" method="POST">
                   <div className="grid md:grid-cols-2 gap-4">
                     <div>
                       <label htmlFor="name" className="block text-sm font-medium mb-2">

@@ -8,28 +8,27 @@ const Experience = () => {
       title: "Senior DevOps Engineer",
       company: "Nielsen",
       period: "Jun 2025 - Present",
-      location: "Bangalore, India",
       achievements: [
-        "AWS ALB consolidation reducing cloud spend by 95%",
-        "Built AI-powered documentation platform reducing support requests by 60%",
-        "Optimized Karpenter for 25% compute cost savings"
+        "Consolidated 20+ ALBs into single ALB, reducing AWS costs by 95%",
+        "Built AI-powered DevOps self-service documentation, reducing support tickets",
+        "Optimized Karpenter node scaling, improving infrastructure cost efficiency"
       ],
-      technologies: ["AWS", "Kubernetes", "AI Platform", "Karpenter", "ALB"]
+      technologies: ["AWS ALB", "AI Platform", "Karpenter", "Cost Optimization"]
     },
     {
-      title: "DevOps Engineer → Senior DevOps Engineer",
+      title: "Associate → Senior DevOps Engineer",
       company: "Conga",
       period: "Jul 2021 - Jun 2025 (4 years)",
-      location: "Bangalore, India",
       achievements: [
-        "Built CRM Data Migration Orchestrator handling 500+ concurrent processes",
-        "Developed SaaS API platform with 60+ FastAPI endpoints using event-driven architecture",
-        "Managed 10+ product teams across 5 environments (dev, qa, stage, performance, preview)",
-        "Led infrastructure automation with Terraform and comprehensive observability stack",
-        "Implemented KEDA autoscaling and created templatized Helm charts reducing setup time by 40%",
-        "Established CI/CD automation workflows and mentored junior engineers"
+        "Led 6-engineer DevOps team, creating deployment standards & runbooks",
+        "Built SaaS API platform with FastAPI (60+ endpoints), integrated CI/CD & canary rollouts",
+        "Implemented KEDA-based autoscaling for NGINX and SQS consumers",
+        "Built workflow orchestration tool for data migration lifecycle management",
+        "Automated infrastructure with Terraform, reduced release cycles 2 weeks → 3 hours",
+        "Created templatized Helm charts, cutting deployment setup time by 40%",
+        "Built observability stack cutting MTTR by ~50%"
       ],
-      technologies: ["FastAPI", "Kafka", "MongoDB", "Python", "KEDA", "Terraform", "Kubernetes", "Event-Driven Architecture", "Team Leadership", "Multi-Environment Management"]
+      technologies: ["FastAPI", "KEDA", "Terraform", "Kubernetes", "Helm", "Python", "Prometheus", "Grafana"]
     }
   ];
 
@@ -43,61 +42,50 @@ const Experience = () => {
           </p>
         </div>
 
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-5xl mx-auto">
           <div className="relative">
-            {/* Timeline Line */}
             <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-primary/30 hidden md:block"></div>
-
+            
             <div className="space-y-12">
               {experiences.map((exp, index) => (
-                <div key={index} className="relative animate-fade-in" style={{ animationDelay: `${index * 200}ms` }}>
-                  {/* Timeline Dot */}
+                <div key={index} className="relative">
                   <div className="absolute left-6 w-4 h-4 bg-primary rounded-full border-4 border-background hidden md:block glow-effect"></div>
                   
-                  <Card className="ml-0 md:ml-20 glass-effect hover:shadow-lg transition-all duration-300">
+                  <Card className="ml-0 md:ml-20 glass-effect hover:shadow-xl transition-all duration-300">
                     <CardContent className="p-6">
-                      <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
+                      <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between mb-4">
                         <div>
-                          <h3 className="text-2xl font-bold text-primary mb-1">{exp.title}</h3>
-                          <div className="flex items-center text-lg font-semibold mb-2">
-                            <Building className="mr-2 h-5 w-5 text-muted-foreground" />
-                            {exp.company}
-                          </div>
-                        </div>
-                        <div className="flex flex-col md:items-end space-y-1">
-                          <div className="flex items-center text-muted-foreground">
-                            <Calendar className="mr-2 h-4 w-4" />
-                            {exp.period}
-                          </div>
-                          <div className="flex items-center text-muted-foreground">
-                            <MapPin className="mr-2 h-4 w-4" />
-                            {exp.location}
-                          </div>
+                          <h3 className="text-2xl font-bold gradient-text mb-1">{exp.company}</h3>
+                          <p className="text-lg font-semibold text-muted-foreground mb-1">{exp.title}</p>
+                          <p className="text-sm text-muted-foreground">{exp.period}</p>
                         </div>
                       </div>
-
+                      
                       <div className="space-y-4">
                         <div>
-                          <h4 className="font-semibold mb-2 text-foreground">Key Achievements:</h4>
-                          <ul className="space-y-1 text-muted-foreground">
+                          <h4 className="font-semibold text-primary mb-4 flex items-center">
+                            <div className="w-2 h-2 bg-primary rounded-full mr-2"></div>
+                            Key Achievements
+                          </h4>
+                          <div className="space-y-3">
                             {exp.achievements.map((achievement, i) => (
-                              <li key={i} className="flex items-start">
-                                <span className="text-primary mr-2 mt-1">•</span>
-                                {achievement}
-                              </li>
+                              <div 
+                                key={i} 
+                                className="group flex items-start p-3 rounded-lg bg-black/30 hover:bg-black/50 transition-all duration-300 hover:scale-[1.02] animate-fade-in hover:shadow-[0_0_20px_rgba(0,0,0,0.5)]"
+                                style={{ animationDelay: `${i * 100}ms` }}
+                              >
+                                <div className="w-2 h-2 bg-gray-400 rounded-full mr-3 mt-2 flex-shrink-0 group-hover:scale-150 transition-transform group-hover:shadow-[0_0_10px_rgba(156,163,175,0.8)]"></div>
+                                <span className="text-sm text-foreground leading-relaxed group-hover:text-gray-200 transition-colors">{achievement}</span>
+                              </div>
                             ))}
-                          </ul>
+                          </div>
                         </div>
-
+                        
                         <div>
-                          <h4 className="font-semibold mb-2 text-foreground">Technologies:</h4>
+                          <h4 className="font-semibold text-primary mb-2">Technologies</h4>
                           <div className="flex flex-wrap gap-2">
                             {exp.technologies.map((tech, i) => (
-                              <Badge 
-                                key={i} 
-                                variant="outline" 
-                                className="border-primary/50 text-primary hover:bg-primary hover:text-primary-foreground"
-                              >
+                              <Badge key={i} className="bg-primary/20 text-primary text-xs">
                                 {tech}
                               </Badge>
                             ))}
