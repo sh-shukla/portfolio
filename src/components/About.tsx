@@ -24,8 +24,8 @@ const About = () => {
   };
 
   const certifications = [
-    { name: "Certified Kubernetes Administrator (CKA)", icon: Award, image: "/cka.png" },
-    { name: "HashiCorp Certified: Terraform Associate", icon: Award, image: "/terraform-certification.png" },
+    { name: "Certified Kubernetes Administrator (CKA)", icon: Award, image: "./cka.png" },
+    { name: "HashiCorp Certified: Terraform Associate", icon: Award, image: "./terraform-certification.png" },
   ];
 
   const techStack = [
@@ -38,7 +38,7 @@ const About = () => {
     {
       title: "DevOps & Automation",
       description: "CI/CD Pipelines, Terraform, Helm Charts, Jenkins, GitLab CI, Spinnaker",
-      image: "/devops.jpg",
+      image: "./devops.jpg",
       gradient: "from-blue-500 to-purple-500"
     },
     {

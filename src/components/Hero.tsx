@@ -113,7 +113,7 @@ const Hero = () => {
                 className="glass-morphism smooth-hover border-white/20 text-white hover:text-white px-8 py-6 text-lg"
                 onClick={() => {
                   const link = document.createElement('a');
-                  link.href = '/Shashank_Shukla_DevOps_Resume.pdf';
+                  link.href = './Shashank_Shukla_DevOps_Resume.pdf';
                   link.download = 'Shashank_Shukla_DevOps_Resume.pdf';
                   link.click();
                 }}
@@ -163,7 +163,7 @@ const Hero = () => {
             >
               <div className="w-80 h-80 lg:w-96 lg:h-96 rounded-full glass-morphism-strong floating overflow-hidden">
                 <img
-                  src="/shashank_pic.jpg"
+                  src="./shashank_pic.jpg"
                   alt="Shashank Shukla"
                   className="w-full h-full object-cover"
                 />
