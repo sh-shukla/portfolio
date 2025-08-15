@@ -17,43 +17,19 @@ const Experience = () => {
       technologies: ["AWS", "Kubernetes", "AI Platform", "Karpenter", "ALB"]
     },
     {
-      title: "Senior DevOps Engineer",
+      title: "DevOps Engineer → Senior DevOps Engineer",
       company: "Conga",
-      period: "Apr 2024 - Jun 2025",
+      period: "Jul 2021 - Jun 2025 (4 years)",
       location: "Bangalore, India",
       achievements: [
-        "Implemented KEDA autoscaling for dynamic workload management",
-        "Led team initiatives and mentored junior engineers",
-        "Developed SaaS API platform with 60+ FastAPI endpoints",
-        "Designed orchestration tools for streamlined operations"
+        "Built CRM Data Migration Orchestrator handling 500+ concurrent processes",
+        "Developed SaaS API platform with 60+ FastAPI endpoints using event-driven architecture",
+        "Managed 10+ product teams across 5 environments (dev, qa, stage, performance, preview)",
+        "Led infrastructure automation with Terraform and comprehensive observability stack",
+        "Implemented KEDA autoscaling and created templatized Helm charts reducing setup time by 40%",
+        "Established CI/CD automation workflows and mentored junior engineers"
       ],
-      technologies: ["KEDA", "FastAPI", "SaaS", "Team Leadership", "Orchestration"]
-    },
-    {
-      title: "DevOps Engineer",
-      company: "Conga",
-      period: "Apr 2023 - Mar 2024",
-      location: "Bangalore, India",
-      achievements: [
-        "Automated infrastructure with Terraform modules",
-        "Built comprehensive observability stack",
-        "Streamlined microservice deployments",
-        "Reduced deployment time by 40% with automation"
-      ],
-      technologies: ["Terraform", "Observability", "Microservices", "Automation"]
-    },
-    {
-      title: "Associate DevOps Engineer",
-      company: "Conga",
-      period: "Jul 2021 - Mar 2023",
-      location: "Bangalore, India",
-      achievements: [
-        "Created templatized Helm charts reducing setup time by 40%",
-        "Implemented CI/CD automation workflows",
-        "Established best practices for container orchestration",
-        "Contributed to infrastructure standardization"
-      ],
-      technologies: ["Helm", "CI/CD", "Docker", "Infrastructure as Code"]
+      technologies: ["FastAPI", "Kafka", "MongoDB", "Python", "KEDA", "Terraform", "Kubernetes", "Event-Driven Architecture", "Team Leadership", "Multi-Environment Management"]
     }
   ];
 

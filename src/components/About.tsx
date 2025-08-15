@@ -10,11 +10,13 @@ const About = () => {
       "Terraform & Infrastructure as Code",
       "Multi-environment Management"
     ],
-    "Backend Development": [
-      "Python & FastAPI",
+    "Backend & API Development": [
+      "Python & FastAPI (60+ Production APIs)",
       "MongoDB & Database Design", 
       "Apache Kafka & Event Streaming",
-      "Microservices Architecture"
+      "Event-Driven Architecture & Microservices",
+      "Custom Orchestrator Design (DAG-based)",
+      "Data Migration & ETL Systems"
     ],
     "DevOps & Automation": [
       "CI/CD (Jenkins, GitLab CI, Spinnaker)",
@@ -130,11 +132,11 @@ const About = () => {
                   <div className="mt-6 pt-6 border-t border-border">
                     <h4 className="font-semibold mb-3 text-primary">Leadership & Architecture</h4>
                     <ul className="space-y-2 text-muted-foreground text-sm">
-                      <li>• Led multiple engineering teams across different product verticals</li>
-                      <li>• Managed 100+ microservices across multiple environments</li>
-                      <li>• Designed event-driven architectures for high-scale systems</li>
-                      <li>• Built resilient data migration and orchestration platforms</li>
-                      <li>• Cross-functional collaboration with frontend and product teams</li>
+                      <li>• Led 10+ product engineering teams across different verticals</li>
+                      <li>• Managed 100+ microservices across 5 environments (dev, qa, stage, performance, preview)</li>
+                      <li>• Designed event-driven architectures handling 500+ concurrent workflows</li>
+                      <li>• Built resilient CRM data migration orchestrator (zero data loss)</li>
+                      <li>• Cross-functional collaboration with frontend teams and stakeholders</li>
                     </ul>
                   </div>
                 </div>

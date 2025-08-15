@@ -1,7 +1,7 @@
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { ExternalLink, Github, TrendingDown, Zap, Shield, Cloud, Cpu, GitBranch } from "lucide-react";
+import { ExternalLink, Github, TrendingDown, Zap, Shield, Cloud, Cpu, GitBranch, Database } from "lucide-react";
 
 const Projects = () => {
   const projects = [
@@ -16,15 +16,23 @@ const Projects = () => {
     {
       title: "AI-Powered DevOps Self-Service Platform",
       description: "Built an AI-based internal documentation hub that reduced support requests by 60% and improved developer productivity.",
-      icon: Zap,
+      icon: Database,
       technologies: ["AI/ML", "FastAPI", "Documentation", "Automation"],
       metrics: "60% Support Reduction",
       category: "Platform"
     },
     {
+      title: "CRM Data Migration Orchestrator",
+      description: "Built a resilient event-driven orchestration platform for seamless CRM data migration. Features DAG-based workflow management, state tracking, and concurrent processing of 500+ workflows.",
+      icon: GitBranch,
+      technologies: ["Python", "FastAPI", "Kafka", "MongoDB", "Event Architecture", "DAGs"],
+      metrics: "500+ Concurrent Processes",
+      category: "Backend"
+    },
+    {
       title: "SaaS API Platform with Canary Rollouts",
       description: "Developed a comprehensive SaaS API platform with 60+ FastAPI endpoints and implemented CI/CD canary deployment strategies.",
-      icon: GitBranch,
+      icon: Zap,
       technologies: ["FastAPI", "SaaS", "CI/CD", "Canary Deployments"],
       metrics: "60+ API Endpoints",
       category: "Development"
@@ -55,7 +63,7 @@ const Projects = () => {
     }
   ];
 
-  const categories = ["All", "Infrastructure", "Platform", "Development", "Architecture", "Optimization"];
+  const categories = ["All", "Infrastructure", "Platform", "Backend", "Development", "Architecture", "Optimization"];
 
   return (
     <section id="projects" className="py-20">
