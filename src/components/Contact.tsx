@@ -131,27 +131,35 @@ const Contact = () => {
 
             <Card className="glass-effect">
               <CardContent className="p-6">
-                <h3 className="text-xl font-semibold mb-4">Services I Offer</h3>
+                <h3 className="text-xl font-semibold mb-4">DevOps Architecture Services</h3>
                 <ul className="space-y-3 text-muted-foreground">
                   <li className="flex items-start">
                     <span className="text-primary mr-2 mt-1">•</span>
-                    Infrastructure Automation & Optimization
+                    End-to-end DevOps setup and cloud migration strategies
                   </li>
                   <li className="flex items-start">
                     <span className="text-primary mr-2 mt-1">•</span>
-                    Kubernetes & Container Orchestration
+                    Cost optimization and cloud spend reduction (up to 95%)
                   </li>
                   <li className="flex items-start">
                     <span className="text-primary mr-2 mt-1">•</span>
-                    CI/CD Pipeline Implementation
+                    Microservices architecture design and management (100+ services)
                   </li>
                   <li className="flex items-start">
                     <span className="text-primary mr-2 mt-1">•</span>
-                    Cloud Cost Optimization
+                    Custom orchestration and workflow automation platforms
                   </li>
                   <li className="flex items-start">
                     <span className="text-primary mr-2 mt-1">•</span>
-                    Site Reliability Engineering
+                    Event-driven architecture and data migration systems
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-primary mr-2 mt-1">•</span>
+                    Team leadership and multi-environment management
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-primary mr-2 mt-1">•</span>
+                    Backend API development and cross-functional collaboration
                   </li>
                 </ul>
               </CardContent>

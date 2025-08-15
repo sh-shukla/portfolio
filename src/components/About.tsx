@@ -3,22 +3,38 @@ import { Badge } from "@/components/ui/badge";
 import { Award, GraduationCap, MapPin } from "lucide-react";
 
 const About = () => {
-  const skills = [
-    "AWS (EC2, EKS, ALB, SQS, CloudWatch)",
-    "Kubernetes",
-    "Docker", 
-    "Terraform",
-    "Helm",
-    "Jenkins",
-    "Spinnaker",
-    "GitLab CI",
-    "Prometheus",
-    "Grafana",
-    "KEDA",
-    "Python",
-    "Bash",
-    "Go"
-  ];
+  const skillCategories = {
+    "Cloud & Infrastructure": [
+      "AWS (EC2, EKS, ALB, SQS, CloudWatch, Lambda)",
+      "Kubernetes & Docker",
+      "Terraform & Infrastructure as Code",
+      "Multi-environment Management"
+    ],
+    "Backend Development": [
+      "Python & FastAPI",
+      "MongoDB & Database Design", 
+      "Apache Kafka & Event Streaming",
+      "Microservices Architecture"
+    ],
+    "DevOps & Automation": [
+      "CI/CD (Jenkins, GitLab CI, Spinnaker)",
+      "Helm Charts & Package Management",
+      "KEDA Autoscaling",
+      "GitOps & Rancher Fleet"
+    ],
+    "Monitoring & SRE": [
+      "Prometheus & Grafana",
+      "Observability Stack",
+      "Incident Response",
+      "Performance Optimization"
+    ],
+    "Orchestration & Workflow": [
+      "Custom Orchestrator Design",
+      "Event-Driven Architecture",
+      "Data Migration Systems",
+      "Workflow Management (Airflow-like)"
+    ]
+  };
 
   const certifications = [
     { name: "Certified Kubernetes Administrator (CKA)", icon: Award },
@@ -92,32 +108,33 @@ const About = () => {
           <div className="animate-fade-in" style={{ animationDelay: '600ms' }}>
             <Card className="glass-effect h-full">
               <CardContent className="p-6">
-                <h3 className="text-2xl font-semibold mb-6">Core Technologies & Skills</h3>
+                <h3 className="text-2xl font-semibold mb-6">Technical Expertise</h3>
                 <div className="space-y-6">
-                  <div>
-                    <h4 className="font-medium mb-3 text-primary">Tech Stack</h4>
-                    <div className="flex flex-wrap gap-2">
-                      {skills.map((skill, index) => (
-                        <Badge 
-                          key={index} 
-                          variant="secondary" 
-                          className="bg-secondary/50 hover:bg-primary hover:text-primary-foreground transition-colors duration-300"
-                        >
-                          {skill}
-                        </Badge>
-                      ))}
+                  {Object.entries(skillCategories).map(([category, skills], index) => (
+                    <div key={category}>
+                      <h4 className="font-semibold mb-3 text-primary">{category}</h4>
+                      <div className="flex flex-wrap gap-2">
+                        {skills.map((skill, i) => (
+                          <Badge 
+                            key={i} 
+                            variant="secondary" 
+                            className="bg-secondary/50 hover:bg-primary hover:text-primary-foreground transition-colors duration-300 text-xs"
+                          >
+                            {skill}
+                          </Badge>
+                        ))}
+                      </div>
                     </div>
-                  </div>
+                  ))}
 
-                  <div>
-                    <h4 className="font-medium mb-3 text-primary">Expertise Areas</h4>
-                    <ul className="space-y-2 text-muted-foreground">
-                      <li>• Infrastructure Automation & Optimization</li>
-                      <li>• Kubernetes & Container Orchestration</li>
-                      <li>• CI/CD Pipeline Implementation</li>
-                      <li>• Cloud Cost Optimization</li>
-                      <li>• Site Reliability Engineering</li>
-                      <li>• Monitoring & Observability</li>
+                  <div className="mt-6 pt-6 border-t border-border">
+                    <h4 className="font-semibold mb-3 text-primary">Leadership & Architecture</h4>
+                    <ul className="space-y-2 text-muted-foreground text-sm">
+                      <li>• Led multiple engineering teams across different product verticals</li>
+                      <li>• Managed 100+ microservices across multiple environments</li>
+                      <li>• Designed event-driven architectures for high-scale systems</li>
+                      <li>• Built resilient data migration and orchestration platforms</li>
+                      <li>• Cross-functional collaboration with frontend and product teams</li>
                     </ul>
                   </div>
                 </div>

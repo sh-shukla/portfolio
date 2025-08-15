@@ -10,9 +10,9 @@ const Hero = () => {
 
   const stats = [
     { number: "4.5+", label: "Years of Experience" },
-    { number: "20+", label: "Projects Deployed" },
-    { number: "95%", label: "Cost Reduction" },
-    { number: "60%", label: "Efficiency Improvement" },
+    { number: "100+", label: "Microservices Managed" },
+    { number: "5+", label: "Engineering Teams Led" },
+    { number: "95%", label: "Cost Reduction Achieved" },
   ];
 
   return (
