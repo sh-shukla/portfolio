@@ -2,6 +2,7 @@ import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { ExternalLink, Github, TrendingDown, Zap, Shield, Cloud, Cpu, GitBranch, Database } from "lucide-react";
+import { motion } from "framer-motion";
 
 const Projects = () => {
   const projects = [
@@ -66,116 +67,198 @@ const Projects = () => {
   const categories = ["All", "Infrastructure", "Platform", "Backend", "Development", "Architecture", "Optimization"];
 
   return (
-    <section id="projects" className="py-20">
-      <div className="container mx-auto px-6">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold mb-4">Featured Projects</h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+    <section id="projects" className="section-padding relative overflow-hidden">
+      {/* Background Effects */}
+      <div className="absolute inset-0 bg-gradient-to-br from-background via-primary/3 to-background" />
+      <div className="absolute top-1/4 right-1/3 w-80 h-80 bg-primary/8 rounded-full blur-3xl opacity-40" />
+      <div className="absolute bottom-1/4 left-1/4 w-72 h-72 bg-secondary/12 rounded-full blur-3xl opacity-50" />
+      <div className="container-premium relative z-10">
+        <motion.div
+          className="text-center mb-20"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+        >
+          <h2 className="heading-premium mb-6">Featured Projects</h2>
+          <p className="subheading-premium max-w-4xl mx-auto">
             Key projects showcasing DevOps automation and Backend development expertise
           </p>
-        </div>
+        </motion.div>
 
         {/* DevOps Projects */}
-        <div className="mb-16">
-          <div className="text-center mb-8">
-            <h3 className="text-2xl font-bold gradient-text mb-2">DevOps & Infrastructure</h3>
-          </div>
+        <div className="mb-20">
+          <motion.div
+            className="text-center mb-12"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+          >
+            <h3 className="text-3xl font-bold gradient-text-premium mb-4">DevOps & Infrastructure</h3>
+            <div className="w-20 h-1 bg-gradient-to-r from-primary to-primary/60 mx-auto rounded-full"></div>
+          </motion.div>
           
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {[
               {
                 icon: TrendingDown,
                 title: "AWS Cost Optimization",
                 description: "Consolidated 20+ ALBs into single architecture, achieving 95% cost reduction.",
                 metrics: "95% Cost Saved",
-                tech: ["AWS ALB", "Terraform", "Cost Analysis"]
+                tech: ["AWS ALB", "Terraform", "Cost Analysis"],
+                gradient: "from-orange-500 to-red-500"
               },
               {
                 icon: Zap,
                 title: "Kubernetes Auto-scaling",
                 description: "Implemented KEDA autoscaling with Karpenter for dynamic resource management.",
                 metrics: "25% Compute Savings",
-                tech: ["KEDA", "Karpenter", "Kubernetes"]
+                tech: ["KEDA", "Karpenter", "Kubernetes"],
+                gradient: "from-blue-500 to-purple-500"
               },
               {
                 icon: Shield,
                 title: "Infrastructure as Code",
                 description: "Built comprehensive Terraform modules for multi-environment deployments.",
                 metrics: "5 Environments",
-                tech: ["Terraform", "IaC", "Multi-env"]
+                tech: ["Terraform", "IaC", "Multi-env"],
+                gradient: "from-green-500 to-teal-500"
               },
               {
                 icon: GitBranch,
                 title: "CI/CD Automation",
                 description: "Designed CI/CD pipelines with canary deployments and automated workflows.",
                 metrics: "40% Time Saved",
-                tech: ["Jenkins", "GitLab CI", "Helm"]
+                tech: ["Jenkins", "GitLab CI", "Helm"],
+                gradient: "from-purple-500 to-pink-500"
               }
             ].map((project, index) => (
-              <Card key={index} className="glass-effect hover:shadow-xl transition-all duration-300 group">
-                <CardContent className="p-6">
-                  <div className="p-3 rounded-lg bg-primary/10 mb-4 w-fit">
-                    <project.icon className="h-6 w-6 text-primary" />
-                  </div>
-                  <h3 className="text-lg font-bold mb-3">{project.title}</h3>
-                  <p className="text-muted-foreground text-sm mb-4">{project.description}</p>
-                  <Badge className="bg-primary/20 text-primary mb-3">{project.metrics}</Badge>
-                  <div className="flex flex-wrap gap-1">
-                    {project.tech.map((tech, i) => (
-                      <Badge key={i} variant="secondary" className="text-xs">{tech}</Badge>
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                viewport={{ once: true }}
+                whileHover={{ y: -10, scale: 1.02 }}
+                className="group"
+              >
+                <Card className="glass-morphism-strong premium-hover h-full relative overflow-hidden">
+                  <div className={`absolute top-0 right-0 w-20 h-20 bg-gradient-to-br ${project.gradient} opacity-10 rounded-bl-full`}></div>
+                  <CardContent className="p-6 relative z-10">
+                    <motion.div 
+                      className={`p-4 rounded-xl bg-gradient-to-br ${project.gradient} mb-4 w-fit group-hover:scale-110 transition-transform duration-300`}
+                      whileHover={{ rotate: 5 }}
+                    >
+                      <project.icon className="h-6 w-6 text-white" />
+                    </motion.div>
+                    <h3 className="text-lg font-bold mb-3 group-hover:text-primary transition-colors">{project.title}</h3>
+                    <p className="text-muted-foreground text-sm mb-4 leading-relaxed">{project.description}</p>
+                    <Badge className={`bg-gradient-to-r ${project.gradient} text-white mb-4 glow-pulse`}>{project.metrics}</Badge>
+                    <div className="flex flex-wrap gap-2">
+                      {project.tech.map((tech, i) => (
+                        <Badge key={i} variant="secondary" className="text-xs bg-secondary/30">{tech}</Badge>
+                      ))}
+                    </div>
+                  </CardContent>
+                </Card>
+              </motion.div>
             ))}
           </div>
         </div>
 
         {/* Backend Project */}
         <div>
-          <div className="text-center mb-8">
-            <h3 className="text-2xl font-bold gradient-text mb-2">Backend Engineering</h3>
-          </div>
+          <motion.div
+            className="text-center mb-12"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+          >
+            <h3 className="text-3xl font-bold gradient-text-premium mb-4">Backend Engineering</h3>
+            <div className="w-20 h-1 bg-gradient-to-r from-primary to-primary/60 mx-auto rounded-full"></div>
+          </motion.div>
           
-          <div className="max-w-4xl mx-auto">
-            <Card className="glass-effect hover:shadow-xl transition-all duration-300">
-              <CardContent className="p-8">
-                <div className="flex items-center mb-6">
-                  <div className="p-4 rounded-lg bg-primary/10 mr-6">
-                    <Database className="h-8 w-8 text-primary" />
-                  </div>
+          <motion.div
+            className="max-w-5xl mx-auto"
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+          >
+            <Card className="glass-morphism-strong premium-hover relative overflow-hidden">
+              <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-primary to-primary/60 opacity-5 rounded-bl-full"></div>
+              <CardContent className="p-10 relative z-10">
+                <div className="flex items-center mb-8">
+                  <motion.div 
+                    className="p-6 rounded-2xl bg-gradient-to-br from-primary to-primary/60 mr-8 glow-pulse"
+                    whileHover={{ scale: 1.1, rotate: 5 }}
+                  >
+                    <Database className="h-10 w-10 text-white" />
+                  </motion.div>
                   <div>
-                    <h3 className="text-2xl font-bold mb-2">CRM Data Migration Orchestrator</h3>
-                    <p className="text-muted-foreground">Event-driven orchestration platform for seamless CRM data migration</p>
+                    <h3 className="text-3xl font-bold gradient-text-premium mb-3">CRM Data Migration Orchestrator</h3>
+                    <p className="text-muted-foreground text-lg">Event-driven orchestration platform for seamless CRM data migration</p>
                   </div>
                 </div>
                 
-                <div className="grid md:grid-cols-2 gap-8">
+                <div className="grid md:grid-cols-2 gap-10">
                   <div>
-                    <h4 className="font-semibold text-primary mb-3">Key Features</h4>
-                    <ul className="space-y-2 text-sm text-muted-foreground">
-                      <li>• DAG-based workflow management</li>
-                      <li>• Real-time state tracking and monitoring</li>
-                      <li>• 500+ concurrent process handling</li>
-                      <li>• Zero data loss architecture</li>
-                      <li>• Event-driven microservices design</li>
-                    </ul>
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-primary mb-3">Technology Stack</h4>
-                    <div className="flex flex-wrap gap-2">
-                      {["Python", "FastAPI", "Apache Kafka", "MongoDB", "Event Architecture", "DAGs", "Microservices"].map((tech, i) => (
-                        <Badge key={i} className="bg-primary/20 text-primary">{tech}</Badge>
+                    <h4 className="font-bold text-primary mb-4 text-lg">Key Features</h4>
+                    <div className="space-y-3">
+                      {[
+                        "DAG-based workflow management",
+                        "Real-time state tracking and monitoring",
+                        "500+ concurrent process handling",
+                        "Zero data loss architecture",
+                        "Event-driven microservices design"
+                      ].map((feature, i) => (
+                        <motion.div
+                          key={i}
+                          className="flex items-start p-3 rounded-lg glass-morphism"
+                          initial={{ opacity: 0, x: -20 }}
+                          whileInView={{ opacity: 1, x: 0 }}
+                          transition={{ duration: 0.4, delay: i * 0.1 }}
+                          viewport={{ once: true }}
+                        >
+                          <div className="w-2 h-2 bg-primary rounded-full mr-3 mt-2 flex-shrink-0"></div>
+                          <span className="text-sm">{feature}</span>
+                        </motion.div>
                       ))}
                     </div>
-                    <div className="mt-4">
-                      <Badge className="bg-green-500/20 text-green-400">500+ Concurrent Processes</Badge>
+                  </div>
+                  <div>
+                    <h4 className="font-bold text-primary mb-4 text-lg">Technology Stack</h4>
+                    <div className="flex flex-wrap gap-3 mb-6">
+                      {["Python", "FastAPI", "Apache Kafka", "MongoDB", "Event Architecture", "DAGs", "Microservices"].map((tech, i) => (
+                        <motion.div
+                          key={i}
+                          initial={{ opacity: 0, scale: 0.8 }}
+                          whileInView={{ opacity: 1, scale: 1 }}
+                          transition={{ duration: 0.4, delay: i * 0.05 }}
+                          viewport={{ once: true }}
+                          whileHover={{ scale: 1.1 }}
+                        >
+                          <Badge className="bg-gradient-to-r from-primary to-primary/60 text-white px-3 py-1">{tech}</Badge>
+                        </motion.div>
+                      ))}
                     </div>
+                    <motion.div
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.6, delay: 0.4 }}
+                      viewport={{ once: true }}
+                    >
+                      <Badge className="bg-gradient-to-r from-green-500 to-emerald-500 text-white text-lg px-4 py-2 glow-pulse">
+                        500+ Concurrent Processes
+                      </Badge>
+                    </motion.div>
                   </div>
                 </div>
               </CardContent>
             </Card>
-          </div>
+          </motion.div>
         </div>
 
 

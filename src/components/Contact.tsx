@@ -5,6 +5,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Mail, Phone, MapPin, Linkedin, Github, Send } from "lucide-react";
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
+import { motion } from "framer-motion";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -95,8 +96,12 @@ const Contact = () => {
   ];
 
   return (
-    <section id="contact" className="py-20 bg-secondary/20">
-      <div className="container mx-auto px-6">
+    <section id="contact" className="py-20 relative overflow-hidden">
+      {/* Background Effects */}
+      <div className="absolute inset-0 bg-gradient-to-br from-background via-secondary/8 to-background" />
+      <div className="absolute top-1/3 left-1/4 w-96 h-96 bg-primary/6 rounded-full blur-3xl opacity-60" />
+      <div className="absolute bottom-1/3 right-1/3 w-80 h-80 bg-secondary/10 rounded-full blur-3xl opacity-50" />
+      <div className="container mx-auto px-6 relative z-10">
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold mb-4">Let's Work Together</h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
@@ -108,13 +113,17 @@ const Contact = () => {
         <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-12">
           {/* Contact Information */}
           <div className="space-y-8 animate-slide-in">
-            <Card className="glass-effect">
+            <Card className="glass-morphism-strong premium-hover">
               <CardContent className="p-6">
                 <h3 className="text-2xl font-semibold mb-6">Get in Touch</h3>
                 <div className="space-y-6">
                   {contactInfo.map((info, index) => (
-                    <div key={index} className="flex items-center space-x-4">
-                      <div className="p-3 bg-primary/10 rounded-lg">
+                    <motion.div 
+                      key={index} 
+                      className="flex items-center space-x-4 p-3 glass-morphism rounded-xl smooth-hover"
+                      whileHover={{ scale: 1.02, x: 4 }}
+                    >
+                      <div className="p-3 glass-morphism rounded-lg">
                         <info.icon className="h-5 w-5 text-primary" />
                       </div>
                       <div>
@@ -130,7 +139,7 @@ const Contact = () => {
                           <p className="text-muted-foreground">{info.value}</p>
                         )}
                       </div>
-                    </div>
+                    </motion.div>
                   ))}
                 </div>
 
@@ -138,28 +147,28 @@ const Contact = () => {
                   <h4 className="font-semibold mb-4">Follow Me</h4>
                   <div className="flex space-x-4">
                     {socialLinks.map((social, index) => (
-                      <a
+                      <motion.a
                         key={index}
                         href={social.href}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className={`p-3 bg-secondary rounded-lg text-muted-foreground ${social.color} transition-colors duration-300`}
+                        className={`p-3 glass-morphism rounded-lg text-muted-foreground ${social.color} smooth-hover`}
                         aria-label={social.label}
+                        whileHover={{ scale: 1.1, y: -2 }}
+                        whileTap={{ scale: 0.95 }}
                       >
                         <social.icon size={20} />
-                      </a>
+                      </motion.a>
                     ))}
                   </div>
                 </div>
               </CardContent>
             </Card>
-
-
           </div>
 
           {/* Contact Form */}
           <div className="animate-fade-in" style={{ animationDelay: '300ms' }}>
-            <Card className="glass-effect">
+            <Card className="glass-morphism-strong premium-hover">
               <CardContent className="p-6">
                 <h3 className="text-2xl font-semibold mb-6">Send a Message</h3>
                 <form onSubmit={handleSubmit} className="space-y-6" action="https://formspree.io/f/mzzvwyol" method="POST">
@@ -175,7 +184,7 @@ const Contact = () => {
                         onChange={handleChange}
                         placeholder="Your Name"
                         required
-                        className="bg-secondary/50 border-border focus:border-primary"
+                        className="glass-morphism border-border focus:border-primary focus:ring-2 focus:ring-primary/20"
                       />
                     </div>
                     <div>
@@ -190,7 +199,7 @@ const Contact = () => {
                         onChange={handleChange}
                         placeholder="your.email@example.com"
                         required
-                        className="bg-secondary/50 border-border focus:border-primary"
+                        className="glass-morphism border-border focus:border-primary focus:ring-2 focus:ring-primary/20"
                       />
                     </div>
                   </div>
@@ -206,7 +215,7 @@ const Contact = () => {
                       onChange={handleChange}
                       placeholder="Project Discussion / Consultation"
                       required
-                      className="bg-secondary/50 border-border focus:border-primary"
+                      className="glass-morphism border-border focus:border-primary focus:ring-2 focus:ring-primary/20"
                     />
                   </div>
 
@@ -222,18 +231,20 @@ const Contact = () => {
                       placeholder="Tell me about your project or how I can help..."
                       required
                       rows={5}
-                      className="bg-secondary/50 border-border focus:border-primary resize-none"
+                      className="glass-morphism border-border focus:border-primary focus:ring-2 focus:ring-primary/20 resize-none"
                     />
                   </div>
 
-                  <Button 
-                    type="submit" 
-                    size="lg" 
-                    className="w-full bg-primary hover:bg-primary/90 text-primary-foreground glow-effect"
-                  >
-                    <Send className="mr-2 h-4 w-4" />
-                    Send Message
-                  </Button>
+                  <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+                    <Button 
+                      type="submit" 
+                      size="lg" 
+                      className="w-full glass-morphism-strong premium-hover border-0 text-white font-medium glow-pulse"
+                    >
+                      <Send className="mr-2 h-4 w-4" />
+                      Send Message
+                    </Button>
+                  </motion.div>
                 </form>
               </CardContent>
             </Card>
