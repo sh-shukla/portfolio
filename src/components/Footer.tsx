@@ -27,7 +27,7 @@ const Footer = () => {
           {/* Social Links */}
           <div className="flex justify-center space-x-6">
             <a 
-              href="https://linkedin.com/in/shashank-shukla" 
+              href="https://linkedin.com/in/shashank-shukla-b84b7a162" 
               target="_blank" 
               rel="noopener noreferrer"
               className="text-muted-foreground hover:text-primary transition-colors duration-300"
@@ -36,7 +36,7 @@ const Footer = () => {
               <Linkedin size={24} />
             </a>
             <a 
-              href="https://github.com/shashank-shukla" 
+              href="https://github.com/sh-shukla" 
               target="_blank" 
               rel="noopener noreferrer"
               className="text-muted-foreground hover:text-primary transition-colors duration-300"
