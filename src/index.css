@@ -1,8 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap');
 
 @layer base {
   :root {
@@ -128,65 +127,6 @@
     75% { transform: translateY(-10px) rotate(-1deg); }
   }
 
-  /* Advanced animations */
-  .morphing-blob {
-    animation: morphing 10s ease-in-out infinite;
-  }
-
-  @keyframes morphing {
-    0%, 100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
-    25% { border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%; }
-    50% { border-radius: 50% 60% 30% 60% / 30% 60% 70% 40%; }
-    75% { border-radius: 60% 40% 60% 30% / 70% 30% 60% 40%; }
-  }
-
-
-
-  .particle-float {
-    animation: particleFloat 6s ease-in-out infinite;
-  }
-
-  @keyframes particleFloat {
-    0%, 100% { transform: translateY(0px) translateX(0px) rotate(0deg); }
-    33% { transform: translateY(-20px) translateX(10px) rotate(120deg); }
-    66% { transform: translateY(10px) translateX(-10px) rotate(240deg); }
-  }
-
-  .glow-pulse {
-    animation: glowPulse 3s ease-in-out infinite;
-  }
-
-  @keyframes glowPulse {
-    0%, 100% { box-shadow: 0 0 20px rgba(96, 165, 250, 0.3); }
-    50% { box-shadow: 0 0 40px rgba(96, 165, 250, 0.6), 0 0 60px rgba(96, 165, 250, 0.3); }
-  }
-
-  @keyframes sphereGlow {
-    0% { 
-      box-shadow: 
-        inset -10px -10px 20px rgba(0,0,0,0.2),
-        inset 10px 10px 20px rgba(255,255,255,0.1),
-        0 20px 40px rgba(96,165,250,0.3),
-        0 0 60px rgba(96,165,250,0.2);
-    }
-    100% { 
-      box-shadow: 
-        inset -15px -15px 30px rgba(0,0,0,0.3),
-        inset 15px 15px 30px rgba(255,255,255,0.15),
-        0 25px 50px rgba(96,165,250,0.4),
-        0 0 80px rgba(96,165,250,0.3);
-    }
-  }
-
-  @keyframes shimmer {
-    0% { transform: translateX(-100%); }
-    100% { transform: translateX(200%); }
-  }
-
-  .animate-shimmer {
-    animation: shimmer 3s ease-in-out infinite;
-  }
-
   .premium-hover {
     transition: var(--transition-premium);
   }
@@ -209,41 +149,6 @@
   html {
     scroll-behavior: smooth;
     scroll-restoration: manual;
-  }
-
-  /* Premium scrollbar */
-  ::-webkit-scrollbar {
-    width: 6px;
-  }
-
-  ::-webkit-scrollbar-track {
-    background: rgba(0, 0, 0, 0.1);
-  }
-
-  ::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.2);
-    border-radius: 3px;
-  }
-
-  ::-webkit-scrollbar-thumb:hover {
-    background: rgba(255, 255, 255, 0.3);
-  }
-
-  /* Typography enhancements */
-  .text-premium {
-    letter-spacing: -0.025em;
-    line-height: 1.1;
-    font-weight: 700;
-  }
-
-  .text-body-premium {
-    letter-spacing: -0.01em;
-    line-height: 1.7;
-    font-weight: 400;
-  }
-
-  .font-mono {
-    font-family: 'JetBrains Mono', 'Fira Code', monospace;
   }
 }
 
@@ -276,42 +181,15 @@
     box-shadow: 0 32px 64px -12px rgba(0, 0, 0, 0.4);
   }
 
-
-
-  /* Apple-style section transitions */
-  .section-transition {
-    position: relative;
-    overflow: hidden;
+  .text-premium {
+    letter-spacing: -0.025em;
+    line-height: 1.1;
+    font-weight: 700;
   }
 
-  .section-transition::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-  }
-
-  .section-divider {
-    height: 100px;
-    background: linear-gradient(180deg, 
-      rgba(0, 0, 0, 0) 0%, 
-      rgba(96, 165, 250, 0.05) 50%, 
-      rgba(0, 0, 0, 0) 100%);
-    position: relative;
-    overflow: hidden;
-  }
-
-  .section-divider::after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 60px;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(96, 165, 250, 0.4), transparent);
+  .text-body-premium {
+    letter-spacing: -0.01em;
+    line-height: 1.7;
+    font-weight: 400;
   }
 }

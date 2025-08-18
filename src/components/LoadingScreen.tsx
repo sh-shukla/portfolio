@@ -223,7 +223,7 @@ const LoadingScreen = ({ onComplete, isCollapsed }: LoadingScreenProps) => {
       {/* Welcome Text */}
       {showText && (
         <motion.div
-          className="absolute inset-0 flex items-center justify-center mt-32 text-center"
+          className="absolute inset-0 flex items-center justify-center mt-40 text-center"
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.8 }}

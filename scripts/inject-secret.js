@@ -1,8 +1,7 @@
 import { writeFileSync } from 'fs';
-import { createHash } from 'crypto';
 
 const secret = process.env.ADMIN_SECRET || '123456';
-const hashedSecret = createHash('sha256').update(secret).digest('hex').slice(0, 16);
+const hashedSecret = Buffer.from(secret).toString('base64').slice(0, 16);
 
 const authCode = `
 export const ADMIN_HASH = '${hashedSecret}';

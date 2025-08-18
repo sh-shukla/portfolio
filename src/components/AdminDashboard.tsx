@@ -6,6 +6,7 @@ import { Eye, Users, Globe, Monitor } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { validateAdmin } from '@/utils/adminSecret';
 import { initSecretAccess } from '@/utils/secretAccess';
+import PasswordModal from './PasswordModal';
 
 interface VisitorData {
   id: string;
@@ -50,17 +51,24 @@ const AdminDashboard = () => {
     };
   } | null>(null);
   const [isVisible, setIsVisible] = useState(false);
+  const [showPasswordModal, setShowPasswordModal] = useState(false);
 
   const handleAdminAccess = () => {
-    const password = prompt('Enter admin password:');
+    setShowPasswordModal(true);
+  };
+
+  const handlePasswordSubmit = (password: string) => {
     if (validateAdmin(password)) {
+      setShowPasswordModal(false);
       setIsVisible(true);
       loadStats();
+    } else {
+      alert('❌ Invalid password');
     }
   };
 
   useEffect(() => {
-    const cleanup = initSecretAccess(handleAdminAccess);
+    const cleanup = initSecretAccess(() => setShowPasswordModal(true));
     return cleanup;
   }, []);
 
@@ -95,22 +103,7 @@ const AdminDashboard = () => {
       .slice(0, 5);
   };
 
-  if (!isVisible) {
-    return (
-      <div className="fixed bottom-4 right-4 z-50">
-        <Button
-          onClick={handleAdminAccess}
-          variant="outline"
-          size="sm"
-          className="glass-morphism"
-        >
-          <Eye className="h-4 w-4" />
-        </Button>
-      </div>
-    );
-  }
-
-  return (
+  const dashboardContent = (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
@@ -161,7 +154,7 @@ const AdminDashboard = () => {
                 <Globe className="h-5 w-5 text-primary" />
                 <div>
                   <p className="text-2xl font-bold">
-                    {Object.keys(stats.analytics.countries).length}
+                    {stats?.analytics?.countries ? Object.keys(stats.analytics.countries).length : 0}
                   </p>
                   <p className="text-sm text-muted-foreground">Countries</p>
                 </div>
@@ -175,7 +168,7 @@ const AdminDashboard = () => {
                 <Monitor className="h-5 w-5 text-primary" />
                 <div>
                   <p className="text-2xl font-bold">
-                    {Object.keys(stats.analytics.devices).length}
+                    {stats?.analytics?.devices ? Object.keys(stats.analytics.devices).length : 0}
                   </p>
                   <p className="text-sm text-muted-foreground">Device Types</p>
                 </div>
@@ -194,7 +187,7 @@ const AdminDashboard = () => {
             </CardTitle>
           </CardHeader>
           <CardContent>
-            {Object.entries(stats.analytics.countries)
+            {stats?.analytics?.countries ? Object.entries(stats.analytics.countries)
               .sort(([,a], [,b]) => b - a)
               .slice(0, 5)
               .map(([country, count]) => (
@@ -202,7 +195,7 @@ const AdminDashboard = () => {
                   <span className="font-medium">{country}</span>
                   <Badge>{count} visitors</Badge>
                 </div>
-              ))}
+              )) : <p className="text-muted-foreground">No data available</p>}
           </CardContent>
         </Card>
 
@@ -217,21 +210,21 @@ const AdminDashboard = () => {
             <div className="space-y-3">
               <div>
                 <h4 className="text-sm font-semibold mb-2">Devices</h4>
-                {Object.entries(stats.analytics.devices).map(([device, count]) => (
+                {stats?.analytics?.devices ? Object.entries(stats.analytics.devices).map(([device, count]) => (
                   <div key={device} className="flex justify-between text-sm mb-1">
                     <span>{device}</span>
                     <span>{count}</span>
                   </div>
-                ))}
+                )) : <p className="text-xs text-muted-foreground">No data</p>}
               </div>
               <div>
                 <h4 className="text-sm font-semibold mb-2">Browsers</h4>
-                {Object.entries(stats.analytics.browsers).map(([browser, count]) => (
+                {stats?.analytics?.browsers ? Object.entries(stats.analytics.browsers).map(([browser, count]) => (
                   <div key={browser} className="flex justify-between text-sm mb-1">
                     <span>{browser}</span>
                     <span>{count}</span>
                   </div>
-                ))}
+                )) : <p className="text-xs text-muted-foreground">No data</p>}
               </div>
             </div>
           </CardContent>
@@ -245,7 +238,7 @@ const AdminDashboard = () => {
             </CardTitle>
           </CardHeader>
           <CardContent>
-            {Object.entries(stats.analytics.referrers)
+            {stats?.analytics?.referrers ? Object.entries(stats.analytics.referrers)
               .sort(([,a], [,b]) => b - a)
               .slice(0, 5)
               .map(([referrer, count]) => (
@@ -253,7 +246,7 @@ const AdminDashboard = () => {
                   <span className="font-medium text-sm">{referrer}</span>
                   <Badge>{count}</Badge>
                 </div>
-              ))}
+              )) : <p className="text-muted-foreground">No data available</p>}
           </CardContent>
         </Card>
       </div>
@@ -313,6 +306,31 @@ const AdminDashboard = () => {
         </Card>
       </div>
     </motion.div>
+  );
+
+  return (
+    <>
+      {!isVisible ? (
+        <div className="fixed bottom-4 right-4 z-50">
+          <Button
+            onClick={handleAdminAccess}
+            variant="outline"
+            size="sm"
+            className="glass-morphism"
+          >
+            <Eye className="h-4 w-4" />
+          </Button>
+        </div>
+      ) : (
+        dashboardContent
+      )}
+      
+      <PasswordModal
+        isOpen={showPasswordModal}
+        onClose={() => setShowPasswordModal(false)}
+        onSubmit={handlePasswordSubmit}
+      />
+    </>
   );
 };
 
