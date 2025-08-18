@@ -17,21 +17,54 @@ const Contact = () => {
 
   const { toast } = useToast();
 
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const validateForm = () => {
+    const errors: string[] = [];
+    
+    if (!formData.name.trim()) errors.push('Name is required');
+    if (!formData.email.trim()) errors.push('Email is required');
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) errors.push('Valid email is required');
+    if (!formData.subject.trim()) errors.push('Subject is required');
+    if (!formData.message.trim()) errors.push('Message is required');
+    if (formData.message.length < 10) errors.push('Message must be at least 10 characters');
+    
+    return errors;
+  };
+
+  const sanitizeInput = (input: string) => {
+    return input.replace(/[<>"'&]/g, '').trim();
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
+    const validationErrors = validateForm();
+    if (validationErrors.length > 0) {
+      toast({
+        title: "Validation Error",
+        description: validationErrors.join(', '),
+        variant: "destructive",
+      });
+      return;
+    }
+
+    setIsSubmitting(true);
+    
     try {
+      const sanitizedData = {
+        name: sanitizeInput(formData.name),
+        email: sanitizeInput(formData.email),
+        subject: sanitizeInput(formData.subject),
+        message: sanitizeInput(formData.message),
+      };
+
       const response = await fetch('https://formspree.io/f/mzzvwyol', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
-          name: formData.name,
-          email: formData.email,
-          subject: formData.subject,
-          message: formData.message,
-        }),
+        body: JSON.stringify(sanitizedData),
       });
 
       if (response.ok) {
@@ -49,6 +82,8 @@ const Contact = () => {
         description: "Failed to send message. Please try again or contact directly.",
         variant: "destructive",
       });
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -239,10 +274,11 @@ const Contact = () => {
                     <Button 
                       type="submit" 
                       size="lg" 
-                      className="w-full glass-morphism-strong premium-hover border-0 text-white font-medium glow-pulse"
+                      disabled={isSubmitting}
+                      className="w-full glass-morphism-strong premium-hover border-0 text-white font-medium glow-pulse disabled:opacity-50"
                     >
                       <Send className="mr-2 h-4 w-4" />
-                      Send Message
+                      {isSubmitting ? 'Sending...' : 'Send Message'}
                     </Button>
                   </motion.div>
                 </form>

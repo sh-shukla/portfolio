@@ -12,6 +12,9 @@ dist
 dist-ssr
 *.local
 
+# Generated admin secret
+src/utils/adminSecret.js
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

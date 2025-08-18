@@ -210,7 +210,7 @@ const LoadingScreen = ({ onComplete, isCollapsed }: LoadingScreenProps) => {
 
       {/* Central SS Logo */}
       <motion.div
-        className="relative flex items-center justify-center"
+        className="absolute inset-0 flex items-center justify-center -mt-20"
         initial={{ scale: 0, rotate: -180 }}
         animate={{ scale: 1, rotate: 0 }}
         transition={{ duration: 1.2, type: "spring", stiffness: 150, delay: 0.5 }}
@@ -223,7 +223,7 @@ const LoadingScreen = ({ onComplete, isCollapsed }: LoadingScreenProps) => {
       {/* Welcome Text */}
       {showText && (
         <motion.div
-          className="absolute bottom-1/4 text-center"
+          className="absolute inset-0 flex items-center justify-center mt-32 text-center"
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.8 }}
@@ -232,7 +232,7 @@ const LoadingScreen = ({ onComplete, isCollapsed }: LoadingScreenProps) => {
           <h1 className="text-4xl lg:text-6xl font-bold gradient-text-premium" style={{
             lineHeight: '1.3'
           }}>
-          Let's Build Together
+            Let&apos;s Build Together
           </h1>
         </motion.div>
       )}
