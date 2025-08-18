@@ -6,9 +6,7 @@ import { HashRouter, Routes, Route } from "react-router-dom";
 import { useEffect } from "react";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
-import AdminDashboard from "./components/AdminDashboard";
-import VisitorTracker from "./utils/analytics";
-
+import EnhancedAdminDashboard from "./components/EnhancedAdminDashboard";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -21,16 +19,10 @@ const queryClient = new QueryClient({
 
 const App = () => {
   useEffect(() => {
-    // Initialize visitor tracking
-    const tracker = new VisitorTracker();
-    
-    // Track page changes
-    const handleLocationChange = () => {
-      tracker.trackPageView(window.location.pathname);
-    };
-    
-    window.addEventListener('popstate', handleLocationChange);
-    return () => window.removeEventListener('popstate', handleLocationChange);
+    // Initialize enhanced analytics
+    import('./utils/enhanced-analytics').then(({ enhancedAnalytics }) => {
+      // Analytics will auto-initialize
+    });
   }, []);
 
   return (
@@ -44,7 +36,7 @@ const App = () => {
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
-          <AdminDashboard />
+          <EnhancedAdminDashboard />
         </HashRouter>
       </TooltipProvider>
     </QueryClientProvider>
