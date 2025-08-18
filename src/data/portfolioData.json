@@ -1,0 +1,155 @@
+{
+  "categories": [
+    {
+      "id": "professional",
+      "title": "📋 Professional Background",
+      "icon": "💼",
+      "items": [
+        {
+          "question": "Current Role",
+          "answer": "Senior DevOps/SRE Engineer at Nielsen, Bangalore. Managing cloud infrastructure, CI/CD pipelines, and system reliability for data analytics platforms."
+        },
+        {
+          "question": "Career Progression",
+          "answer": "Started at Conga in 2021 as Associate DevOps Engineer → DevOps Engineer (2023) → Senior DevOps Engineer (2024) → Joined Nielsen as Senior DevOps Engineer (2025)."
+        },
+        {
+          "question": "Total Experience",
+          "answer": "4.5+ years in DevOps and Site Reliability Engineering across e-commerce, fintech, and healthcare domains."
+        },
+        {
+          "question": "Leadership Experience",
+          "answer": "Led a 6-member DevOps/SRE team at Conga and mentored 10+ product teams across different organizations."
+        }
+      ]
+    },
+    {
+      "id": "achievements",
+      "title": "🏆 Achievements & Impact",
+      "icon": "🚀",
+      "items": [
+        {
+          "question": "95% AWS Cost Reduction",
+          "answer": "Consolidated 20+ Application Load Balancers into a single, intelligent routing solution at Nielsen, achieving massive cost savings."
+        },
+        {
+          "question": "100+ Microservices Management",
+          "answer": "Successfully managed 100+ microservices across 5 environments (dev, qa, stage, perf, prod) with 99.9% uptime."
+        },
+        {
+          "question": "Data Migration Platform",
+          "answer": "Built custom platform using Python and Celery handling 500+ concurrent processes with zero data loss."
+        },
+        {
+          "question": "50% MTTR Reduction",
+          "answer": "Implemented comprehensive observability using Prometheus, Grafana, and automated alerting systems."
+        },
+        {
+          "question": "40% Deployment Time Reduction",
+          "answer": "Created reusable Helm chart templates that standardized and accelerated deployment processes."
+        }
+      ]
+    },
+    {
+      "id": "technical",
+      "title": "💻 Technical Expertise",
+      "icon": "⚡",
+      "items": [
+        {
+          "question": "Cloud Platforms",
+          "answer": "AWS (EC2, EKS, ALB, Lambda, CloudWatch, SQS), Azure exposure. Extensive experience with multi-cloud architectures."
+        },
+        {
+          "question": "Container & Orchestration",
+          "answer": "Kubernetes (CKA certified), Docker, Helm, Istio service mesh, KEDA autoscaling, container security best practices."
+        },
+        {
+          "question": "CI/CD & Automation",
+          "answer": "Jenkins, GitLab CI, Spinnaker, Rancher Fleet, GitOps workflows, automated testing, security scanning."
+        },
+        {
+          "question": "Infrastructure as Code",
+          "answer": "Terraform (HashiCorp certified), CloudFormation, Ansible, Pulumi. Multi-environment deployment strategies."
+        },
+        {
+          "question": "Programming Languages",
+          "answer": "Python (60+ FastAPI services), Go, JavaScript/TypeScript, Bash scripting, Groovy for Jenkins pipelines."
+        },
+        {
+          "question": "Monitoring & Observability",
+          "answer": "Prometheus, Grafana, ELK stack, CloudWatch, New Relic, Jaeger, custom dashboards and alerting."
+        },
+        {
+          "question": "Databases & Messaging",
+          "answer": "MongoDB, MySQL, PostgreSQL, Redis, Apache Kafka/MSK, RabbitMQ, event-driven architectures."
+        }
+      ]
+    },
+    {
+      "id": "personal",
+      "title": "👤 Personal & Soft Skills",
+      "icon": "🌟",
+      "items": [
+        {
+          "question": "Strengths",
+          "answer": "Problem-solving excellence, technical leadership, continuous learning mindset, automation-first approach, strong communication skills."
+        },
+        {
+          "question": "Areas for Growth",
+          "answer": "Improving delegation skills and enhancing public speaking abilities for larger conferences. Always seeking feedback for continuous improvement."
+        },
+        {
+          "question": "Work Style",
+          "answer": "Thrive in collaborative cross-functional teams while comfortable working independently on complex technical challenges."
+        },
+        {
+          "question": "Motivation",
+          "answer": "Solving complex infrastructure challenges, seeing direct business impact, mentoring team members, and staying at the cutting edge of technology."
+        },
+        {
+          "question": "Conflict Resolution",
+          "answer": "Active listening, identifying root causes, collaborating on solutions that align with business goals and technical best practices."
+        }
+      ]
+    },
+    {
+      "id": "contact",
+      "title": "📞 Contact & Availability",
+      "icon": "📧",
+      "items": [
+        {
+          "question": "Email",
+          "answer": "shashank.shukla1202@gmail.com"
+        },
+        {
+          "question": "Phone",
+          "answer": "+91 7737602733"
+        },
+        {
+          "question": "LinkedIn",
+          "answer": "linkedin.com/in/shashank-shukla-b84b7a162/"
+        },
+        {
+          "question": "GitHub",
+          "answer": "github.com/sh-shukla"
+        },
+        {
+          "question": "Portfolio",
+          "answer": "sh-shukla.github.io/portfolio/"
+        },
+        {
+          "question": "Location",
+          "answer": "Bangalore, India (Open to relocation and remote opportunities)"
+        },
+        {
+          "question": "Availability",
+          "answer": "Currently employed at Nielsen. Standard 30-day notice period, negotiable for the right opportunity."
+        },
+        {
+          "question": "Resume Download",
+          "answer": "Click the 'Download CV' button on this portfolio or contact me directly for the latest version."
+        }
+      ]
+    }
+  ]
+}
