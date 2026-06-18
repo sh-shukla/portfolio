@@ -176,7 +176,7 @@ const Expertise = () => {
                 <TrendingUp className="h-12 w-12 text-primary mr-4" />
                 <div>
                   <h3 className="text-2xl font-bold gradient-text">Professional Journey</h3>
-                  <p className="text-muted-foreground">4.5+ years of continuous growth and innovation</p>
+                  <p className="text-muted-foreground">5+ years of continuous growth and innovation</p>
                 </div>
               </div>
               

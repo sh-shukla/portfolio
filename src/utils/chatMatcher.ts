@@ -296,7 +296,7 @@ class ChatMatcher {
     const queryLower = query.toLowerCase();
     
     if (queryLower.match(/(technical|technology|programming|coding|development)/)) {
-      return "I'd be happy to discuss Shashank's technical expertise! He has 4.5+ years of experience with AWS, Kubernetes, Python, and DevOps tools. Try asking about specific technologies like 'AWS experience' or 'Kubernetes skills'. For detailed technical discussions, connect with him at shashank.shukla1202@gmail.com.";
+      return "I'd be happy to discuss Shashank's technical expertise! He has 5+ years of experience with AWS, Kubernetes, Python, and DevOps tools. Try asking about specific technologies like 'AWS experience' or 'Kubernetes skills'. For detailed technical discussions, connect with him at shashank.shukla1202@gmail.com.";
     }
     
     if (queryLower.match(/(career|job|opportunity|role|position)/)) {
@@ -331,7 +331,7 @@ class ChatMatcher {
   getGreeting(): string {
     const greetings = [
       "👋 Hi there! I'm Shashank's AI assistant. I'm here to help you learn about his DevOps expertise, achievements, and professional background. What would you like to know?",
-      "Hello! 🚀 Welcome to Shashank's portfolio. I can share insights about his 4.5+ years of DevOps experience, technical skills, and career achievements. How can I help you today?",
+      "Hello! 🚀 Welcome to Shashank's portfolio. I can share insights about his 5+ years of DevOps experience, technical skills, and career achievements. How can I help you today?",
       "Hey! 👨‍💻 I'm here to tell you all about Shashank Shukla - his DevOps journey, AWS expertise, and impressive track record. What interests you most?",
     ];
     return greetings[Math.floor(Math.random() * greetings.length)];

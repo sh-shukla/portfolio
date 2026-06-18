@@ -145,7 +145,7 @@ const About = () => {
         >
           <h2 className="heading-premium mb-6">About Me</h2>
           <p className="subheading-premium max-w-4xl mx-auto">
-            DevOps & SRE Engineer with 4.5+ years of experience specializing in automation, 
+            DevOps & SRE Engineer with 5+ years of experience specializing in automation, 
             cost optimization, and reliability engineering. Passionate about building scalable 
             infrastructure and driving operational efficiency.
           </p>

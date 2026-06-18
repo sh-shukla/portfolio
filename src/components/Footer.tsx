@@ -125,7 +125,7 @@ const Footer = () => {
             viewport={{ once: true }}
           >
             {[
-              { label: "AWS Expert", value: "4.5+ Years" },
+              { label: "AWS Expert", value: "5+ Years" },
               { label: "Kubernetes", value: "CKA Certified" },
               { label: "Cost Savings", value: "95% Achieved" },
               { label: "Team Support", value: "10+ Teams" }
