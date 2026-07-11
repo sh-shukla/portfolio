@@ -140,15 +140,14 @@ const Contact = () => {
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold mb-4">Let's Work Together</h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Ready to optimize your infrastructure or discuss DevOps strategies? 
-            Let's connect and explore how we can drive efficiency together.
+            Open to infrastructure consulting, platform engineering roles, or just a good tech conversation.
           </p>
         </div>
 
-        <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-12">
+        <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-12 items-stretch">
           {/* Contact Information */}
           <div className="space-y-8 animate-slide-in">
-            <Card className="glass-morphism-strong premium-hover">
+            <Card className="glass-morphism-strong premium-hover h-full">
               <CardContent className="p-6">
                 <h3 className="text-2xl font-semibold mb-6">Get in Touch</h3>
                 <div className="space-y-6">
@@ -202,8 +201,8 @@ const Contact = () => {
           </div>
 
           {/* Contact Form */}
-          <div className="animate-fade-in" style={{ animationDelay: '300ms' }}>
-            <Card className="glass-morphism-strong premium-hover">
+          <div className="animate-fade-in h-full" style={{ animationDelay: '300ms' }}>
+            <Card className="glass-morphism-strong premium-hover h-full">
               <CardContent className="p-6">
                 <h3 className="text-2xl font-semibold mb-6">Send a Message</h3>
                 <form onSubmit={handleSubmit} className="space-y-6" action="https://formspree.io/f/mzzvwyol" method="POST">

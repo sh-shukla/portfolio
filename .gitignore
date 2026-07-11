@@ -25,3 +25,6 @@ src/utils/adminSecret.js
 *.njsproj
 *.sln
 *.sw?
+
+github_push_token.txt
+work_summary

@@ -21,8 +21,8 @@ const Hero = () => {
 
   const stats = [
     { number: "5+", label: "Years of Experience" },
-    { number: "100+", label: "Microservices Managed" },
-    { number: "10+", label: "Product Teams Supported" },
+    { number: "270+", label: "Microservices Managed" },
+    { number: "15+", label: "Product Teams Supported" },
     { number: "95%", label: "Cost Reduction Achieved" },
   ];
 
@@ -67,7 +67,7 @@ const Hero = () => {
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.4 }}
               >
-                DevOps & SRE Engineer
+                DevOps & Platform Engineer
               </motion.p>
               
               <h1 className="heading-premium">
@@ -88,8 +88,7 @@ const Hero = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.8 }}
               >
-                🚀 From Bangalore | AWS & Kubernetes Specialist | 
-                Driving efficiency, scalability, and reliability through automation and innovation
+                Kubernetes · AWS · Security · Cost Engineering · AI/ML Infrastructure
               </motion.p>
             </motion.div>
 

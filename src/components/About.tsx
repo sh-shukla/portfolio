@@ -30,26 +30,26 @@ const About = () => {
 
   const techStack = [
     {
-      title: "Cloud Infrastructure",
-      description: "AWS (EC2, EKS, ALB, Lambda), Kubernetes, Docker, Multi-Cloud",
+      title: "Cloud & Kubernetes",
+      description: "AWS (EKS, EC2, ALB, Lambda, SQS, MSK), Kubernetes, Karpenter, Helm, KEDA",
       image: "https://upload.wikimedia.org/wikipedia/commons/9/93/Amazon_Web_Services_Logo.svg",
       gradient: "from-orange-500 to-yellow-500"
     },
     {
-      title: "DevOps & Automation",
-      description: "CI/CD Pipelines, Terraform, Helm Charts, Jenkins, GitLab CI, Spinnaker",
+      title: "Platform & Security",
+      description: "Kyverno, HashiCorp Vault, GitLab CI, JFrog Artifactory, Terraform, Blue-Green Deployments",
       image: "./devops.jpg",
       gradient: "from-blue-500 to-purple-500"
     },
     {
-      title: "Backend Engineering",
-      description: "Python, FastAPI (60+ APIs), Apache Kafka, MongoDB, Event-Driven Architecture",
+      title: "AI/ML & Data Infra",
+      description: "GPU workload orchestration, Apache Flink, Spark on K8s, ScyllaDB, Aerospike, Kafka/MSK",
       image: "https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg",
       gradient: "from-green-500 to-teal-500"
     },
     {
-      title: "SRE & Monitoring",
-      description: "Prometheus, Grafana, CloudWatch, Observability Stack, KEDA Autoscaling",
+      title: "Observability & SRE",
+      description: "Prometheus, Grafana, CloudWatch, Node Problem Detector, NodeLocalDNS, PagerDuty",
       image: "https://upload.wikimedia.org/wikipedia/commons/3/38/Prometheus_software_logo.svg",
       gradient: "from-red-500 to-pink-500"
     }
@@ -59,49 +59,37 @@ const About = () => {
     { 
       value: "95%", 
       label: "AWS Cost Reduction", 
-      description: "ALB Consolidation",
+      description: "ALB → NGINX + Graviton",
       details: [
-        "Analyzed 20+ Application Load Balancers across multiple environments",
-        "Designed single ALB architecture with intelligent path-based routing",
-        "Implemented listener rules and target groups for service isolation",
-        "Migrated services with zero downtime using blue-green deployment",
-        "Achieved 95% cost reduction through resource optimization"
+        "Migrated 50+ services from LoadBalancer to NGINX Ingress Controller",
+        "Eliminated per-service ALB costs (~$20/month each)",
+        "Led Graviton ARM adoption with multi-architecture container builds (amd64 + arm64)",
+        "Consolidated 20+ ALBs into single intelligent routing architecture",
+        "Achieved 20-40% compute cost reduction via Graviton migration"
       ]
     },
     { 
-      value: "10+", 
+      value: "15+", 
       label: "Product Teams", 
-      description: "DevOps Support",
+      description: "Cross-org DevOps Support",
       details: [
-        "Provided DevOps expertise across e-commerce, fintech, and healthcare verticals",
-        "Established CI/CD pipelines for diverse technology stacks (Node.js, Python, Java)",
-        "Created standardized deployment templates and infrastructure as code",
-        "Conducted knowledge transfer sessions and technical mentoring",
-        "Implemented monitoring and alerting strategies for each product team"
+        "Supported Video, Sports, Music, EPGS, Ads and data platform teams",
+        "Established CI/CD standards across Node.js, Python, Java, Scala stacks",
+        "Led CrowdStrike remediation across 15+ AWS accounts during critical incident",
+        "Conducted architecture reviews and knowledge transfer sessions",
+        "Deployed Docusaurus internal developer portal to centralize documentation"
       ]
     },
     { 
-      value: "500+", 
-      label: "Concurrent Processes", 
-      description: "Data Migration Platform",
-      details: [
-        "Built custom orchestration platform using Python and Celery",
-        "Implemented DAG-based workflow management for complex dependencies",
-        "Designed fault-tolerant system with automatic retry mechanisms",
-        "Created real-time monitoring dashboard for process tracking",
-        "Achieved zero data loss during large-scale CRM migrations"
-      ]
-    },
-    { 
-      value: "100+", 
+      value: "270+", 
       label: "Microservices", 
-      description: "Multi-Environment Management",
+      description: "Multi-Cluster Management",
       details: [
-        "Managed microservices across 5 environments (dev, qa, stage, perf, prod)",
-        "Implemented service mesh using Istio for secure inter-service communication",
-        "Configured auto-scaling policies based on CPU, memory, and custom metrics",
-        "Established comprehensive logging and distributed tracing",
-        "Maintained 99.9% uptime across all services and environments"
+        "Managed 270+ microservices across 8+ EKS clusters",
+        "Zero-downtime EKS upgrades from v1.32 to v1.34 across prod/stage/dev",
+        "Implemented NodeLocalDNS, Node Problem Detector, Registry Proxy Cache",
+        "Enforced Kyverno admission policies — no privileged containers, required resource limits",
+        "Maintained 99.9% uptime with blue-green deployment strategy"
       ]
     },
     { 
@@ -117,15 +105,27 @@ const About = () => {
       ]
     },
     { 
-      value: "50%", 
-      label: "MTTR Reduction", 
-      description: "Observability Implementation",
+      value: "<10ms", 
+      label: "Ad Platform Latency", 
+      description: "Real-time Infrastructure",
       details: [
-        "Deployed Prometheus and Grafana stack for comprehensive monitoring",
-        "Created custom dashboards for application and infrastructure metrics",
-        "Implemented proactive alerting with PagerDuty integration",
-        "Established incident response procedures and runbooks",
-        "Reduced Mean Time To Recovery from 2 hours to 1 hour"
+        "Architected end-to-end infrastructure for Nielsen's real-time ad serving platform",
+        "Conducted POCs with ScyllaDB and Aerospike vendor teams for sub-10ms data access",
+        "Leveraged AWS Local Zones for ultra-low latency compute closer to end users",
+        "Utilized AWS Global Accelerator for optimized global traffic routing",
+        "Platform now handles millions of ad decisions daily"
+      ]
+    },
+    { 
+      value: "500+", 
+      label: "Concurrent Processes", 
+      description: "Data Migration Platform",
+      details: [
+        "Built custom orchestration platform using Python and Celery",
+        "Implemented DAG-based workflow management for complex dependencies",
+        "Designed fault-tolerant system with automatic retry mechanisms",
+        "Created real-time monitoring dashboard for process tracking",
+        "Achieved zero data loss during large-scale CRM migrations"
       ]
     }
   ];
@@ -145,9 +145,7 @@ const About = () => {
         >
           <h2 className="heading-premium mb-6">About Me</h2>
           <p className="subheading-premium max-w-4xl mx-auto">
-            DevOps & SRE Engineer with 5+ years of experience specializing in automation, 
-            cost optimization, and reliability engineering. Passionate about building scalable 
-            infrastructure and driving operational efficiency.
+            DevOps & Platform Engineer with 5+ years shipping production infrastructure at scale. Kubernetes, AWS, AI/ML workloads and security-first automation.
           </p>
         </motion.div>
 
@@ -271,7 +269,6 @@ const About = () => {
         >
           <div className="text-center mb-12">
             <h3 className="text-3xl font-bold gradient-text mb-4">Technical Expertise</h3>
-            <p className="text-muted-foreground text-lg">Core technologies and platforms I work with</p>
           </div>
           
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">

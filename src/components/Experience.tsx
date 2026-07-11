@@ -1,8 +1,6 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Building, Calendar, MapPin } from "lucide-react";
-import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
+import { motion } from "framer-motion";
 
 const Experience = () => {
 
@@ -13,11 +11,13 @@ const Experience = () => {
       company: "Nielsen",
       period: "Jun 2025 - Present",
       achievements: [
-        "Consolidated 20+ ALBs into single ALB, reducing AWS costs by 95%",
-        "Built AI-powered DevOps self-service documentation, reducing support tickets",
-        "Optimized Karpenter node scaling, improving infrastructure cost efficiency"
+        "Architected end-to-end infra for real-time ad platform — <10ms latency via ScyllaDB/Aerospike POC, AWS Local Zones & Global Accelerator, serving millions of daily ad decisions",
+        "Drove EKS reliability across 8+ clusters — zero-downtime v1.32→v1.34 upgrades, NodeLocalDNS, Node Problem Detector, Registry Proxy Cache & blue-green deployments",
+        "Hardened cluster security with Kyverno admission policies, Vault dynamic secrets (K8s auth + AWS STS), and led CrowdStrike remediation across 15+ AWS accounts",
+        "Cut infrastructure costs 20-40% — migrated services from ALB to NGINX Ingress and led Graviton ARM adoption with multi-arch container builds",
+        "Owned CI/CD platform — GitLab runners, JFrog Artifactory + Vault integration, and launched Docusaurus internal developer portal"
       ],
-      technologies: ["AWS ALB", "AI Platform", "Karpenter", "Cost Optimization"]
+      technologies: ["ScyllaDB", "Aerospike", "EKS", "Kyverno", "Vault", "Karpenter", "NGINX Ingress", "Graviton", "GitLab CI", "JFrog", "Terraform"]
     },
     {
       title: "Associate → Senior DevOps Engineer",
@@ -30,7 +30,6 @@ const Experience = () => {
         "Built workflow orchestration tool for data migration lifecycle management",
         "Automated infrastructure with Terraform, reduced release cycles 2 weeks → 3 hours",
         "Created templatized Helm charts, cutting deployment setup time by 40%",
-        "Built observability stack cutting MTTR by ~50%"
       ],
       technologies: ["FastAPI", "KEDA", "Terraform", "Kubernetes", "Helm", "Python", "Prometheus", "Grafana"]
     }
@@ -52,7 +51,7 @@ const Experience = () => {
         >
           <h2 className="heading-premium mb-6">Professional Experience</h2>
           <p className="subheading-premium max-w-4xl mx-auto">
-            A journey of continuous growth and innovation in DevOps and Site Reliability Engineering
+            5+ years shipping production infrastructure at scale across Kubernetes, AWS, AI/ML workloads, and security-first automation.
           </p>
         </motion.div>
 
