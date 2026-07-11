@@ -4,7 +4,8 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Eye, Users, Globe, Monitor, TrendingUp, Clock, MapPin, Smartphone, Chrome, Activity, BarChart3, PieChart, X, Database, Wifi, WifiOff, RefreshCw, AlertTriangle, Calendar } from 'lucide-react';
-import { supabase } from '@/lib/enhanced-supabase';
+// DB DECOMMISSIONED - supabase import removed
+// import { supabase } from '@/lib/enhanced-supabase';
 import { motion, AnimatePresence } from 'framer-motion';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart as RechartsPieChart, Cell, Pie, AreaChart, Area } from 'recharts';
 import { validateAdmin } from '@/utils/adminSecret';
@@ -39,8 +40,9 @@ const EnhancedAdminDashboard = () => {
   const [timeRange, setTimeRange] = useState('24h');
   const [customStartDate, setCustomStartDate] = useState('');
   const [customEndDate, setCustomEndDate] = useState('');
-  const [cleanupOption, setCleanupOption] = useState('50');
-  const [showCleanupOptions, setShowCleanupOptions] = useState(false);
+  // DB DECOMMISSIONED - cleanup state removed
+  // const [cleanupOption, setCleanupOption] = useState('50');
+  // const [showCleanupOptions, setShowCleanupOptions] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
   const handleAdminAccess = () => {
@@ -364,132 +366,7 @@ const EnhancedAdminDashboard = () => {
                     </div>
                   </div>
                   
-                  <div>
-                    <Button
-                      onClick={() => setShowCleanupOptions(!showCleanupOptions)}
-                      variant="outline"
-                      size="sm"
-                      disabled={isLoading}
-                      className="glass-morphism hover:bg-red-500/10 border-red-500/20 text-red-400"
-                    >
-                      {isLoading ? (
-                        <motion.div animate={{ rotate: 360 }} transition={{ duration: 1, repeat: Infinity, ease: "linear" }}>
-                          <RefreshCw className="h-4 w-4" />
-                        </motion.div>
-                      ) : (
-                        <Database className="h-4 w-4" />
-                      )}
-                      <span className="ml-2">{isLoading ? 'Cleaning...' : 'Clean Data'}</span>
-                    </Button>
-                  </div>
-                  
-                  {showCleanupOptions && (
-                    <div className="mt-3 p-3 glass-morphism rounded-lg border border-white/10">
-                      <div className="mb-3">
-                        <p className="text-sm font-medium mb-1">Database Cleanup Options</p>
-                        <p className="text-xs text-muted-foreground">Keep only the most recent records from each table</p>
-                      </div>
-                      <div className="grid grid-cols-2 gap-2">
-                        {[
-                          { value: 'empty', label: 'Empty All', desc: 'Delete everything' },
-                          { value: '25', label: 'Keep 25', desc: 'Keep last 25 records' },
-                          { value: '50', label: 'Keep 50', desc: 'Keep last 50 records' },
-                          { value: '100', label: 'Keep 100', desc: 'Keep last 100 records' },
-                          { value: '200', label: 'Keep 200', desc: 'Keep last 200 records' }
-                        ].map((option) => (
-                          <button
-                            key={option.value}
-                            onClick={async () => {
-                              setCleanupOption(option.value);
-                              setShowCleanupOptions(false);
-                              setIsLoading(true);
-                              
-                              try {
-                                if (option.value === 'empty') {
-                                  await Promise.all([
-                                    supabase.from('user_interactions').delete().neq('id', '00000000-0000-0000-0000-000000000000'),
-                                    supabase.from('page_analytics').delete().neq('id', '00000000-0000-0000-0000-000000000000'),
-                                    supabase.from('performance_metrics').delete().neq('id', '00000000-0000-0000-0000-000000000000'),
-                                    supabase.from('error_logs').delete().neq('id', '00000000-0000-0000-0000-000000000000'),
-                                    supabase.from('user_sessions').delete().neq('id', '00000000-0000-0000-0000-000000000000')
-                                  ]);
-                                } else {
-                                  const limit = parseInt(option.value);
-                                  const [sessions, pages, interactions, performance, errors] = await Promise.all([
-                                    supabase.from('user_sessions').select('id').order('created_at', { ascending: false }).limit(limit),
-                                    supabase.from('page_analytics').select('id').order('created_at', { ascending: false }).limit(limit),
-                                    supabase.from('user_interactions').select('id').order('timestamp', { ascending: false }).limit(limit),
-                                    supabase.from('performance_metrics').select('id').order('created_at', { ascending: false }).limit(limit),
-                                    supabase.from('error_logs').select('id').order('timestamp', { ascending: false }).limit(limit)
-                                  ]);
-                                  
-                                  // Delete all records except the ones we want to keep
-                                  const deletePromises = [];
-                                  
-                                  // For each table, delete records NOT in the keep list
-                                  if (sessions.data?.length) {
-                                    const keepIds = sessions.data.map(r => r.id);
-                                    const { data: allSessions } = await supabase.from('user_sessions').select('id');
-                                    const deleteIds = allSessions?.filter(s => !keepIds.includes(s.id)).map(s => s.id) || [];
-                                    if (deleteIds.length > 0) {
-                                      deletePromises.push(supabase.from('user_sessions').delete().in('id', deleteIds));
-                                    }
-                                  }
-                                  
-                                  if (pages.data?.length) {
-                                    const keepIds = pages.data.map(r => r.id);
-                                    const { data: allPages } = await supabase.from('page_analytics').select('id');
-                                    const deleteIds = allPages?.filter(p => !keepIds.includes(p.id)).map(p => p.id) || [];
-                                    if (deleteIds.length > 0) {
-                                      deletePromises.push(supabase.from('page_analytics').delete().in('id', deleteIds));
-                                    }
-                                  }
-                                  
-                                  if (interactions.data?.length) {
-                                    const keepIds = interactions.data.map(r => r.id);
-                                    const { data: allInteractions } = await supabase.from('user_interactions').select('id');
-                                    const deleteIds = allInteractions?.filter(i => !keepIds.includes(i.id)).map(i => i.id) || [];
-                                    if (deleteIds.length > 0) {
-                                      deletePromises.push(supabase.from('user_interactions').delete().in('id', deleteIds));
-                                    }
-                                  }
-                                  
-                                  if (performance.data?.length) {
-                                    const keepIds = performance.data.map(r => r.id);
-                                    const { data: allPerformance } = await supabase.from('performance_metrics').select('id');
-                                    const deleteIds = allPerformance?.filter(p => !keepIds.includes(p.id)).map(p => p.id) || [];
-                                    if (deleteIds.length > 0) {
-                                      deletePromises.push(supabase.from('performance_metrics').delete().in('id', deleteIds));
-                                    }
-                                  }
-                                  
-                                  if (errors.data?.length) {
-                                    const keepIds = errors.data.map(r => r.id);
-                                    const { data: allErrors } = await supabase.from('error_logs').select('id');
-                                    const deleteIds = allErrors?.filter(e => !keepIds.includes(e.id)).map(e => e.id) || [];
-                                    if (deleteIds.length > 0) {
-                                      deletePromises.push(supabase.from('error_logs').delete().in('id', deleteIds));
-                                    }
-                                  }
-                                  
-                                  await Promise.all(deletePromises);
-                                }
-                                
-                                await loadStats();
-                              } catch (error) {
-                                console.error('Cleanup failed:', error);
-                              }
-                              setIsLoading(false);
-                            }}
-                            className="p-3 text-left bg-white/5 hover:bg-white/10 rounded transition-colors"
-                          >
-                            <div className="text-xs font-medium">{option.label}</div>
-                            <div className="text-xs text-muted-foreground mt-1">{option.desc}</div>
-                          </button>
-                        ))}
-                      </div>
-                    </div>
-                  )}
+                  {/* DB DECOMMISSIONED - cleanup options removed */}
                 </div>
               </div>
               
@@ -506,12 +383,7 @@ const EnhancedAdminDashboard = () => {
                     >
                       <Database className="h-4 w-4" />
                     </motion.div>
-                    <span className="text-sm">
-                      {cleanupOption === 'empty' 
-                        ? 'Emptying all tables...' 
-                        : `Cleaning all tables... Keeping last ${cleanupOption} records from each table`
-                      }
-                    </span>
+                    <span className="text-sm">Loading analytics...</span>
                   </div>
                 </motion.div>
               )}
