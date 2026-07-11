@@ -82,7 +82,7 @@ const Projects = () => {
         >
           <h2 className="heading-premium mb-6">Featured Projects</h2>
           <p className="subheading-premium max-w-4xl mx-auto">
-            Key projects showcasing DevOps automation and Backend development expertise
+            Production infrastructure projects across platform engineering, security, and cost optimization
           </p>
         </motion.div>
 
@@ -104,33 +104,33 @@ const Projects = () => {
               {
                 icon: TrendingDown,
                 title: "AWS Cost Optimization",
-                description: "Consolidated 20+ ALBs into single architecture, achieving 95% cost reduction.",
-                metrics: "95% Cost Saved",
-                tech: ["AWS ALB", "Terraform", "Cost Analysis"],
+                description: "Migrated 50+ services from ALB to NGINX Ingress, led Graviton ARM adoption with multi-arch builds — achieving 20-40% compute cost reduction.",
+                metrics: "20-40% Cost Saved",
+                tech: ["NGINX Ingress", "Graviton", "Terraform", "multi-arch"],
                 gradient: "from-orange-500 to-red-500"
               },
               {
                 icon: Zap,
-                title: "Kubernetes Auto-scaling",
-                description: "Implemented KEDA autoscaling with Karpenter for dynamic resource management.",
-                metrics: "25% Compute Savings",
-                tech: ["KEDA", "Karpenter", "Kubernetes"],
+                title: "Kubernetes Platform Reliability",
+                description: "Zero-downtime EKS upgrades across 8+ clusters, NodeLocalDNS, Node Problem Detector, Registry Proxy Cache and blue-green deployments.",
+                metrics: "8+ Clusters Upgraded",
+                tech: ["EKS", "Karpenter", "NodeLocalDNS", "Blue-Green"],
                 gradient: "from-blue-500 to-purple-500"
               },
               {
                 icon: Shield,
-                title: "Infrastructure as Code",
-                description: "Built comprehensive Terraform modules for multi-environment deployments.",
-                metrics: "5 Environments",
-                tech: ["Terraform", "IaC", "Multi-env"],
+                title: "Security Hardening",
+                description: "Kyverno admission policies, Vault dynamic secrets with K8s auth and AWS STS, led CrowdStrike remediation across 15+ AWS accounts.",
+                metrics: "15+ AWS Accounts",
+                tech: ["Kyverno", "Vault", "CrowdStrike", "AWS STS"],
                 gradient: "from-green-500 to-teal-500"
               },
               {
                 icon: GitBranch,
-                title: "CI/CD Automation",
-                description: "Designed CI/CD pipelines with canary deployments and automated workflows.",
-                metrics: "40% Time Saved",
-                tech: ["Jenkins", "GitLab CI", "Helm"],
+                title: "CI/CD & Developer Platform",
+                description: "GitLab runner infrastructure, JFrog Artifactory with Vault integration, and Docusaurus internal developer portal.",
+                metrics: "40% Setup Time Saved",
+                tech: ["GitLab CI", "JFrog", "Vault", "Docusaurus"],
                 gradient: "from-purple-500 to-pink-500"
               }
             ].map((project, index) => (
