@@ -11,11 +11,11 @@ const Experience = () => {
       company: "Nielsen",
       period: "Jun 2025 - Present",
       achievements: [
-        "Architected end-to-end infra for real-time ad platform — <10ms latency via ScyllaDB/Aerospike POC, AWS Local Zones & Global Accelerator, serving millions of daily ad decisions",
-        "Drove EKS reliability across 8+ clusters — zero-downtime v1.32→v1.34 upgrades, NodeLocalDNS, Node Problem Detector, Registry Proxy Cache & blue-green deployments",
+        "Architected end-to-end infra for real-time Ads platform, <10ms latency via ScyllaDB/Aerospike POC, AWS Local Zones & Global Accelerator, serving millions of daily ad decisions",
+        "Drove EKS reliability across 8+ clusters — zero-downtime v1.32→v1.34 upgrades, Registry Proxy Cache & blue-green deployments",
         "Hardened cluster security with Kyverno admission policies, Vault dynamic secrets (K8s auth + AWS STS), and led CrowdStrike remediation across 15+ AWS accounts",
-        "Cut infrastructure costs 20-40% — migrated services from ALB to NGINX Ingress and led Graviton ARM adoption with multi-arch container builds",
-        "Owned CI/CD platform — GitLab runners, JFrog Artifactory + Vault integration, and launched Docusaurus internal developer portal"
+        "Cut infrastructure costs 25-40% — migrated services from ALB to NGINX Ingress",
+        "Owned CI/CD platform — GitLab runners, JFrog Artifactory + Vault integration"
       ],
       technologies: ["ScyllaDB", "Aerospike", "EKS", "Kyverno", "Vault", "Karpenter", "NGINX Ingress", "Graviton", "GitLab CI", "JFrog", "Terraform"]
     },

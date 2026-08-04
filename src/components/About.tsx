@@ -87,7 +87,7 @@ const About = () => {
       details: [
         "Managed 270+ microservices across 8+ EKS clusters",
         "Zero-downtime EKS upgrades from v1.32 to v1.34 across prod/stage/dev",
-        "Implemented NodeLocalDNS, Node Problem Detector, Registry Proxy Cache",
+        "Implemented Registry Proxy Cache and blue-green deployments",
         "Enforced Kyverno admission policies — no privileged containers, required resource limits",
         "Maintained 99.9% uptime with blue-green deployment strategy"
       ]
@@ -109,7 +109,7 @@ const About = () => {
       label: "Ad Platform Latency", 
       description: "Real-time Infrastructure",
       details: [
-        "Architected end-to-end infrastructure for Nielsen's real-time ad serving platform",
+        "Architected end-to-end infrastructure for Nielsen's real-time Ads platform",
         "Conducted POCs with ScyllaDB and Aerospike vendor teams for sub-10ms data access",
         "Leveraged AWS Local Zones for ultra-low latency compute closer to end users",
         "Utilized AWS Global Accelerator for optimized global traffic routing",
