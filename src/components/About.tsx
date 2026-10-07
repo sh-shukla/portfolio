@@ -31,19 +31,19 @@ const About = () => {
   const techStack = [
     {
       title: "Cloud & Kubernetes",
-      description: "AWS (EKS, EC2, ALB, Lambda, SQS, MSK), Kubernetes, Karpenter, Helm, KEDA",
+      description: "AWS (EKS, EC2, ALB, Lambda, SQS, MSK), GCP, Kubernetes, Karpenter, Helm, KEDA",
       image: "https://upload.wikimedia.org/wikipedia/commons/9/93/Amazon_Web_Services_Logo.svg",
       gradient: "from-orange-500 to-yellow-500"
     },
     {
       title: "Platform & Security",
-      description: "Kyverno, HashiCorp Vault, GitLab CI, JFrog Artifactory, Terraform, Blue-Green Deployments",
+      description: "Kyverno, HashiCorp Vault, GitLab CI, JFrog Artifactory, Terraform, GitOps, Blue-Green Deployments",
       image: "./devops.jpg",
       gradient: "from-blue-500 to-purple-500"
     },
     {
       title: "AI/ML & Data Infra",
-      description: "GPU workload orchestration, Apache Flink, Spark on K8s, ScyllaDB, Aerospike, Kafka/MSK",
+      description: "Self-hosted SLMs on EKS, GPU workload orchestration, Apache Flink, Spark on K8s, ScyllaDB, Aerospike, Kafka/MSK",
       image: "https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg",
       gradient: "from-green-500 to-teal-500"
     },
@@ -65,7 +65,7 @@ const About = () => {
         "Eliminated per-service ALB costs (~$20/month each)",
         "Led Graviton ARM adoption with multi-architecture container builds (amd64 + arm64)",
         "Consolidated 20+ ALBs into single intelligent routing architecture",
-        "Achieved 20-40% compute cost reduction via Graviton migration"
+        "Achieved 25-40% overall infrastructure cost reduction"
       ]
     },
     { 
@@ -87,7 +87,8 @@ const About = () => {
       details: [
         "Managed 270+ microservices across 8+ EKS clusters",
         "Zero-downtime EKS upgrades from v1.32 to v1.34 across prod/stage/dev",
-        "Implemented Registry Proxy Cache and blue-green deployments",
+        "Implemented NodeLocalDNS, Node Problem Detector and Registry Proxy Cache",
+        "Enabled memory swap on EKS nodes — fewer OOM kills, better memory utilization, lower node cost",
         "Enforced Kyverno admission policies — no privileged containers, required resource limits",
         "Maintained 99.9% uptime with blue-green deployment strategy"
       ]

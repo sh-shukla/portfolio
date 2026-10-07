@@ -99,20 +99,36 @@ const Projects = () => {
             <div className="w-20 h-1 bg-gradient-to-r from-primary to-primary/60 mx-auto rounded-full"></div>
           </motion.div>
           
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
+              {
+                icon: Cloud,
+                title: "Private-Cloud Deployment Platform",
+                description: "Built from scratch a platform that deploys the full product stack into each enterprise customer's own AWS or GCP account from a single config file, using infrastructure-as-code and GitOps.",
+                metrics: "AWS + GCP from 1 Config",
+                tech: ["AWS", "GCP", "IaC", "GitOps"],
+                gradient: "from-sky-500 to-indigo-500"
+              },
+              {
+                icon: Cpu,
+                title: "Self-Hosted AI Models",
+                description: "Hosted small language models (SLMs) on Amazon EKS, with a custom Kubernetes CRD that runs and manages the model fleet.",
+                metrics: "SLM Fleet on EKS",
+                tech: ["EKS", "Kubernetes CRDs", "SLMs"],
+                gradient: "from-emerald-500 to-cyan-500"
+              },
               {
                 icon: TrendingDown,
                 title: "AWS Cost Optimization",
-                description: "Migrated 50+ services from ALB to NGINX Ingress, led Graviton ARM adoption with multi-arch builds — achieving 20-40% compute cost reduction.",
-                metrics: "20-40% Cost Saved",
+                description: "Migrated 50+ services from ALB to NGINX Ingress, led Graviton ARM adoption with multi-arch builds — achieving 25-40% infrastructure cost reduction.",
+                metrics: "25-40% Cost Saved",
                 tech: ["NGINX Ingress", "Graviton", "Terraform", "multi-arch"],
                 gradient: "from-orange-500 to-red-500"
               },
               {
                 icon: Zap,
                 title: "Kubernetes Platform Reliability",
-                description: "Zero-downtime EKS upgrades across 8+ clusters, NodeLocalDNS, Node Problem Detector, Registry Proxy Cache and blue-green deployments.",
+                description: "Zero-downtime EKS upgrades across 8+ clusters, NodeLocalDNS, Node Problem Detector, Registry Proxy Cache, node memory swap and blue-green deployments.",
                 metrics: "8+ Clusters Upgraded",
                 tech: ["EKS", "Karpenter", "NodeLocalDNS", "Blue-Green"],
                 gradient: "from-blue-500 to-purple-500"
