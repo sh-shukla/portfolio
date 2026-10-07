@@ -11,30 +11,32 @@ const Experience = () => {
       company: "Nielsen",
       period: "Jun 2025 - Present",
       achievements: [
-        "Architected and built from scratch a private-cloud deployment platform that ships the full product stack into each enterprise customer's own AWS or GCP account from a single config file, using infrastructure-as-code and GitOps",
-        "Built AI-driven incident response — Prometheus alerts trigger Amazon Bedrock LLMs grounded in an org knowledge graph (docs, runbooks) that auto-resolve minor issues via matched runbooks and hand the rest to on-call with full context",
-        "Self-hosted small language models (SLMs) on EKS, with a custom Kubernetes CRD that deploys and manages the model fleet",
-        "Architected end-to-end infra for real-time Ads platform, <10ms latency via ScyllaDB/Aerospike POC, AWS Local Zones & Global Accelerator, serving millions of daily ad decisions",
-        "Drove EKS reliability across 8+ clusters — zero-downtime v1.32→v1.34 upgrades, NodeLocalDNS, Node Problem Detector, Registry Proxy Cache & blue-green deployments; enabled node memory swap to cut OOM kills and raise memory utilization",
-        "Cut infrastructure costs 25-40% — consolidated 20+ ALBs behind NGINX Ingress (95% lower load balancer spend), led Graviton ARM adoption with multi-arch container builds, and right-sized Karpenter autoscaling (25% lower compute spend)",
-        "Hardened cluster security with Kyverno admission policies, Vault dynamic secrets (K8s auth + AWS STS), and led CrowdStrike remediation across 15+ AWS accounts",
-        "Owned CI/CD platform — GitLab runners, JFrog Artifactory + Vault integration, and launched Docusaurus internal developer portal"
+        "Built from scratch a private-cloud deployment platform that ships the full product into each customer's own AWS or GCP account from one config file (Pulumi, Terraform, Argo CD GitOps) — deployments cut from 6–7 hours to 48 minutes; 4 live customers run their releases on it",
+        "AI incident response — Prometheus alerts trigger Amazon Bedrock LLMs grounded in an org knowledge graph of docs and runbooks; ~60% of Kubernetes alerts auto-resolve, the rest go to on-call with full context",
+        "Self-hosted 2 small language models (SLMs) on EKS, run as a fleet via a custom Kubernetes CRD, at ~4x lower cost",
+        "Built the observability stack (Prometheus, Alertmanager, Loki, Grafana) and rolled out incident.io for alert routing, incident response and on-call support rotations",
+        "Led a 4-member DevOps team supporting 5–6 application teams; owned GitLab CI, JFrog Artifactory + Vault and a Docusaurus developer portal",
+        "Architected end-to-end infra for a real-time Ads platform with <10ms latency — ScyllaDB/Aerospike POC, AWS Local Zones & Global Accelerator",
+        "EKS reliability across 8+ clusters — zero-downtime v1.32→v1.34 upgrades, NodeLocalDNS, Node Problem Detector, Registry Proxy Cache & blue-green deployments; node memory swap cut OOM kills ~70%",
+        "Cut infrastructure costs 25-40% — consolidated 20+ ALBs behind NGINX Ingress (95% lower load balancer spend), Graviton ARM adoption with multi-arch builds, and Karpenter right-sizing",
+        "Hardened cluster security with Kyverno admission policies, Vault dynamic secrets (K8s auth + AWS STS), and led CrowdStrike remediation across 15+ AWS accounts"
       ],
-      technologies: ["EKS", "GCP", "GitOps", "Terraform", "Amazon Bedrock", "SLMs", "Kubernetes CRDs", "ScyllaDB", "Aerospike", "Karpenter", "Graviton", "NGINX Ingress", "Kyverno", "Vault", "GitLab CI", "JFrog"]
+      technologies: ["EKS", "GCP", "Pulumi", "Terraform", "Argo CD", "Amazon Bedrock", "SLMs", "Kubernetes CRDs", "Prometheus", "Loki", "Grafana", "incident.io", "Karpenter", "Graviton", "NGINX Ingress", "Kyverno", "Vault", "GitLab CI"]
     },
     {
       title: "Associate → Senior DevOps Engineer",
       company: "Conga",
       period: "Jul 2021 - Jun 2025 (4 years)",
       achievements: [
-        "Led 6-engineer DevOps team, creating deployment standards & runbooks",
+        "Led a 6-member DevOps/SRE team, setting deployment standards, runbooks and SRE practices",
         "Built SaaS API platform with FastAPI (60+ endpoints), integrated CI/CD & canary rollouts",
         "Implemented KEDA-based autoscaling for NGINX and SQS consumers",
         "Built workflow orchestration tool for data migration lifecycle management",
+        "Rolled out the observability stack and Doppler secrets management, halving MTTR",
         "Automated infrastructure with Terraform, reduced release cycles 2 weeks → 3 hours",
         "Created templatized Helm charts, cutting deployment setup time by 40%",
       ],
-      technologies: ["FastAPI", "KEDA", "Terraform", "Kubernetes", "Helm", "Python", "Prometheus", "Grafana"]
+      technologies: ["FastAPI", "KEDA", "Terraform", "Kubernetes", "Helm", "Python", "Prometheus", "Grafana", "Doppler"]
     }
   ];
 
