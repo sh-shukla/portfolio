@@ -37,77 +37,86 @@ const About = () => {
     },
     {
       title: "Platform & Security",
-      description: "Kyverno, HashiCorp Vault, GitLab CI, JFrog Artifactory, Terraform, GitOps, Blue-Green Deployments",
+      description: "Pulumi, Terraform, Argo CD, GitLab CI, JFrog Artifactory, Kyverno, HashiCorp Vault",
       image: "./devops.jpg",
       gradient: "from-blue-500 to-purple-500"
     },
     {
       title: "AI/ML & Data Infra",
-      description: "Self-hosted SLMs on EKS, GPU workload orchestration, Apache Flink, Spark on K8s, ScyllaDB, Aerospike, Kafka/MSK",
+      description: "Amazon Bedrock, self-hosted SLMs on EKS, GPU workload orchestration, Apache Flink, Spark on K8s, ScyllaDB, Aerospike, Kafka/MSK",
       image: "https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg",
       gradient: "from-green-500 to-teal-500"
     },
     {
       title: "Observability & SRE",
-      description: "Prometheus, Grafana, CloudWatch, Node Problem Detector, NodeLocalDNS, PagerDuty",
+      description: "Prometheus, Alertmanager, Grafana, Loki, CloudWatch, incident.io, Bedrock AIOps",
       image: "https://upload.wikimedia.org/wikipedia/commons/3/38/Prometheus_software_logo.svg",
       gradient: "from-red-500 to-pink-500"
     }
   ];
 
   const metrics = [
-    { 
-      value: "95%", 
-      label: "AWS Cost Reduction", 
-      description: "ALB → NGINX + Graviton",
+    {
+      value: "48 min",
+      label: "Private-Cloud Deploys",
+      description: "Down from 6–7 hours",
       details: [
-        "Migrated 50+ services from LoadBalancer to NGINX Ingress Controller",
-        "Eliminated per-service ALB costs (~$20/month each)",
-        "Led Graviton ARM adoption with multi-architecture container builds (amd64 + arm64)",
-        "Consolidated 20+ ALBs into single intelligent routing architecture",
-        "Achieved 25-40% overall infrastructure cost reduction"
+        "Built from scratch to ship the full product into each customer's own AWS or GCP account",
+        "Each deployment is driven by a single config file",
+        "Pulumi and Terraform for infrastructure, Argo CD GitOps for applications",
+        "4 live customers run their releases and upgrades through it",
+        "Deployment time cut from 6–7 hours to 48 minutes"
       ]
     },
-    { 
-      value: "15+", 
-      label: "Product Teams", 
-      description: "Cross-org DevOps Support",
+    {
+      value: "60%",
+      label: "K8s Alerts Auto-Resolved",
+      description: "AI Incident Response",
       details: [
-        "Supported Video, Sports, Music, EPGS, Ads and data platform teams",
-        "Established CI/CD standards across Node.js, Python, Java, Scala stacks",
-        "Led CrowdStrike remediation across 15+ AWS accounts during critical incident",
-        "Conducted architecture reviews and knowledge transfer sessions",
-        "Deployed Docusaurus internal developer portal to centralize documentation"
+        "Prometheus alerts trigger Amazon Bedrock LLMs",
+        "Models are grounded in an org knowledge graph of docs and runbooks",
+        "Minor issues are fixed automatically by matching a runbook",
+        "Everything else goes to on-call through incident.io with full context",
+        "Around 60% of Kubernetes alerts now resolve without a human"
       ]
     },
-    { 
-      value: "270+", 
-      label: "Microservices", 
-      description: "Multi-Cluster Management",
+    {
+      value: "4x",
+      label: "Lower AI Model Cost",
+      description: "Self-Hosted SLMs on EKS",
+      details: [
+        "2 small language models self-hosted on Amazon EKS",
+        "A custom Kubernetes CRD runs and manages the model fleet",
+        "Around 4x cost reduction for model inference"
+      ]
+    },
+    {
+      value: "95%",
+      label: "Load Balancer Spend Cut",
+      description: "ALB → NGINX Ingress",
+      details: [
+        "Consolidated 20+ ALBs into a single ALB behind NGINX Ingress",
+        "Migrated 50+ services to the NGINX Ingress Controller",
+        "Led Graviton ARM adoption with multi-arch container builds (amd64 + arm64)",
+        "Right-sized Karpenter autoscaling, cutting compute spend 25%",
+        "25-40% overall infrastructure cost reduction"
+      ]
+    },
+    {
+      value: "70%",
+      label: "Fewer OOM Kills",
+      description: "EKS Reliability at Scale",
       details: [
         "Managed 270+ microservices across 8+ EKS clusters",
+        "Enabled memory swap on EKS nodes, cutting OOM kills ~70%",
         "Zero-downtime EKS upgrades from v1.32 to v1.34 across prod/stage/dev",
         "Implemented NodeLocalDNS, Node Problem Detector and Registry Proxy Cache",
-        "Enabled memory swap on EKS nodes — fewer OOM kills, better memory utilization, lower node cost",
-        "Enforced Kyverno admission policies — no privileged containers, required resource limits",
-        "Maintained 99.9% uptime with blue-green deployment strategy"
+        "Enforced Kyverno admission policies — no privileged containers, required resource limits"
       ]
     },
-    { 
-      value: "40%", 
-      label: "Setup Time Reduction", 
-      description: "Helm Chart Templates",
-      details: [
-        "Created reusable Helm chart templates for common deployment patterns",
-        "Standardized configuration management across all environments",
-        "Implemented automated testing and validation for Helm charts",
-        "Reduced new service deployment time from 4 hours to 2.4 hours",
-        "Established best practices documentation and training materials"
-      ]
-    },
-    { 
-      value: "<10ms", 
-      label: "Ad Platform Latency", 
+    {
+      value: "<10ms",
+      label: "Ad Platform Latency",
       description: "Real-time Infrastructure",
       details: [
         "Architected end-to-end infrastructure for Nielsen's real-time Ads platform",
@@ -115,18 +124,6 @@ const About = () => {
         "Leveraged AWS Local Zones for ultra-low latency compute closer to end users",
         "Utilized AWS Global Accelerator for optimized global traffic routing",
         "Platform now handles millions of ad decisions daily"
-      ]
-    },
-    { 
-      value: "500+", 
-      label: "Concurrent Processes", 
-      description: "Data Migration Platform",
-      details: [
-        "Built custom orchestration platform using Python and Celery",
-        "Implemented DAG-based workflow management for complex dependencies",
-        "Designed fault-tolerant system with automatic retry mechanisms",
-        "Created real-time monitoring dashboard for process tracking",
-        "Achieved zero data loss during large-scale CRM migrations"
       ]
     }
   ];
@@ -146,7 +143,7 @@ const About = () => {
         >
           <h2 className="heading-premium mb-6">About Me</h2>
           <p className="subheading-premium max-w-4xl mx-auto">
-            DevOps & Platform Engineer with 5+ years shipping production infrastructure at scale. Kubernetes, AWS, AI/ML workloads and security-first automation.
+            DevOps, Platform & SRE engineer with 5+ years building and running AWS, GCP and Kubernetes platforms — private-cloud delivery, AIOps and self-hosted AI infrastructure.
           </p>
         </motion.div>
 

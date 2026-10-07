@@ -20,10 +20,10 @@ const Hero = () => {
   };
 
   const stats = [
-    { number: "5+", label: "Years of Experience" },
+    { number: "48 min", label: "Customer Deploys (was 6–7 hrs)" },
+    { number: "60%", label: "K8s Alerts Auto-Resolved" },
+    { number: "4x", label: "Lower AI Model Cost" },
     { number: "270+", label: "Microservices Managed" },
-    { number: "15+", label: "Product Teams Supported" },
-    { number: "95%", label: "Cost Reduction Achieved" },
   ];
 
   return (
@@ -67,7 +67,7 @@ const Hero = () => {
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.4 }}
               >
-                DevOps & Platform Engineer
+                DevOps · Platform · SRE Engineer
               </motion.p>
               
               <h1 className="heading-premium">
@@ -88,7 +88,7 @@ const Hero = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.8 }}
               >
-                Kubernetes · AWS · Security · Cost Engineering · AI/ML Infrastructure
+                Kubernetes · AWS & GCP · Platform Engineering · SRE · AIOps
               </motion.p>
             </motion.div>
 
