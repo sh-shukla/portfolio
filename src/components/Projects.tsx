@@ -111,10 +111,10 @@ const Projects = () => {
               },
               {
                 icon: Cpu,
-                title: "Self-Hosted AI Models",
-                description: "Hosted small language models (SLMs) on Amazon EKS, with a custom Kubernetes CRD that runs and manages the model fleet.",
-                metrics: "SLM Fleet on EKS",
-                tech: ["EKS", "Kubernetes CRDs", "SLMs"],
+                title: "AIOps & Self-Hosted AI Models",
+                description: "Prometheus alerts trigger Amazon Bedrock LLMs grounded in an org knowledge graph that auto-resolve minor issues via runbooks and escalate the rest with context. Also self-hosted SLMs on EKS, managed by a custom Kubernetes CRD.",
+                metrics: "Auto-Triaged Alerts",
+                tech: ["Amazon Bedrock", "Prometheus", "EKS", "Kubernetes CRDs"],
                 gradient: "from-emerald-500 to-cyan-500"
               },
               {

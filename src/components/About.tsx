@@ -49,7 +49,7 @@ const About = () => {
     },
     {
       title: "Observability & SRE",
-      description: "Prometheus, Grafana, CloudWatch, Node Problem Detector, NodeLocalDNS, PagerDuty",
+      description: "Prometheus, Grafana, CloudWatch, Amazon Bedrock AIOps, Node Problem Detector, NodeLocalDNS, PagerDuty",
       image: "https://upload.wikimedia.org/wikipedia/commons/3/38/Prometheus_software_logo.svg",
       gradient: "from-red-500 to-pink-500"
     }

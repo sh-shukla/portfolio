@@ -12,6 +12,7 @@ const Experience = () => {
       period: "Jun 2025 - Present",
       achievements: [
         "Architected and built from scratch a private-cloud deployment platform that ships the full product stack into each enterprise customer's own AWS or GCP account from a single config file, using infrastructure-as-code and GitOps",
+        "Built AI-driven incident response — Prometheus alerts trigger Amazon Bedrock LLMs grounded in an org knowledge graph (docs, runbooks) that auto-resolve minor issues via matched runbooks and hand the rest to on-call with full context",
         "Self-hosted small language models (SLMs) on EKS, with a custom Kubernetes CRD that deploys and manages the model fleet",
         "Architected end-to-end infra for real-time Ads platform, <10ms latency via ScyllaDB/Aerospike POC, AWS Local Zones & Global Accelerator, serving millions of daily ad decisions",
         "Drove EKS reliability across 8+ clusters — zero-downtime v1.32→v1.34 upgrades, NodeLocalDNS, Node Problem Detector, Registry Proxy Cache & blue-green deployments; enabled node memory swap to cut OOM kills and raise memory utilization",
@@ -19,7 +20,7 @@ const Experience = () => {
         "Hardened cluster security with Kyverno admission policies, Vault dynamic secrets (K8s auth + AWS STS), and led CrowdStrike remediation across 15+ AWS accounts",
         "Owned CI/CD platform — GitLab runners, JFrog Artifactory + Vault integration, and launched Docusaurus internal developer portal"
       ],
-      technologies: ["EKS", "GCP", "GitOps", "Terraform", "SLMs", "Kubernetes CRDs", "ScyllaDB", "Aerospike", "Karpenter", "Graviton", "NGINX Ingress", "Kyverno", "Vault", "GitLab CI", "JFrog"]
+      technologies: ["EKS", "GCP", "GitOps", "Terraform", "Amazon Bedrock", "SLMs", "Kubernetes CRDs", "ScyllaDB", "Aerospike", "Karpenter", "Graviton", "NGINX Ingress", "Kyverno", "Vault", "GitLab CI", "JFrog"]
     },
     {
       title: "Associate → Senior DevOps Engineer",
