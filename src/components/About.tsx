@@ -31,7 +31,7 @@ const About = () => {
   const techStack = [
     {
       title: "Cloud & Kubernetes",
-      description: "AWS (EKS, EC2, ALB, Lambda, SQS, MSK), GCP, Kubernetes, Karpenter, Helm, KEDA",
+      description: "AWS (EKS, EC2, ALB, RDS, DynamoDB, S3, SQS, Bedrock), GCP, Kubernetes, Karpenter, Helm, KEDA",
       image: "https://upload.wikimedia.org/wikipedia/commons/9/93/Amazon_Web_Services_Logo.svg",
       gradient: "from-orange-500 to-yellow-500"
     },
@@ -43,7 +43,7 @@ const About = () => {
     },
     {
       title: "AI/ML & Data Infra",
-      description: "Amazon Bedrock, self-hosted SLMs on EKS, GPU workload orchestration, Apache Flink, Spark on K8s, ScyllaDB, Aerospike, Kafka/MSK",
+      description: "Amazon Bedrock and Knowledge Bases, self-hosted SLMs on EKS, custom Kubernetes CRDs, ScyllaDB, Aerospike, Kafka/MSK",
       image: "https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg",
       gradient: "from-green-500 to-teal-500"
     },
@@ -57,27 +57,27 @@ const About = () => {
 
   const metrics = [
     {
-      value: "48 min",
+      value: "45 min",
       label: "Private-Cloud Deploys",
       description: "Down from 6–7 hours",
       details: [
-        "Built from scratch to ship the full product into each customer's own AWS or GCP account",
+        "Built solo, from scratch, to ship the full product into each customer's own AWS or GCP account",
         "Each deployment is driven by a single config file",
-        "Pulumi and Terraform for infrastructure, Argo CD GitOps for applications",
+        "Pulumi provisions VPC, EKS, RDS, DynamoDB and S3; Argo CD and Karpenter are installed next, then 40–45 microservices",
         "4 live customers run their releases and upgrades through it",
-        "Deployment time cut from 6–7 hours to 48 minutes"
+        "Installs and upgrades cut from 6–7 hours to 45 minutes end to end"
       ]
     },
     {
-      value: "60%",
-      label: "K8s Alerts Auto-Resolved",
+      value: "12",
+      label: "EKS Clusters on AI Triage",
       description: "AI Incident Response",
       details: [
-        "Prometheus alerts trigger Amazon Bedrock LLMs",
-        "Models are grounded in an org knowledge graph of docs and runbooks",
-        "Minor issues are fixed automatically by matching a runbook",
-        "Everything else goes to on-call through incident.io with full context",
-        "Around 60% of Kubernetes alerts now resolve without a human"
+        "Prometheus alerts from 12 EKS clusters trigger Amazon Bedrock models",
+        "Models are grounded in a Bedrock Knowledge Base of runbooks and docs",
+        "Common failures such as OOM kills are remediated automatically",
+        "Everything else goes to on-call through incident.io with a diagnosis attached",
+        "Designed and built end to end by me"
       ]
     },
     {
@@ -91,15 +91,15 @@ const About = () => {
       ]
     },
     {
-      value: "95%",
-      label: "Load Balancer Spend Cut",
-      description: "ALB → NGINX Ingress",
+      value: "$1.8K/mo",
+      label: "AWS Spend Cut",
+      description: "ALB → NGINX Ingress + Graviton",
       details: [
         "Consolidated 20+ ALBs into a single ALB behind NGINX Ingress",
         "Migrated 50+ services to the NGINX Ingress Controller",
         "Led Graviton ARM adoption with multi-arch container builds (amd64 + arm64)",
-        "Right-sized Karpenter autoscaling, cutting compute spend 25%",
-        "25-40% overall infrastructure cost reduction"
+        "Graviton migration cut ~30% of compute cost; Karpenter right-sizing on top",
+        "ALB consolidation alone saves ~$1,800 per month"
       ]
     },
     {
@@ -107,7 +107,7 @@ const About = () => {
       label: "Fewer OOM Kills",
       description: "EKS Reliability at Scale",
       details: [
-        "Managed 270+ microservices across 8+ EKS clusters",
+        "Run 270+ microservices across 12 EKS clusters",
         "Enabled memory swap on EKS nodes, cutting OOM kills ~70%",
         "Zero-downtime EKS upgrades from v1.32 to v1.34 across prod/stage/dev",
         "Implemented NodeLocalDNS, Node Problem Detector and Registry Proxy Cache",
@@ -119,7 +119,7 @@ const About = () => {
       label: "Ad Platform Latency",
       description: "Real-time Infrastructure",
       details: [
-        "Architected end-to-end infrastructure for Nielsen's real-time Ads platform",
+        "Built from scratch and took to production the infrastructure for a real-time Ads platform",
         "Conducted POCs with ScyllaDB and Aerospike vendor teams for sub-10ms data access",
         "Leveraged AWS Local Zones for ultra-low latency compute closer to end users",
         "Utilized AWS Global Accelerator for optimized global traffic routing",

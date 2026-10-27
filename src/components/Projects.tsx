@@ -8,18 +8,18 @@ const Projects = () => {
   const projects = [
     {
       title: "AWS ALB Consolidation",
-      description: "Consolidated 20+ AWS ALBs into a single ALB architecture, achieving 95% cost reduction while maintaining performance and reliability.",
+      description: "Consolidated 20+ AWS ALBs behind a single NGINX Ingress across 50+ services, saving ~$1,800 per month while maintaining performance and reliability.",
       icon: TrendingDown,
       technologies: ["AWS ALB", "Terraform", "Cost Optimization", "Architecture"],
-      metrics: "95% Cost Reduction",
+      metrics: "~$1,800/month Saved",
       category: "Infrastructure"
     },
     {
-      title: "AI-Powered DevOps Self-Service Platform",
-      description: "Built an AI-based internal documentation hub that reduced support requests by 60% and improved developer productivity.",
+      title: "Developer Portal & Self-Service Docs",
+      description: "Built a Docusaurus internal developer portal centralising runbooks, CI/CD standards and onboarding docs for the application teams the DevOps team supports.",
       icon: Database,
       technologies: ["AI/ML", "FastAPI", "Documentation", "Automation"],
-      metrics: "60% Support Reduction",
+      metrics: "5–6 Teams Served",
       category: "Platform"
     },
     {
@@ -104,32 +104,32 @@ const Projects = () => {
               {
                 icon: Cloud,
                 title: "Private-Cloud Deployment Platform",
-                description: "Built from scratch a platform that deploys the full product into each customer's own AWS or GCP account from one config file. Runs releases for 4 live customers.",
-                metrics: "6–7 hrs → 48 min",
-                tech: ["AWS", "GCP", "Pulumi", "Terraform", "Argo CD"],
+                description: "Built solo, from scratch: provisions a customer's AWS or GCP account with Pulumi, installs Argo CD and Karpenter, and deploys 40–45 microservices from one config file. Runs installs and upgrades for 4 live customers.",
+                metrics: "6–7 hrs → 45 min",
+                tech: ["AWS", "GCP", "Pulumi", "Argo CD", "Karpenter"],
                 gradient: "from-sky-500 to-indigo-500"
               },
               {
                 icon: Cpu,
                 title: "AIOps & Self-Hosted AI Models",
-                description: "Prometheus alerts trigger Amazon Bedrock LLMs grounded in an org knowledge graph that auto-resolve minor issues via runbooks and escalate the rest with context. Also self-hosted SLMs on EKS, managed by a custom Kubernetes CRD.",
-                metrics: "~60% Alerts Auto-Resolved",
+                description: "Prometheus alerts from 12 EKS clusters trigger Amazon Bedrock models grounded in a Bedrock Knowledge Base of runbooks; common failures such as OOM kills are remediated automatically and the rest escalate with a diagnosis. Also self-hosted SLMs on EKS, managed by a custom Kubernetes CRD.",
+                metrics: "12 Clusters, Built Solo",
                 tech: ["Amazon Bedrock", "Prometheus", "EKS", "Kubernetes CRDs"],
                 gradient: "from-emerald-500 to-cyan-500"
               },
               {
                 icon: TrendingDown,
                 title: "AWS Cost Optimization",
-                description: "Migrated 50+ services from ALB to NGINX Ingress, led Graviton ARM adoption with multi-arch builds — achieving 25-40% infrastructure cost reduction.",
-                metrics: "25-40% Cost Saved",
+                description: "Migrated 50+ services from ALB to NGINX Ingress (~$1,800/month saved) and led Graviton ARM adoption with multi-arch builds, cutting ~30% of compute cost.",
+                metrics: "$1.8K/mo + 30% Compute",
                 tech: ["NGINX Ingress", "Graviton", "Terraform", "multi-arch"],
                 gradient: "from-orange-500 to-red-500"
               },
               {
                 icon: Zap,
                 title: "Kubernetes Platform Reliability",
-                description: "Zero-downtime EKS upgrades across 8+ clusters, NodeLocalDNS, Node Problem Detector, Registry Proxy Cache and blue-green deployments; node memory swap cut OOM kills ~70%.",
-                metrics: "8+ Clusters Upgraded",
+                description: "Zero-downtime EKS upgrades across 12 clusters hosting 270+ microservices, NodeLocalDNS, Node Problem Detector, Registry Proxy Cache and blue-green deployments; node memory swap cut OOM kills ~70%.",
+                metrics: "12 Clusters Upgraded",
                 tech: ["EKS", "Karpenter", "NodeLocalDNS", "Blue-Green"],
                 gradient: "from-blue-500 to-purple-500"
               },
@@ -145,7 +145,7 @@ const Projects = () => {
                 icon: GitBranch,
                 title: "CI/CD & Developer Platform",
                 description: "GitLab runner infrastructure, JFrog Artifactory with Vault integration, and Docusaurus internal developer portal.",
-                metrics: "40% Setup Time Saved",
+                metrics: "5–6 Teams Supported",
                 tech: ["GitLab CI", "JFrog", "Vault", "Docusaurus"],
                 gradient: "from-purple-500 to-pink-500"
               }
