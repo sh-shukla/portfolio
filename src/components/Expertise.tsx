@@ -18,8 +18,8 @@ const Expertise = () => {
     {
       icon: Cloud,
       title: "Cloud Infrastructure",
-      description: "AWS expertise with EC2, EKS, ALB, SQS, CloudWatch, Lambda. Achieved 95% cost reduction through ALB consolidation.",
-      achievements: ["95% Cost Reduction", "Multi-environment Setup", "Auto-scaling Implementation"],
+      description: "AWS expertise with EC2, EKS, ALB, RDS, DynamoDB, SQS, CloudWatch, Bedrock. Saved ~$1,800/month through ALB consolidation and ~30% of compute via Graviton.",
+      achievements: ["~$1,800/month Saved", "Multi-environment Setup", "Auto-scaling Implementation"],
       color: "from-blue-500 to-cyan-500"
     },
     {
@@ -40,7 +40,7 @@ const Expertise = () => {
       icon: Monitor,
       title: "Observability & SRE",
       description: "Comprehensive monitoring with Prometheus, Grafana, and observability stack. Focus on reliability and performance.",
-      achievements: ["60% Support Reduction", "Proactive Monitoring", "Incident Response"],
+      achievements: ["AI-Assisted Triage", "Proactive Monitoring", "Incident Response"],
       color: "from-orange-500 to-red-500"
     }
   ];

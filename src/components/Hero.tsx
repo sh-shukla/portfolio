@@ -20,8 +20,8 @@ const Hero = () => {
   };
 
   const stats = [
-    { number: "48 min", label: "Customer Deploys (was 6–7 hrs)" },
-    { number: "60%", label: "K8s Alerts Auto-Resolved" },
+    { number: "45 min", label: "Customer Deploys (was 6–7 hrs)" },
+    { number: "12", label: "EKS Clusters Operated" },
     { number: "4x", label: "Lower AI Model Cost" },
     { number: "270+", label: "Microservices Managed" },
   ];
