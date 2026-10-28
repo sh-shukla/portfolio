@@ -104,7 +104,7 @@ const Projects = () => {
               {
                 icon: Cloud,
                 title: "Private-Cloud Deployment Platform",
-                description: "Built solo, from scratch: provisions a customer's AWS or GCP account with Pulumi, installs Argo CD and Karpenter, and deploys 40–45 microservices from one config file. Runs installs and upgrades for 4 live customers.",
+                description: "Builds a complete production environment in a customer's AWS or GCP account from one config file: Pulumi provisions networking, Kubernetes, databases and storage, then Argo CD, Karpenter and 40–45 microservices. Runs installs and upgrades for 4 live customers.",
                 metrics: "6–7 hrs → 45 min",
                 tech: ["AWS", "GCP", "Pulumi", "Argo CD", "Karpenter"],
                 gradient: "from-sky-500 to-indigo-500"

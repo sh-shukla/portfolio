@@ -11,7 +11,7 @@ const Experience = () => {
       company: "Nielsen",
       period: "Jun 2025 - Present",
       achievements: [
-        "Built, solo, a bring-your-own-cloud deployment platform that provisions a customer's AWS or GCP account (VPC, EKS, RDS, DynamoDB, S3) with Pulumi, installs Argo CD and Karpenter, and deploys 40–45 microservices from a single config file — end-to-end installs and upgrades take 45 minutes instead of 6–7 hours, with 4 customers live in production",
+        "Architected a bring-your-own-cloud (BYOC) delivery platform that builds a complete production environment in a customer's AWS or GCP account from one config file — Pulumi provisions networking, Kubernetes, databases and storage, bootstraps Argo CD and Karpenter, and deploys 40–45 microservices, with infra and app releases driven from the customer dashboard. Setup and upgrades cut from 6–7 hours to 45 minutes; live for 4 customers",
         "Designed and built AI incident response — Prometheus alerts from 12 EKS clusters trigger Amazon Bedrock models grounded in a Bedrock Knowledge Base of runbooks and docs, which remediate common failures such as OOM kills automatically and route the rest to on-call through incident.io with a diagnosis attached",
         "Self-host two open-weight small language models on EKS as a fleet managed by a custom Kubernetes CRD, at ~4x lower inference cost than managed APIs",
         "Built the observability stack (Prometheus, Alertmanager, Loki, Grafana) and rolled out incident.io for alert routing, incident response and on-call support rotations",
@@ -29,14 +29,19 @@ const Experience = () => {
       period: "Jul 2021 - Jun 2025 (4 years)",
       achievements: [
         "Led a 6-member DevOps/SRE team, setting deployment standards, runbooks and SRE practices",
+        "Cut deployment time from 25 minutes to under 8 across 200+ microservices; blue-green deployments brought per-release downtime under 30 seconds",
+        "Tripled deployment frequency and cut pipeline duplication 65% across 8+ teams with reusable Jenkins shared libraries and Spinnaker pipelines",
+        "Reduced release failures 70% and rollback incidents 85% with automated validation and auto-rollback",
+        "Delivered disaster recovery for 200+ AWS services with RTO under 10 minutes and RPO under 5 minutes, zero data loss across drills and real failovers",
+        "Cut manual infrastructure work 80% by automating environment provisioning with Terraform and Rancher Fleet",
+        "Designed event-driven autoscaling with KEDA for NGINX and AWS SQS consumers",
+        "Built a CRM data-migration orchestrator in Python and Celery on Kafka and MongoDB — 500+ concurrent workflows with zero data loss",
         "Built a SaaS API platform in FastAPI (60+ endpoints) with CI/CD and canary rollouts",
-        "Designed KEDA-based autoscaling for NGINX (on Prometheus metrics) and AWS SQS consumers, scaling workers on queue depth instead of fixed replicas",
-        "Built a Python and Celery workflow orchestrator for CRM data migrations with DAG-based dependencies, retries, state tracking and a live dashboard — 500+ concurrent workflows with zero data loss",
-        "Rolled out the observability stack and Doppler secrets management, halving MTTR",
-        "Automated infrastructure with Terraform, reduced release cycles 2 weeks → 3 hours",
-        "Created templatized Helm charts for stateless and stateful services, cutting new-service setup from 4 hours to 2.4 hours",
+        "Cut release cycles from 2 weeks to 3 hours with Terraform automation, and MTTR by 50% with the observability stack and Doppler",
+        "Cut AWS compute spend ~25% through Karpenter, cost audits and EC2 right-sizing",
+        "Cut build times from 20 minutes to under 8 and new-service setup from 4 to 2.4 hours with Jenkins and Helm templates",
       ],
-      technologies: ["FastAPI", "KEDA", "Terraform", "Kubernetes", "Helm", "Python", "Prometheus", "Grafana", "Doppler"]
+      technologies: ["Jenkins", "Spinnaker", "Terraform", "Rancher Fleet", "KEDA", "EKS", "Helm", "FastAPI", "Celery", "Kafka", "Prometheus", "Doppler", "Checkmarx"]
     }
   ];
 

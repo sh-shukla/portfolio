@@ -61,7 +61,7 @@ const About = () => {
       label: "Private-Cloud Deploys",
       description: "Down from 6–7 hours",
       details: [
-        "Built solo, from scratch, to ship the full product into each customer's own AWS or GCP account",
+        "Architected from scratch to stand up a complete production environment in each customer's own AWS or GCP account",
         "Each deployment is driven by a single config file",
         "Pulumi provisions VPC, EKS, RDS, DynamoDB and S3; Argo CD and Karpenter are installed next, then 40–45 microservices",
         "4 live customers run their releases and upgrades through it",
