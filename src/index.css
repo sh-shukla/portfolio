@@ -1,195 +1,147 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+/* Theme tokens as RGB channels. All text pairs meet WCAG AA (4.5:1) on canvas and surface. */
+:root {
+  color-scheme: light;
+  --canvas: 250 250 249;
+  --surface: 255 255 255;
+  --ink: 17 20 24;
+  --mute: 72 80 91;
+  --faint: 95 103 115;
+  --line: 226 228 232;
+  --accent: 4 120 87;
+  --on-accent: 255 255 255;
+  --glow: 0.08;
+  --aura: 0.1;
+}
+
+.dark {
+  color-scheme: dark;
+  --canvas: 11 13 16;
+  --surface: 21 24 29;
+  --ink: 237 240 243;
+  --mute: 163 171 182;
+  --faint: 138 146 158;
+  --line: 38 43 51;
+  --accent: 61 220 151;
+  --on-accent: 7 20 14;
+  --glow: 0.06;
+  --aura: 0.13;
+}
+
+/* Set for two frames while the theme flips, so nothing animates between palettes. */
+.theme-switching *,
+.theme-switching *::before,
+.theme-switching *::after { transition: none !important; }
+
 @layer base {
-  :root {
-    /* Apple-inspired premium theme */
-    --background: 0 0% 2%;
-    --foreground: 0 0% 98%;
-
-    --card: 0 0% 4%;
-    --card-foreground: 0 0% 95%;
-
-    --popover: 0 0% 4%;
-    --popover-foreground: 0 0% 95%;
-
-    /* Premium accent */
-    --primary: 210 100% 60%;
-    --primary-foreground: 0 0% 98%;
-
-    --secondary: 0 0% 8%;
-    --secondary-foreground: 0 0% 90%;
-
-    --muted: 0 0% 6%;
-    --muted-foreground: 0 0% 60%;
-
-    --accent: 210 100% 60%;
-    --accent-foreground: 0 0% 98%;
-
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 98%;
-
-    --border: 0 0% 12%;
-    --input: 0 0% 8%;
-    --ring: 210 100% 60%;
-
-    --radius: 1rem;
-
-    /* Premium design tokens */
-    --glass-bg: rgba(255, 255, 255, 0.05);
-    --glass-border: rgba(255, 255, 255, 0.1);
-    --shadow-premium: 0 25px 50px -12px rgba(0, 0, 0, 0.8);
-    --shadow-soft: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
-    --gradient-premium: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
-    --transition-premium: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-    --transition-smooth: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+  body {
+    @apply bg-canvas font-sans text-mute antialiased;
+    font-feature-settings: "kern" 1, "liga" 1;
+    text-rendering: optimizeLegibility;
   }
-
-  .dark {
-    --background: 0 0% 2%;
-    --foreground: 0 0% 98%;
-    --card: 0 0% 4%;
-    --card-foreground: 0 0% 95%;
-    --popover: 0 0% 4%;
-    --popover-foreground: 0 0% 95%;
-    --primary: 210 100% 60%;
-    --primary-foreground: 0 0% 98%;
-    --secondary: 0 0% 8%;
-    --secondary-foreground: 0 0% 90%;
-    --muted: 0 0% 6%;
-    --muted-foreground: 0 0% 60%;
-    --accent: 210 100% 60%;
-    --accent-foreground: 0 0% 98%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 0 0% 12%;
-    --input: 0 0% 8%;
-    --ring: 210 100% 60%;
+  ::selection { background: rgb(var(--accent) / 0.25); color: rgb(var(--ink)); }
+  :focus-visible { outline: 2px solid rgb(var(--accent)); outline-offset: 3px; border-radius: 6px; }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
   }
 }
 
-@layer base {
-  * {
-    @apply border-border;
-  }
+@keyframes rise {
+  from { opacity: 0; transform: translateY(14px); filter: blur(6px); }
+  to { opacity: 1; transform: none; filter: none; }
+}
+@keyframes fade { from { opacity: 0; } }
+@keyframes draw { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
+@keyframes sheen { from { background-position: 100% 0; } to { background-position: 0 0; } }
+@keyframes pop {
+  from { opacity: 0; transform: translateY(-8px) scale(0.98); }
+  to { opacity: 1; transform: none; }
+}
 
-  body {
-    @apply bg-background text-foreground dark;
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    font-weight: 400;
-    line-height: 1.6;
-  }
-
-  /* Premium Apple-style effects */
-  .glass-morphism {
-    background: var(--glass-bg);
-    backdrop-filter: blur(20px) saturate(180%);
-    -webkit-backdrop-filter: blur(20px) saturate(180%);
-    border: 1px solid var(--glass-border);
-    box-shadow: var(--shadow-soft);
-  }
-
-  .glass-morphism-strong {
-    background: rgba(255, 255, 255, 0.08);
-    backdrop-filter: blur(30px) saturate(200%);
-    -webkit-backdrop-filter: blur(30px) saturate(200%);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    box-shadow: var(--shadow-premium);
-  }
-
-  .gradient-text {
-    background: linear-gradient(135deg, #ffffff 0%, #a0a0a0 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-
-  .gradient-text-premium {
-    background: linear-gradient(135deg, #60a5fa 0%, #3b82f6 50%, #1d4ed8 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-
-  .floating {
-    animation: float 8s ease-in-out infinite;
-  }
-
-  @keyframes float {
-    0%, 100% { transform: translateY(0px) rotate(0deg); }
-    25% { transform: translateY(-10px) rotate(1deg); }
-    50% { transform: translateY(-20px) rotate(0deg); }
-    75% { transform: translateY(-10px) rotate(-1deg); }
-  }
-
-  .premium-hover {
-    transition: var(--transition-premium);
-  }
-
-  .premium-hover:hover {
-    transform: translateY(-8px) scale(1.02);
-    box-shadow: var(--shadow-premium);
-  }
-
-  .smooth-hover {
-    transition: var(--transition-smooth);
-  }
-
-  .smooth-hover:hover {
-    transform: translateY(-4px);
-    box-shadow: var(--shadow-soft);
-  }
-
-  /* Smooth scrolling */
-  html {
-    scroll-behavior: smooth;
-    scroll-restoration: manual;
-  }
+@layer utilities {
+  .animate-rise { animation: rise 0.8s cubic-bezier(0.16, 1, 0.3, 1) both; }
 }
 
 @layer components {
-  .section-padding {
-    @apply py-24 lg:py-32;
+  .btn {
+    @apply inline-flex h-10 items-center justify-center gap-2 whitespace-nowrap rounded-full px-4 text-[14px] font-medium transition-colors duration-200;
+  }
+  .btn-primary { @apply btn bg-accent text-on-accent hover:bg-accent/85; }
+  .btn-ghost { @apply btn border border-line text-ink hover:border-ink/25 hover:bg-ink/[0.04]; }
+  .icon-btn {
+    @apply inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-mute transition-colors duration-200
+           hover:bg-ink/[0.06] hover:text-ink;
+  }
+  .label { @apply font-mono text-[12px] font-medium uppercase tracking-label text-faint; }
+  .pill { @apply inline-flex items-center rounded-full bg-accent/10 px-2.5 py-1 text-[12.5px] font-medium leading-none text-accent; }
+  .tag { @apply inline-flex items-center rounded-md border border-line px-2 py-1 text-[13px] leading-none text-ink/85; }
+  .kbd { @apply inline-flex h-5 min-w-5 items-center justify-center rounded border border-line bg-surface px-1 font-mono text-[11px] text-faint; }
+
+  /* Hover card used by the work and experience rows (desktop only). Others in the list dim. */
+  .row {
+    @apply relative grid gap-4 rounded-2xl transition-[opacity,background-color,box-shadow] duration-300
+           sm:grid-cols-[148px_minmax(0,1fr)] sm:gap-8
+           lg:-mx-6 lg:p-6 lg:hover:bg-surface lg:hover:shadow-[0_1px_0_rgb(var(--ink)/0.04),0_12px_32px_-12px_rgb(0_0_0/0.18)]
+           lg:hover:ring-1 lg:hover:ring-line lg:group-hover/list:opacity-55 lg:hover:!opacity-100;
   }
 
-  .container-premium {
-    @apply container mx-auto px-6 lg:px-8;
+  /* Cursor spotlight: a soft glow plus a dot grid that shows only around the pointer. */
+  .spotlight {
+    @apply pointer-events-none fixed inset-0 z-0 opacity-0 transition-opacity duration-500;
+    background: radial-gradient(600px circle at var(--x, 50%) var(--y, 50%), rgb(var(--accent) / var(--glow)), transparent 72%);
+  }
+  .spotlight::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(rgb(var(--ink) / 0.16) 1px, transparent 1.5px);
+    background-size: 22px 22px;
+    -webkit-mask-image: radial-gradient(240px circle at var(--x, 50%) var(--y, 50%), #000, transparent);
+    mask-image: radial-gradient(240px circle at var(--x, 50%) var(--y, 50%), #000, transparent);
   }
 
-  .heading-premium {
-    @apply text-4xl lg:text-6xl xl:text-7xl font-bold text-premium gradient-text;
-    font-weight: 800;
+  /* Soft accent light behind the identity column. Scrolls away on phones, stays put on desktop. */
+  .aura-wrap { @apply pointer-events-none absolute inset-x-0 top-0 z-0 h-[720px] overflow-hidden lg:fixed lg:inset-0 lg:h-auto; }
+  .aura {
+    @apply absolute -left-[340px] -top-[380px] h-[900px] w-[1100px];
+    background: radial-gradient(closest-side, rgb(var(--accent) / var(--aura)), transparent);
+    animation: fade 1.6s ease-out both;
   }
 
-  .subheading-premium {
-    @apply text-xl lg:text-2xl text-muted-foreground text-body-premium;
-    font-weight: 400;
+  /* The portrait ring draws itself once (pathLength is 1). */
+  .ring-draw {
+    fill: none;
+    stroke-width: 2.5;
+    stroke-linecap: round;
+    stroke-dasharray: 1;
+    animation: draw 1.4s cubic-bezier(0.65, 0, 0.35, 1) 0.3s both;
   }
 
-  .card-premium {
-    @apply glass-morphism-strong premium-hover;
-    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  /* One pass of accent light across the name, then plain ink. */
+  .sheen {
+    background: linear-gradient(100deg, rgb(var(--ink)) 0 40%, rgb(var(--accent)) 50%, rgb(var(--ink)) 60% 100%);
+    background-size: 300% 100%;
+    background-position: 0 0;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: sheen 1.8s cubic-bezier(0.4, 0, 0.2, 1) 0.6s both;
   }
 
-  .card-premium:hover {
-    transform: translateY(-12px) scale(1.02);
-    box-shadow: 0 32px 64px -12px rgba(0, 0, 0, 0.4);
+  .palette {
+    @apply w-[min(620px,calc(100vw-2rem))] max-w-none overflow-hidden rounded-2xl border border-line bg-surface p-0 text-ink
+           shadow-[0_24px_80px_-12px_rgb(0_0_0/0.45)];
+    margin: 14vh auto auto;
   }
-
-  .text-premium {
-    letter-spacing: -0.025em;
-    line-height: 1.1;
-    font-weight: 700;
-  }
-
-  .text-body-premium {
-    letter-spacing: -0.01em;
-    line-height: 1.7;
-    font-weight: 400;
-  }
+  .palette[open] { animation: pop 0.18s cubic-bezier(0.16, 1, 0.3, 1); }
+  .palette::backdrop { background: rgb(0 0 0 / 0.4); backdrop-filter: blur(3px); }
 }
