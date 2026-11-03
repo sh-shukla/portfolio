@@ -1,19 +1,24 @@
 import type { ReactNode } from "react";
-import type { SectionId } from "@/lib/sections";
+import Reveal from "./Reveal";
+import { cn } from "@/lib/utils";
 
-type Props = { id: SectionId; title: string; children: ReactNode };
+type Props = { id: string; title: string; hideTitle?: boolean; children: ReactNode; className?: string };
 
-// On phones the heading sticks under the top bar, so you always know where you are.
-export default function Section({ id, title, children }: Props) {
+// Each section opens with its shell path (~/work), echoing the terminal, then a large plain heading.
+export default function Section({ id, title, hideTitle, children, className }: Props) {
   return (
-    <section id={id} aria-labelledby={`${id}-title`} className="mb-24 scroll-mt-14 sm:mb-32 lg:mb-36 lg:scroll-mt-20">
-      <div className="sticky top-14 z-20 -mx-5 mb-6 bg-canvas/85 px-5 py-4 backdrop-blur-xl sm:-mx-8 sm:px-8 lg:static lg:mx-0 lg:mb-8 lg:bg-transparent lg:p-0 lg:backdrop-blur-none">
-        <h2 id={`${id}-title`} className="flex items-center gap-4 font-mono text-[12px] font-medium uppercase tracking-label text-ink">
-          {title}
-          <span aria-hidden className="h-px flex-1 bg-line" />
-        </h2>
+    <section id={id} aria-labelledby={`${id}-title`} className={cn("scroll-mt-12 py-24 sm:py-32", className)}>
+      <div className="mx-auto max-w-content px-5 sm:px-8">
+        <Reveal>
+          <p className="label" aria-hidden>
+            ~/{id}
+          </p>
+          <h2 id={`${id}-title`} className={hideTitle ? "sr-only" : "mt-3 text-[clamp(2.5rem,6vw,4.5rem)] font-semibold leading-[1.02] tracking-tightest text-ink"}>
+            {title}
+          </h2>
+        </Reveal>
+        <div className={hideTitle ? "mt-8" : "mt-12 sm:mt-16"}>{children}</div>
       </div>
-      {children}
     </section>
   );
 }

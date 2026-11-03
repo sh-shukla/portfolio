@@ -21,8 +21,3 @@ export function downloadResume() {
 export function openInNewTab(url: string) {
   window.open(url, "_blank", "noopener,noreferrer");
 }
-
-// Tiny toast bus: any component can announce a short message; <Toast /> shows it.
-export function toast(message: string) {
-  window.dispatchEvent(new CustomEvent<string>("toast", { detail: message }));
-}

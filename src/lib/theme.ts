@@ -22,7 +22,7 @@ function apply(t: Theme) {
   root.classList.add("theme-switching");
   root.classList.toggle("dark", t === "dark");
   root.style.colorScheme = t;
-  document.querySelector('meta[name="theme-color"]')?.setAttribute("content", t === "dark" ? "#0b0d10" : "#fafaf9");
+  document.querySelector('meta[name="theme-color"]')?.setAttribute("content", t === "dark" ? "#000000" : "#ffffff");
   requestAnimationFrame(() => requestAnimationFrame(() => root.classList.remove("theme-switching")));
 }
 

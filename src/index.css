@@ -2,31 +2,42 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Theme tokens as RGB channels. All text pairs meet WCAG AA (4.5:1) on canvas and surface. */
+/* Theme tokens as RGB channels. Text pairs meet WCAG AA on canvas and panel. */
 :root {
   color-scheme: light;
-  --canvas: 250 250 249;
+  --canvas: 255 255 255;
   --surface: 255 255 255;
-  --ink: 17 20 24;
-  --mute: 72 80 91;
-  --faint: 95 103 115;
-  --line: 226 228 232;
-  --accent: 4 120 87;
+  --panel: 245 245 247;
+  --ink: 29 29 31;
+  --mute: 66 66 69;
+  --faint: 110 110 115;
+  --line: 210 210 215;
+  --accent: 10 125 59;
   --on-accent: 255 255 255;
-  --glow: 0.08;
+  /* Headline gradient: healthy green to cyan to blue. */
+  --g1: 10 125 59;
+  --g2: 0 113 164;
+  --g3: 0 102 204;
+  --aurora: 0.35;
+  --dots: 0.1;
 }
 
 .dark {
   color-scheme: dark;
-  --canvas: 11 13 16;
-  --surface: 21 24 29;
-  --ink: 237 240 243;
-  --mute: 163 171 182;
-  --faint: 138 146 158;
-  --line: 38 43 51;
-  --accent: 61 220 151;
-  --on-accent: 7 20 14;
-  --glow: 0.06;
+  --canvas: 0 0 0;
+  --surface: 22 22 23;
+  --panel: 29 29 31;
+  --ink: 245 245 247;
+  --mute: 161 161 166;
+  --faint: 134 134 139;
+  --line: 51 51 54;
+  --accent: 48 209 88;
+  --on-accent: 0 0 0;
+  --g1: 48 209 88;
+  --g2: 100 210 255;
+  --g3: 10 132 255;
+  --aurora: 1;
+  --dots: 0.14;
 }
 
 /* Set for two frames while the theme flips, so nothing animates between palettes. */
@@ -53,62 +64,138 @@
   }
 }
 
-@keyframes rise {
-  from { opacity: 0; transform: translateY(14px); filter: blur(6px); }
-  to { opacity: 1; transform: none; filter: none; }
-}
-@keyframes pop {
-  from { opacity: 0; transform: translateY(-8px) scale(0.98); }
-  to { opacity: 1; transform: none; }
-}
+@keyframes rise { from { opacity: 0; transform: translateY(16px); filter: blur(8px); } to { opacity: 1; transform: none; filter: none; } }
+@keyframes blink { 50% { opacity: 0; } }
+@keyframes drift { from { transform: translate3d(-3%, -2%, 0) scale(1); } to { transform: translate3d(3%, 2%, 0) scale(1.08); } }
+@keyframes marquee { to { transform: translateX(calc(-50% - 6px)); } }
+@keyframes stage-on { 0% { transform: scale(0.6); } 60% { transform: scale(1.12); } 100% { transform: scale(1); } }
+@keyframes fill { from { transform: scaleX(0); } to { transform: scaleX(1); } }
 
 @layer utilities {
-  .animate-rise { animation: rise 0.8s cubic-bezier(0.16, 1, 0.3, 1) both; }
+  .animate-rise { animation: rise 1s cubic-bezier(0.16, 1, 0.3, 1) both; }
+  .animate-blink { animation: blink 1.05s steps(1) infinite; }
 }
 
 @layer components {
   .btn {
-    @apply inline-flex h-10 items-center justify-center gap-2 whitespace-nowrap rounded-full px-4 text-[14px] font-medium transition-colors duration-200;
+    @apply inline-flex h-10 items-center justify-center gap-2 whitespace-nowrap rounded-full px-5 text-[15px] font-medium transition-[background-color,box-shadow,border-color,color] duration-200;
   }
-  .btn-primary { @apply btn bg-accent text-on-accent hover:bg-accent/85; }
-  .btn-ghost { @apply btn border border-line text-ink hover:border-ink/25 hover:bg-ink/[0.04]; }
+  .btn-primary { @apply btn bg-accent text-on-accent hover:bg-accent/90 hover:shadow-[0_8px_28px_-8px_rgb(var(--accent)/0.7)]; }
+  .btn-ghost { @apply btn border border-line text-ink hover:border-ink/30 hover:bg-ink/[0.04]; }
   .icon-btn {
-    @apply inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-mute transition-colors duration-200
-           hover:bg-ink/[0.06] hover:text-ink;
+    @apply inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-ink/70 transition-colors duration-200 hover:bg-ink/[0.07] hover:text-ink;
   }
-  .label { @apply font-mono text-[12px] font-medium uppercase tracking-label text-faint; }
-  .pill { @apply inline-flex items-center rounded-full bg-accent/10 px-2.5 py-1 text-[12.5px] font-medium leading-none text-accent; }
-  .tag { @apply inline-flex items-center rounded-md border border-line px-2 py-1 text-[13px] leading-none text-ink/85; }
-  .kbd { @apply inline-flex h-5 min-w-5 items-center justify-center rounded border border-line bg-surface px-1 font-mono text-[11px] text-faint; }
-
-  /* Hover card used by the work and experience rows (desktop only). Others in the list dim. */
-  .row {
-    @apply relative grid gap-4 rounded-2xl transition-[opacity,background-color,box-shadow] duration-300
-           sm:grid-cols-[148px_minmax(0,1fr)] sm:gap-8
-           lg:-mx-6 lg:p-6 lg:hover:bg-surface lg:hover:shadow-[0_1px_0_rgb(var(--ink)/0.04),0_12px_32px_-12px_rgb(0_0_0/0.18)]
-           lg:hover:ring-1 lg:hover:ring-line lg:group-hover/list:opacity-55 lg:hover:!opacity-100;
+  .label { @apply font-mono text-[13px] font-medium tracking-label text-accent; }
+  .card { @apply relative rounded-[28px] bg-panel; }
+  .chip {
+    @apply inline-flex items-center gap-1.5 whitespace-nowrap rounded-full border border-line bg-canvas/70 px-2.5 py-1 text-[12.5px] font-medium leading-none text-ink/85;
+  }
+  .grad-text {
+    background: linear-gradient(90deg, rgb(var(--g1)), rgb(var(--g2)) 55%, rgb(var(--g3)));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
   }
 
-  /* Cursor spotlight: a soft glow plus a dot grid that shows only around the pointer. */
-  .spotlight {
-    @apply pointer-events-none fixed inset-0 z-0 opacity-0 transition-opacity duration-500;
-    background: radial-gradient(600px circle at var(--x, 50%) var(--y, 50%), rgb(var(--accent) / var(--glow)), transparent 72%);
+  /* Brand logos: brand colour, or the text colour where the brand colour is too faint for the theme. */
+  .logo { fill: var(--brand); }
+  :root:not(.dark) .logo-ink-light, .dark .logo-ink-dark { fill: currentColor; }
+
+  /* ---- Hero: a sticky stage driven by --a (copy out, terminal to centre) and --c (zoom into the terminal). ---- */
+  .hero-copy {
+    opacity: calc(1 - var(--a, 0) * 1.2);
+    transform: translateY(calc(var(--a, 0) * -72px)) scale(calc(1 - var(--a, 0) * 0.05));
   }
-  .spotlight::after {
+  .hero-term {
+    transform: translateY(calc(var(--dist, 0px) * -1 * var(--a, 0))) scale(calc(1 + (var(--zoom, 1) - 1) * var(--c, 0)));
+    will-change: transform;
+  }
+  .hero-term-content { opacity: calc(1.6 - var(--c, 0) * 2.4); }
+  .hero-term-cover { opacity: calc((var(--c, 0) - 0.82) * 5.6); }
+  .hero-fx { opacity: calc(1 - var(--c, 0) * 1.5); }
+  .aurora {
+    background:
+      radial-gradient(38% 42% at 30% 62%, rgb(var(--g1) / calc(0.22 * var(--aurora))), transparent 70%),
+      radial-gradient(36% 40% at 72% 58%, rgb(var(--g3) / calc(0.2 * var(--aurora))), transparent 70%),
+      radial-gradient(30% 34% at 52% 80%, rgb(var(--g2) / calc(0.16 * var(--aurora))), transparent 70%);
+    animation: drift 16s ease-in-out infinite alternate;
+  }
+  .dot-grid {
+    background-image: radial-gradient(rgb(var(--ink) / var(--dots)) 1px, transparent 1.2px);
+    background-size: 26px 26px;
+    /* Strongest behind the terminal, clear behind the headline copy. */
+    -webkit-mask-image: radial-gradient(ellipse 75% 50% at 50% 85%, #000 20%, transparent 75%);
+    mask-image: radial-gradient(ellipse 75% 50% at 50% 85%, #000 20%, transparent 75%);
+  }
+
+  /* About: words light up as the paragraph scrolls through (--p 0..1, --n words, --i index). */
+  .scrub-word { opacity: clamp(0.2, calc((var(--p, 1) * var(--n, 1) - var(--i, 0)) / 4), 1); transition: opacity 0.15s linear; }
+
+  /* Bento cards: a border light that follows the pointer (--mx, --my set by Work). */
+  .glow-card::before {
     content: "";
     position: absolute;
     inset: 0;
-    background-image: radial-gradient(rgb(var(--ink) / 0.16) 1px, transparent 1.5px);
-    background-size: 22px 22px;
-    -webkit-mask-image: radial-gradient(240px circle at var(--x, 50%) var(--y, 50%), #000, transparent);
-    mask-image: radial-gradient(240px circle at var(--x, 50%) var(--y, 50%), #000, transparent);
+    padding: 1px;
+    border-radius: inherit;
+    background: radial-gradient(360px circle at var(--mx, 50%) var(--my, 50%), rgb(var(--accent) / 0.6), transparent 45%);
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.3s;
+    pointer-events: none;
+  }
+  .glow-card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: radial-gradient(520px circle at var(--mx, 50%) var(--my, 50%), rgb(var(--accent) / 0.07), transparent 45%);
+    opacity: 0;
+    transition: opacity 0.3s;
+    pointer-events: none;
+  }
+  @media (hover: hover) {
+    .glow-card:hover::before, .glow-card:hover::after { opacity: 1; }
   }
 
-  .palette {
-    @apply w-[min(620px,calc(100vw-2rem))] max-w-none overflow-hidden rounded-2xl border border-line bg-surface p-0 text-ink
-           shadow-[0_24px_80px_-12px_rgb(0_0_0/0.45)];
-    margin: 14vh auto auto;
+  /* BYOC pipeline: stages tick green one after another once the card is in view. */
+  .pipeline .stage-dot { @apply border-line bg-canvas text-transparent; transition: background-color 0.3s, border-color 0.3s, color 0.3s; }
+  .pipeline .stage-link::after {
+    content: "";
+    @apply absolute inset-0 origin-left rounded-full bg-accent;
+    transform: scaleX(0);
   }
-  .palette[open] { animation: pop 0.18s cubic-bezier(0.16, 1, 0.3, 1); }
-  .palette::backdrop { background: rgb(0 0 0 / 0.4); backdrop-filter: blur(3px); }
+  .pipeline.run .stage-dot {
+    @apply border-accent bg-accent text-on-accent;
+    animation: stage-on 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+    animation-delay: calc(var(--i) * 0.45s);
+    transition-delay: calc(var(--i) * 0.45s);
+  }
+  /* Each step: dot ticks at i x 0.45s, then the link to the next step fills in two halves. */
+  .pipeline.run .stage-link::after { animation: fill 0.15s linear both; }
+  .pipeline.run .stage-link.r::after { animation-delay: calc(var(--i) * 0.45s + 0.15s); }
+  .pipeline.run .stage-link.l::after { animation-delay: calc((var(--i) - 1) * 0.45s + 0.3s); }
+
+  /* Experience rail fill (--tp 0..1). */
+  .rail-fill { transform: scaleY(var(--tp, 1)); transform-origin: top; }
+
+  /* Logo marquee. Reduced motion: one static, wrapped row. */
+  .marquee {
+    overflow: hidden;
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+    mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  }
+  .marquee-track { display: flex; width: max-content; gap: 12px; animation: marquee 48s linear infinite; }
+  .marquee-group { display: flex; flex-shrink: 0; gap: 12px; }
+  .marquee-track.reverse { animation-direction: reverse; }
+  .marquee:hover .marquee-track { animation-play-state: paused; }
+  @media (prefers-reduced-motion: reduce) {
+    .marquee { -webkit-mask-image: none; mask-image: none; }
+    .marquee-track { width: auto; animation: none; }
+    .marquee-group { flex-wrap: wrap; }
+    .marquee-copy { display: none; }
+    .pipeline.run .stage-dot, .pipeline.run .stage-link.l::after, .pipeline.run .stage-link.r::after { animation-delay: 0s; transition-delay: 0s; }
+  }
 }

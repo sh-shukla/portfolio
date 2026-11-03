@@ -1,4 +1,4 @@
-// Page sections, in order. Drives the sidebar nav, the mobile menu and the command palette.
+// Page sections, in order. Drives the nav, the mobile menu and the terminal commands.
 export const sections = [
   { id: "about", label: "About" },
   { id: "work", label: "Work" },

@@ -1,13 +1,13 @@
-// All site copy lives here. Facts mirror the master résumé (resume/src/content.js).
+// All site copy lives here. Facts mirror the master resume (resume/src/content.js).
 const base = import.meta.env.BASE_URL;
 
 export const profile = {
   name: "Shashank Shukla",
   title: "Senior Platform Engineer",
-  intro: "I build and run cloud platforms on AWS, GCP and Kubernetes. Currently at Nielsen, previously four years at Conga.",
-  location: "Bangalore, India",
-  // Shown in the hero card and the contact section. Set to "" to hide it.
-  availability: "Open to senior platform, DevOps and SRE roles",
+  // **word** renders highlighted.
+  intro: "I build and run cloud platforms on **AWS**, **GCP** and **Kubernetes**, and the **AI** workloads on them. Currently at **Nielsen**, previously four years at **Conga**.",
+  // The "Open to work" badge and the contact section. Set to [] to hide both.
+  openTo: ["Platform", "DevOps", "SRE", "AI Infra"],
   email: "shashank.shukla1202@gmail.com",
   phone: "+91 77376 02733",
   photo: `${base}shashank_pic.jpg`,
@@ -17,7 +17,12 @@ export const profile = {
   github: "https://github.com/sh-shukla",
 };
 
-// About section. Every fact here is on the master résumé.
+// Contact form backend: the Web app URL of contact/apps-script.gs, deployed in your Google account
+// (setup steps are at the top of that file). While this is empty the form is hidden and only the
+// email, LinkedIn, GitHub and phone buttons show.
+export const contactForm = "";
+
+// About section. Every fact here is on the master resume.
 export const about = [
   "I'm a Senior DevOps Engineer at Nielsen on the Ads and Sports platform teams, where I lead a team of four DevOps engineers supporting 5–6 application teams.",
   "My work there covers a bring-your-own-cloud delivery platform, AI-driven incident response on Amazon Bedrock, self-hosted language models and running our EKS clusters.",
@@ -38,6 +43,10 @@ export type Tile = {
   metricLabel: string;
   body: string;
   tech: string[];
+  // Optional extras for the big tile: a pipeline (each step named in the body), how it works, key numbers.
+  steps?: string[];
+  points?: string[];
+  facts?: { value: string; label: string }[];
 };
 
 export const work: Tile[] = [
@@ -46,8 +55,20 @@ export const work: Tile[] = [
     title: "Bring-your-own-cloud delivery platform",
     metric: "45 min",
     metricLabel: "per customer install, was 6–7 hours",
-    body: "Installs the full product into a customer's own AWS or GCP account from one config file: networking, Kubernetes, databases, then 40–45 microservices. Upgrades run through the same pipeline. Live for 4 customers.",
+    body: "Installs the full product into a customer's own AWS or GCP account from one config file: networking, Kubernetes, databases, then 40–45 microservices.",
     tech: ["Pulumi", "AWS", "GCP", "EKS", "Argo CD", "Karpenter"],
+    steps: ["Config file", "Networking", "Kubernetes", "Databases", "40–45 services"],
+    points: [
+      "Pulumi builds the cloud layer: VPC, EKS, RDS, DynamoDB and S3",
+      "Argo CD and Karpenter go in next, then Argo CD deploys the services",
+      "Infra and app releases managed end to end, tied into the customer dashboard",
+      "Upgrades run through the same pipeline; the same platform runs the SaaS product",
+    ],
+    facts: [
+      { value: "4", label: "customers live" },
+      { value: "AWS + GCP", label: "clouds supported" },
+      { value: "1", label: "config file per customer" },
+    ],
   },
   {
     company: "Nielsen",
@@ -102,7 +123,8 @@ export const work: Tile[] = [
 // A point is [bold lead-in, rest of the sentence].
 export type Point = [lead: string, rest: string];
 export type Role = { title: string; dates: string; points: Point[] };
-export type Job = { company: string; location: string; period: string; summary: string; roles: Role[] };
+// stack: tools named in that job's bullets, shown as logo chips.
+export type Job = { company: string; location: string; period: string; summary: string; stack: string[]; roles: Role[] };
 
 export const experience: Job[] = [
   {
@@ -110,6 +132,7 @@ export const experience: Job[] = [
     location: "Bangalore",
     period: "Jun 2025 – Present",
     summary: "Ads and Sports platform teams",
+    stack: ["AWS", "GCP", "Kubernetes", "Pulumi", "Argo CD", "Karpenter", "Amazon Bedrock", "Prometheus", "Grafana", "Loki", "incident.io", "Kyverno", "HashiCorp Vault", "NGINX Ingress"],
     roles: [
       {
         title: "Senior DevOps Engineer",
@@ -132,6 +155,7 @@ export const experience: Job[] = [
     location: "Bangalore",
     period: "Jul 2021 – Jun 2025",
     summary: "Associate to Senior DevOps Engineer",
+    stack: ["AWS", "Jenkins", "Spinnaker", "Terraform", "Helm", "KEDA", "Karpenter", "Python", "Celery", "FastAPI", "Doppler"],
     roles: [
       {
         title: "Senior DevOps Engineer",
