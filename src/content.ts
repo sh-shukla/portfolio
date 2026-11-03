@@ -1,136 +1,135 @@
-// All site copy lives here. Facts mirror the master resume (resume/src/content.js).
+// All site copy lives here. Facts mirror the master résumé (resume/src/content.js).
 const base = import.meta.env.BASE_URL;
 
 export const profile = {
   name: "Shashank Shukla",
   title: "Senior Platform Engineer",
+  intro: "I build and run cloud platforms on AWS, GCP and Kubernetes. Currently at Nielsen, previously four years at Conga.",
   location: "Bangalore, India",
+  // Shown in the hero card and the contact section. Set to "" to hide it.
+  availability: "Open to senior platform, DevOps and SRE roles",
   email: "shashank.shukla1202@gmail.com",
   phone: "+91 77376 02733",
   photo: `${base}shashank_pic.jpg`,
   resume: `${base}Shashank_Shukla_DevOps_Resume.pdf`,
+  resumeDownloadName: "Shashank_Shukla_Resume.pdf",
   linkedin: "https://www.linkedin.com/in/shashank-shukla-b84b7a162",
   github: "https://github.com/sh-shukla",
 };
 
-export const hero = {
-  eyebrow: "Senior Platform Engineer",
-  line1: "Platforms that build,",
-  line2: "ship and heal themselves.",
-  lede:
-    "I design and run cloud platforms on AWS, GCP and Kubernetes. Five years of turning manual operations into software, from a one-file customer installer to AI-driven incident response.",
-};
-
-export const stats = [
-  { value: "45 min", label: "to stand up a full customer environment", note: "down from 6–7 hours" },
-  { value: "12", label: "production EKS clusters operated", note: "270+ microservices" },
-  { value: "$1.8K", label: "saved every month on load balancing", note: "plus ~30% on compute" },
-  { value: "5+ yrs", label: "building platforms at scale", note: "Nielsen and Conga" },
+// The hero card: what a recruiter checks first.
+export const glance = [
+  { label: "Experience", value: "5+ years, since 2021" },
+  { label: "Current", value: "Senior DevOps Engineer, Nielsen" },
+  { label: "Previous", value: "Conga, Associate to Senior DevOps Engineer" },
+  { label: "Scale", value: "12 EKS clusters, 270+ microservices" },
+  { label: "Team", value: "Leads 4 DevOps engineers" },
+  { label: "Certified", value: "CKA, Terraform Associate" },
 ];
 
 export type Tile = {
-  eyebrow: string;
+  company: string;
   title: string;
   metric: string;
   metricLabel: string;
   body: string;
   tech: string[];
-  tone: "dark" | "light" | "tint";
+  tone: "feature" | "plain" | "tint";
   wide?: boolean;
 };
 
 export const work: Tile[] = [
   {
-    eyebrow: "Bring your own cloud",
-    title: "One config file. A complete production environment.",
+    company: "Nielsen",
+    title: "Bring-your-own-cloud delivery platform",
     metric: "45 min",
-    metricLabel: "end to end, from 6–7 hours",
-    body:
-      "Architected the platform that installs the whole product into a customer's own AWS or GCP account: Pulumi provisions networking, Kubernetes, databases and storage, then Argo CD, Karpenter and 40–45 microservices follow. Infra and app upgrades run through the same pipeline from the customer dashboard. Live for 4 customers.",
+    metricLabel: "per customer install, was 6–7 hours",
+    body: "Installs the full product into a customer's own AWS or GCP account from one config file: networking, Kubernetes, databases, then 40–45 microservices. Upgrades run through the same pipeline. Live for 4 customers.",
     tech: ["Pulumi", "AWS", "GCP", "EKS", "Argo CD", "Karpenter"],
-    tone: "dark",
+    tone: "feature",
     wide: true,
   },
   {
-    eyebrow: "AI incident response",
-    title: "Alerts that triage themselves.",
+    company: "Nielsen",
+    title: "AI incident response",
     metric: "12",
     metricLabel: "EKS clusters covered",
-    body:
-      "Prometheus alerts trigger Amazon Bedrock models grounded in a Bedrock Knowledge Base of runbooks. Common failures such as OOM kills are fixed automatically; the rest reach on-call through incident.io with a diagnosis attached.",
-    tech: ["Amazon Bedrock", "Knowledge Bases", "Prometheus", "incident.io"],
+    body: "Bedrock models read Prometheus alerts against our runbooks, fix common failures like OOM kills, and hand the rest to on-call with a diagnosis.",
+    tech: ["Amazon Bedrock", "Prometheus", "incident.io"],
     tone: "tint",
   },
   {
-    eyebrow: "Self-hosted AI",
-    title: "Language models, run as a fleet.",
+    company: "Nielsen",
+    title: "Self-hosted language models",
     metric: "~4x",
-    metricLabel: "lower inference cost",
-    body: "Two open-weight small language models self-hosted on EKS, managed by a custom Kubernetes CRD instead of paying per call for managed APIs.",
-    tech: ["EKS", "Kubernetes CRDs", "SLMs"],
-    tone: "light",
+    metricLabel: "cheaper than managed APIs",
+    body: "Two open-weight models on EKS, run as a fleet by a custom Kubernetes CRD.",
+    tech: ["EKS", "Kubernetes CRDs"],
+    tone: "plain",
   },
   {
-    eyebrow: "Real-time ads",
-    title: "Built for sub-10 ms.",
+    company: "Nielsen",
+    title: "Real-time ads infrastructure",
     metric: "<10 ms",
     metricLabel: "response target",
-    body: "Took the real-time Ads platform's infrastructure from scratch to production on AWS Local Zones and Global Accelerator, after evaluating ScyllaDB and Aerospike with vendor teams.",
-    tech: ["Local Zones", "Global Accelerator", "ScyllaDB", "Aerospike"],
-    tone: "light",
+    body: "Built from scratch to production on AWS Local Zones and Global Accelerator, after ScyllaDB and Aerospike trials.",
+    tech: ["Local Zones", "Global Accelerator", "ScyllaDB"],
+    tone: "plain",
   },
   {
-    eyebrow: "Cost engineering",
-    title: "Same platform. Smaller bill.",
-    metric: "$1.8K/mo",
-    metricLabel: "plus ~30% off compute",
-    body: "Consolidated 20+ ALBs behind NGINX Ingress for 50+ services, then moved workloads to Graviton with multi-arch builds and right-sized Karpenter.",
+    company: "Nielsen",
+    title: "AWS cost reduction",
+    metric: "$1.8K",
+    metricLabel: "a month, plus ~30% off compute",
+    body: "Consolidated 20+ load balancers behind NGINX Ingress and moved workloads to Graviton.",
     tech: ["NGINX Ingress", "Graviton", "Karpenter"],
-    tone: "light",
+    tone: "plain",
   },
   {
-    eyebrow: "Delivery at Conga",
-    title: "Faster releases, fewer rollbacks.",
+    company: "Conga",
+    title: "Release engineering",
     metric: "25 → 8 min",
     metricLabel: "deploys across 200+ microservices",
-    body:
-      "Blue-green deployments brought per-release downtime under 30 seconds. Reusable Jenkins and Spinnaker pipelines tripled deployment frequency, and auto-rollback cut release failures 70%.",
-    tech: ["Jenkins", "Spinnaker", "Blue-green", "Terraform"],
+    body: "Blue-green deploys with under 30 seconds of downtime, shared Jenkins and Spinnaker pipelines, and auto-rollback that cut release failures 70%.",
+    tech: ["Jenkins", "Spinnaker", "Terraform"],
     tone: "tint",
     wide: true,
   },
   {
-    eyebrow: "Disaster recovery",
-    title: "Failover without data loss.",
+    company: "Conga",
+    title: "Disaster recovery",
     metric: "<10 min",
-    metricLabel: "RTO for 200+ AWS services",
-    body: "Continuous replication and automated failover kept RPO under 5 minutes, with zero data loss across drills and real failovers.",
-    tech: ["AWS", "Replication", "Automated failover"],
-    tone: "light",
+    metricLabel: "RTO for 200+ services",
+    body: "Continuous replication and automated failover. RPO under 5 minutes, no data lost in drills or real failovers.",
+    tech: ["AWS", "Replication"],
+    tone: "plain",
   },
 ];
 
-export type Role = { title: string; dates: string; points: string[] };
+// A point is [bold lead-in, rest of the sentence].
+export type Point = [lead: string, rest: string];
+export type Role = { title: string; dates: string; points: Point[] };
 export type Job = { company: string; location: string; period: string; summary: string; roles: Role[] };
 
 export const experience: Job[] = [
   {
     company: "Nielsen",
     location: "Bangalore",
-    period: "2025 – Present",
-    summary: "Platform and infrastructure for the Ads and Sports product teams.",
+    period: "Jun 2025 – Present",
+    summary: "Ads and Sports platform teams",
     roles: [
       {
         title: "Senior DevOps Engineer",
         dates: "Jun 2025 – Present",
         points: [
-          "Architected a bring-your-own-cloud delivery platform that builds a complete production environment in a customer's AWS or GCP account from one config file, cutting setup and upgrades from 6–7 hours to 45 minutes.",
-          "Built AI-driven incident response on Amazon Bedrock that auto-remediates common failures across 12 EKS clusters and escalates the rest with a diagnosis.",
-          "Self-host two open-weight small language models on EKS through a custom Kubernetes CRD, at ~4x lower inference cost.",
-          "Operate 12 EKS clusters running 270+ microservices: zero-downtime upgrades to v1.34, NodeLocalDNS, Node Problem Detector and blue-green deployments; node memory swap cut OOM kills ~70%.",
-          "Reduced AWS spend by ~$1,800/month with ALB consolidation and ~30% on compute with Graviton and Karpenter.",
-          "Built the observability and on-call stack on Prometheus, Loki, Grafana and incident.io, and hardened clusters with Kyverno and Vault.",
-          "Lead a 4-engineer DevOps team supporting 5–6 application teams.",
+          ["Architected a bring-your-own-cloud delivery platform", " that builds a complete production environment in a customer's AWS or GCP account from one config file. Setup and upgrades went from 6–7 hours to 45 minutes; live for 4 customers."],
+          ["Built AI-driven incident response on Amazon Bedrock", " that remediates common failures across 12 EKS clusters automatically and sends the rest to on-call with a diagnosis."],
+          ["Self-hosted two open-weight small language models on EKS", " through a custom Kubernetes CRD, at ~4x lower inference cost than managed APIs."],
+          ["Operate 12 EKS clusters running 270+ microservices", ": zero-downtime upgrades to v1.34, NodeLocalDNS, Node Problem Detector and blue-green deployments. Node memory swap cut OOM kills ~70%."],
+          ["Reduced AWS spend by ~$1,800/month", " by consolidating 20+ ALBs behind NGINX Ingress, and compute cost by ~30% with Graviton and Karpenter."],
+          ["Built the real-time Ads platform infrastructure", " from scratch to production, designed for sub\u201110\u00a0ms responses on AWS Local Zones and Global Accelerator."],
+          ["Built the observability and on-call stack", " on Prometheus, Loki, Grafana and incident.io, and hardened clusters with Kyverno and Vault."],
+          ["Lead a 4-engineer DevOps team", " supporting 5–6 application teams."],
         ],
       },
     ],
@@ -138,37 +137,39 @@ export const experience: Job[] = [
   {
     company: "Conga",
     location: "Bangalore",
-    period: "2021 – 2025",
-    summary: "Four years from associate to senior, across delivery, reliability and developer platforms.",
+    period: "Jul 2021 – Jun 2025",
+    summary: "Associate to Senior DevOps Engineer",
     roles: [
       {
         title: "Senior DevOps Engineer",
         dates: "Apr 2024 – Jun 2025",
         points: [
-          "Led a 6-member DevOps/SRE team, setting deployment standards, runbooks and SRE practices.",
-          "Cut deployment time from 25 minutes to under 8 across 200+ microservices, with under 30 seconds of downtime per release.",
-          "Reduced release failures 70% and rollback incidents 85% with automated validation and auto-rollback.",
-          "Built a CRM data-migration orchestrator in Python and Celery that ran 500+ concurrent workflows with zero data loss, and a FastAPI SaaS platform with 60+ endpoints.",
-          "Designed event-driven autoscaling with KEDA for NGINX and AWS SQS consumers.",
+          ["Led a 6-member DevOps/SRE team", ", setting deployment standards, runbooks and SRE practices."],
+          ["Cut deployment time from 25 to under 8 minutes", " across 200+ microservices, with under 30 seconds of downtime per release."],
+          ["Reduced release failures 70% and rollback incidents 85%", " with automated validation and auto-rollback."],
+          ["Tripled deployment frequency", " across 8+ teams with reusable Jenkins shared libraries and Spinnaker pipelines."],
+          ["Built a CRM data-migration orchestrator", " in Python and Celery that ran 500+ concurrent workflows with zero data loss."],
+          ["Built a SaaS API platform in FastAPI", " with 60+ endpoints."],
+          ["Designed event-driven autoscaling with KEDA", " for NGINX and AWS SQS consumers."],
         ],
       },
       {
         title: "DevOps Engineer",
         dates: "Apr 2023 – Mar 2024",
         points: [
-          "Delivered disaster recovery for 200+ AWS services with RTO under 10 minutes and RPO under 5.",
-          "Cut release cycles from 2 weeks to 3 hours with Terraform automation.",
-          "Cut MTTR 50% with the observability stack and Doppler secrets management.",
-          "Cut AWS compute spend ~25% through Karpenter, cost audits and EC2 right-sizing.",
+          ["Delivered disaster recovery for 200+ AWS services", " with RTO under 10 minutes and RPO under 5."],
+          ["Cut release cycles from 2 weeks to 3 hours", " with Terraform automation."],
+          ["Cut MTTR 50%", " with the observability stack and Doppler secrets management."],
+          ["Cut AWS compute spend ~25%", " through Karpenter, cost audits and EC2 right-sizing."],
         ],
       },
       {
         title: "Associate DevOps Engineer",
         dates: "Jul 2021 – Mar 2023",
         points: [
-          "Cut build times from 20 minutes to under 8 by parallelizing and caching Jenkins pipelines.",
-          "Cut new-service setup from 4 to 2.4 hours with templatized Helm charts.",
-          "Built foundational Terraform modules for VPCs, IAM and EC2-based services.",
+          ["Cut build times from 20 to under 8 minutes", " by parallelizing and caching Jenkins pipelines."],
+          ["Cut new-service setup from 4 to 2.4 hours", " with templatized Helm charts."],
+          ["Built foundational Terraform modules", " for VPCs, IAM and EC2-based services."],
         ],
       },
     ],
@@ -176,12 +177,14 @@ export const experience: Job[] = [
 ];
 
 export const skills = [
-  { group: "Cloud", items: ["AWS", "EKS", "EC2", "RDS", "DynamoDB", "S3", "SQS", "Bedrock", "GCP"] },
-  { group: "Kubernetes", items: ["Karpenter", "KEDA", "Helm", "Argo CD", "NGINX Ingress", "Kyverno", "CRDs", "Docker"] },
-  { group: "Infrastructure as code", items: ["Pulumi", "Terraform", "GitLab CI", "Jenkins", "Spinnaker", "Rancher Fleet"] },
-  { group: "Reliability", items: ["Prometheus", "Grafana", "Loki", "Alertmanager", "incident.io", "Disaster recovery"] },
-  { group: "Security", items: ["HashiCorp Vault", "Kyverno", "Checkmarx", "Doppler", "AWS STS"] },
-  { group: "Languages and data", items: ["Python", "FastAPI", "Celery", "Go", "Bash", "Kafka", "Redis", "MongoDB"] },
+  { group: "Cloud", items: ["AWS", "GCP", "EKS", "EC2", "RDS", "DynamoDB", "S3", "SQS", "IAM", "Local Zones"] },
+  { group: "Kubernetes", items: ["Karpenter", "KEDA", "Helm", "Argo CD", "NGINX Ingress", "Kyverno", "CRDs and Operators", "Docker"] },
+  { group: "IaC and CI/CD", items: ["Pulumi", "Terraform", "GitLab CI", "Jenkins", "Spinnaker", "Rancher Fleet", "JFrog Artifactory"] },
+  { group: "Observability and SRE", items: ["Prometheus", "Alertmanager", "Grafana", "Loki", "CloudWatch", "incident.io", "Disaster recovery"] },
+  { group: "AI and LLMOps", items: ["Amazon Bedrock", "Bedrock Knowledge Bases", "Self-hosted SLMs", "Runbook automation"] },
+  { group: "Security", items: ["HashiCorp Vault", "Kyverno", "Checkmarx", "Doppler", "AWS STS", "CrowdStrike"] },
+  { group: "Networking", items: ["NGINX", "CloudFront", "Cloudflare", "Global Accelerator"] },
+  { group: "Languages and data", items: ["Python", "FastAPI", "Celery", "Go", "Bash", "Groovy", "Kafka", "Redis", "MongoDB", "ScyllaDB"] },
 ];
 
 export const certifications = [

@@ -2,6 +2,36 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Theme tokens as RGB channels. All text pairs meet WCAG AA (4.5:1) on canvas and surface. */
+:root {
+  color-scheme: light;
+  --canvas: 251 251 253;
+  --surface: 255 255 255;
+  --ink: 29 29 31;
+  --mute: 81 81 84;
+  --faint: 110 110 115;
+  --line: 210 210 215;
+  --link: 0 102 204;
+  --ok: 29 122 52;
+}
+
+.dark {
+  color-scheme: dark;
+  --canvas: 0 0 0;
+  --surface: 22 22 23;
+  --ink: 245 245 247;
+  --mute: 174 174 178;
+  --faint: 142 142 147;
+  --line: 56 56 58;
+  --link: 41 151 255;
+  --ok: 48 209 88;
+}
+
+/* Set for two frames while the theme flips, so nothing animates between palettes. */
+.theme-switching *,
+.theme-switching *::before,
+.theme-switching *::after { transition: none !important; }
+
 @layer base {
   html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
   body {
@@ -9,9 +39,9 @@
     font-feature-settings: "kern" 1, "liga" 1;
     text-rendering: optimizeLegibility;
   }
-  section[id] { scroll-margin-top: 64px; }
-  ::selection { background: rgba(0, 113, 227, 0.18); }
-  :focus-visible { outline: 2px solid #0071e3; outline-offset: 3px; border-radius: 6px; }
+  section[id] { scroll-margin-top: 72px; }
+  ::selection { background: rgb(var(--link) / 0.22); }
+  :focus-visible { outline: 2px solid rgb(var(--link)); outline-offset: 3px; border-radius: 6px; }
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
     *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
@@ -26,17 +56,23 @@
 
 @layer components {
   .container-page { @apply mx-auto w-full max-w-page px-5 sm:px-8; }
-  .eyebrow { @apply text-[15px] font-semibold text-accent; }
-  .headline-xl { @apply font-semibold tracking-tightest leading-[1.04]; text-wrap: balance; font-size: clamp(2.75rem, 7.2vw, 5.75rem); }
-  .headline-lg { @apply font-semibold tracking-tighter leading-[1.08]; text-wrap: balance; font-size: clamp(2.1rem, 4.8vw, 3.5rem); }
-  .lede { @apply text-mute leading-[1.45] tracking-snug; font-size: clamp(1.125rem, 1.9vw, 1.5rem); }
+  .headline-xl { @apply font-semibold tracking-tightest leading-[1.02]; text-wrap: balance; font-size: clamp(2.5rem, 6.4vw, 5rem); }
+  .headline-lg { @apply font-semibold tracking-tighter leading-[1.08]; text-wrap: balance; font-size: clamp(2rem, 4.4vw, 3.25rem); }
+  .lede { @apply text-mute leading-[1.45] tracking-snug; font-size: clamp(1.125rem, 1.8vw, 1.375rem); }
+  .card { @apply rounded-tile bg-surface shadow-tile ring-1 ring-black/[0.04] dark:shadow-none dark:ring-white/[0.09]; }
   .btn-primary {
-    @apply inline-flex items-center justify-center gap-2 rounded-full bg-accent px-6 py-3 text-[17px] font-medium text-white
+    @apply inline-flex h-11 items-center justify-center gap-2 rounded-full bg-accent px-5 text-[15px] font-medium text-white
            transition-colors duration-200 hover:bg-accent-hover;
   }
-  .btn-ghost {
-    @apply inline-flex items-center gap-1 text-[17px] font-medium text-accent-link transition-colors hover:underline underline-offset-4;
+  .btn-secondary {
+    @apply inline-flex h-11 items-center justify-center gap-2 rounded-full border border-line bg-surface px-5 text-[15px] font-medium text-ink
+           transition-colors duration-200 hover:border-ink/30;
   }
-  .chip { @apply inline-flex items-center rounded-full border border-line/80 bg-white px-3 py-1 text-[13px] font-medium text-ink/80; }
+  .btn-icon {
+    @apply inline-flex h-11 w-11 items-center justify-center rounded-full border border-line bg-surface text-ink
+           transition-colors duration-200 hover:border-ink/30;
+  }
+  .link { @apply inline-flex items-center gap-1 font-medium text-link underline-offset-4 hover:underline; }
+  .chip { @apply inline-flex items-center rounded-full border border-line/80 bg-surface px-3 py-1 text-[13px] font-medium text-ink/80; }
   .chip-dark { @apply inline-flex items-center rounded-full border border-white/15 bg-white/5 px-3 py-1 text-[13px] font-medium text-white/80; }
 }

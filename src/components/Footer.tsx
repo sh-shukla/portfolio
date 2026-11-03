@@ -2,12 +2,14 @@ import { profile } from "@/content";
 
 export default function Footer() {
   return (
-    <footer className="bg-black pb-10 text-white/45">
-      <div className="container-page flex flex-col gap-3 border-t border-white/10 pt-6 text-[12px] sm:flex-row sm:items-center sm:justify-between">
-        <p>© {new Date().getFullYear()} {profile.name}. All rights reserved.</p>
+    <footer className="container-page pb-10">
+      <div className="flex flex-col gap-3 border-t border-line/70 pt-6 text-[13px] text-faint sm:flex-row sm:items-center sm:justify-between">
         <p>
-          <a href="#top" className="hover:text-white">Back to top</a>
+          © {new Date().getFullYear()} {profile.name}
         </p>
+        <a href="#top" className="transition-colors hover:text-ink">
+          Back to top
+        </a>
       </div>
     </footer>
   );

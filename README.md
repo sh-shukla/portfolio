@@ -4,7 +4,7 @@ Personal site for Shashank Shukla, Senior Platform Engineer. Live at https://sh-
 
 ## Stack
 
-React 18, TypeScript, Vite, Tailwind CSS and Framer Motion. No backend: the contact form posts to Formspree.
+React 18, TypeScript, Vite and Tailwind CSS, with light and dark themes. No backend: the contact form posts to Formspree.
 
 ## Develop
 

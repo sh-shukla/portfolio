@@ -1,25 +1,31 @@
 import type { Config } from "tailwindcss";
 
+// Colours are CSS variables (see src/index.css) so every utility follows the light/dark theme.
+const v = (name: string) => `rgb(var(--${name}) / <alpha-value>)`;
+
 export default {
+  darkMode: "class",
   content: ["./index.html", "./src/**/*.{ts,tsx}"],
   theme: {
     extend: {
       colors: {
-        ink: "#1d1d1f",
-        mute: "#6e6e73",
-        faint: "#86868b",
-        canvas: "#fbfbfd",
-        mist: "#f5f5f7",
-        line: "#d2d2d7",
-        accent: { DEFAULT: "#0071e3", hover: "#0077ed", link: "#0066cc", bright: "#2997ff" },
+        canvas: v("canvas"),
+        surface: v("surface"),
+        ink: v("ink"),
+        mute: v("mute"),
+        faint: v("faint"),
+        line: v("line"),
+        link: v("link"),
+        ok: v("ok"),
+        accent: { DEFAULT: "#0071e3", hover: "#0077ed" },
       },
       fontFamily: {
         sans: ['-apple-system', 'BlinkMacSystemFont', '"SF Pro Display"', '"SF Pro Text"', "Inter", '"Helvetica Neue"', "Arial", "sans-serif"],
       },
       letterSpacing: { tightest: "-0.035em", tighter: "-0.025em", snug: "-0.015em" },
-      maxWidth: { page: "1120px", copy: "780px" },
+      maxWidth: { page: "1120px" },
       borderRadius: { tile: "28px" },
-      boxShadow: { tile: "0 2px 12px rgba(0,0,0,0.04), 0 12px 32px rgba(0,0,0,0.04)" },
+      boxShadow: { tile: "0 1px 2px rgb(0 0 0 / 0.04), 0 10px 30px rgb(0 0 0 / 0.06)" },
     },
   },
   plugins: [],
