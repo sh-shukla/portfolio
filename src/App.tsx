@@ -17,7 +17,6 @@ export default function App() {
   const { theme, toggle } = useTheme();
   const active = useActiveSection();
   const [palette, setPalette] = useState(false);
-  const openPalette = useCallback(() => setPalette(true), []);
   const closePalette = useCallback(() => setPalette(false), []);
 
   useEffect(() => {
@@ -33,6 +32,9 @@ export default function App() {
 
   return (
     <>
+      <div aria-hidden className="aura-wrap">
+        <div className="aura" />
+      </div>
       <Spotlight />
       <div id="top" className="relative z-10">
         <a
@@ -43,7 +45,7 @@ export default function App() {
         </a>
         <MobileBar active={active} theme={theme} onToggleTheme={toggle} />
         <div className="mx-auto max-w-page px-5 sm:px-8 lg:flex lg:justify-between lg:gap-12 lg:px-12">
-          <Sidebar active={active} theme={theme} onToggleTheme={toggle} onOpenPalette={openPalette} />
+          <Sidebar active={active} theme={theme} onToggleTheme={toggle} />
           <main id="main" className="pb-12 pt-12 sm:pt-16 lg:w-[52%] lg:pb-20 lg:pt-16">
             <About />
             <Work />

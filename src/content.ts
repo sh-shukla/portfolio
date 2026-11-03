@@ -4,10 +4,10 @@ const base = import.meta.env.BASE_URL;
 export const profile = {
   name: "Shashank Shukla",
   title: "Senior Platform Engineer",
-  intro: "I build and run cloud platforms on AWS, GCP and Kubernetes. Currently at Nielsen, previously four years at Conga.",
-  location: "Bangalore, India",
-  // Shown in the hero card and the contact section. Set to "" to hide it.
-  availability: "Open to senior platform, DevOps and SRE roles",
+  // **word** renders highlighted.
+  intro: "I build and run cloud platforms on **AWS**, **GCP** and **Kubernetes**. Currently at **Nielsen**, previously four years at **Conga**.",
+  // The "Open to work" badge and the contact section. Set to [] to hide both.
+  openTo: ["Platform", "DevOps", "SRE"],
   email: "shashank.shukla1202@gmail.com",
   phone: "+91 77376 02733",
   photo: `${base}shashank_pic.jpg`,

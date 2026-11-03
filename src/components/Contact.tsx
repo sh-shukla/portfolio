@@ -31,6 +31,10 @@ function CopyEmail() {
   );
 }
 
+// ["Platform", "DevOps", "SRE"] -> "Platform, DevOps and SRE"
+const roles = profile.openTo;
+const openTo = roles.length > 1 ? `${roles.slice(0, -1).join(", ")} and ${roles[roles.length - 1]}` : roles.join("");
+
 export default function Contact() {
   const [status, setStatus] = useState<Status>("idle");
 
@@ -56,7 +60,7 @@ export default function Contact() {
     <Section id="contact" title="Contact">
       <Reveal>
         <p className="max-w-[46ch] text-[16px] leading-relaxed">
-          {profile.availability ? `${profile.availability}. ` : ""}Email is the fastest way to reach me.
+          {openTo ? `Open to ${openTo} roles. ` : ""}Email is the fastest way to reach me.
         </p>
         <a
           href={`mailto:${profile.email}`}

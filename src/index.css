@@ -14,6 +14,7 @@
   --accent: 4 120 87;
   --on-accent: 255 255 255;
   --glow: 0.08;
+  --aura: 0.1;
 }
 
 .dark {
@@ -27,6 +28,7 @@
   --accent: 61 220 151;
   --on-accent: 7 20 14;
   --glow: 0.06;
+  --aura: 0.13;
 }
 
 /* Set for two frames while the theme flips, so nothing animates between palettes. */
@@ -57,6 +59,9 @@
   from { opacity: 0; transform: translateY(14px); filter: blur(6px); }
   to { opacity: 1; transform: none; filter: none; }
 }
+@keyframes fade { from { opacity: 0; } }
+@keyframes draw { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
+@keyframes sheen { from { background-position: 100% 0; } to { background-position: 0 0; } }
 @keyframes pop {
   from { opacity: 0; transform: translateY(-8px) scale(0.98); }
   to { opacity: 1; transform: none; }
@@ -102,6 +107,34 @@
     background-size: 22px 22px;
     -webkit-mask-image: radial-gradient(240px circle at var(--x, 50%) var(--y, 50%), #000, transparent);
     mask-image: radial-gradient(240px circle at var(--x, 50%) var(--y, 50%), #000, transparent);
+  }
+
+  /* Soft accent light behind the identity column. Scrolls away on phones, stays put on desktop. */
+  .aura-wrap { @apply pointer-events-none absolute inset-x-0 top-0 z-0 h-[720px] overflow-hidden lg:fixed lg:inset-0 lg:h-auto; }
+  .aura {
+    @apply absolute -left-[340px] -top-[380px] h-[900px] w-[1100px];
+    background: radial-gradient(closest-side, rgb(var(--accent) / var(--aura)), transparent);
+    animation: fade 1.6s ease-out both;
+  }
+
+  /* The portrait ring draws itself once (pathLength is 1). */
+  .ring-draw {
+    fill: none;
+    stroke-width: 2.5;
+    stroke-linecap: round;
+    stroke-dasharray: 1;
+    animation: draw 1.4s cubic-bezier(0.65, 0, 0.35, 1) 0.3s both;
+  }
+
+  /* One pass of accent light across the name, then plain ink. */
+  .sheen {
+    background: linear-gradient(100deg, rgb(var(--ink)) 0 40%, rgb(var(--accent)) 50%, rgb(var(--ink)) 60% 100%);
+    background-size: 300% 100%;
+    background-position: 0 0;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: sheen 1.8s cubic-bezier(0.4, 0, 0.2, 1) 0.6s both;
   }
 
   .palette {
