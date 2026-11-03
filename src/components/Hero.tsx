@@ -1,219 +1,72 @@
-import { Button } from "@/components/ui/button";
-import { Download, ExternalLink, Github, Linkedin, Mail } from "lucide-react";
-import { motion } from "framer-motion";
-import { useEffect, useState } from "react";
+import { Download, Github, Linkedin, Mail } from "lucide-react";
+import { glance, profile } from "@/content";
 
-const Hero = () => {
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+const d = (s: number) => ({ animationDelay: `${s}s` });
 
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      setMousePosition({ x: e.clientX, y: e.clientY });
-    };
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
-  }, []);
-
-  const scrollToContact = () => {
-    const element = document.querySelector('#contact');
-    element?.scrollIntoView({ behavior: 'smooth' });
-  };
-
-  const stats = [
-    { number: "45 min", label: "Customer Deploys (was 6–7 hrs)" },
-    { number: "12", label: "EKS Clusters Operated" },
-    { number: "4x", label: "Lower AI Model Cost" },
-    { number: "270+", label: "Microservices Managed" },
-  ];
-
+export default function Hero() {
   return (
-    <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden pt-20">
-      {/* Animated background gradient */}
-      <div className="absolute inset-0 bg-gradient-to-br from-background via-background to-secondary/20" />
-      
-      {/* Interactive mouse follower */}
-      <motion.div
-        className="absolute w-96 h-96 rounded-full opacity-10"
-        style={{
-          background: "radial-gradient(circle, rgba(96, 165, 250, 0.3) 0%, transparent 70%)",
-          left: mousePosition.x - 192,
-          top: mousePosition.y - 192,
-        }}
-        animate={{
-          x: mousePosition.x * 0.02,
-          y: mousePosition.y * 0.02,
-        }}
-        transition={{ type: "spring", stiffness: 50, damping: 30 }}
+    <section id="top" className="relative overflow-hidden pb-8 pt-28 sm:pt-36 lg:pt-44">
+      <div
+        aria-hidden
+        className="pointer-events-none absolute -left-40 -top-40 -z-10 h-[560px] w-[900px] opacity-60 dark:opacity-40"
+        style={{ background: "radial-gradient(closest-side, rgb(0 113 227 / 0.12), rgb(0 113 227 / 0))" }}
       />
-
-      <div className="container-premium relative z-10">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
-          {/* Left Content */}
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-            className="space-y-8"
-          >
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="space-y-6"
-            >
-              <motion.p 
-                className="text-primary font-medium text-lg tracking-wide mb-4"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.4 }}
-              >
-                DevOps · Platform · SRE Engineer
-              </motion.p>
-              
-              <h1 className="heading-premium">
-                Hello I'm{" "}
-                <motion.span
-                  className="gradient-text-premium"
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.8, delay: 0.6 }}
-                >
-                  Shashank Shukla
-                </motion.span>
-              </h1>
-              
-              <motion.p
-                className="subheading-premium max-w-2xl"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.8 }}
-              >
-                Kubernetes · AWS & GCP · Platform Engineering · SRE · AIOps
-              </motion.p>
-            </motion.div>
-
-            <motion.div
-              className="flex flex-wrap gap-4"
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 1 }}
-            >
-              <Button 
-                onClick={scrollToContact}
-                size="lg" 
-                className="glass-morphism-strong premium-hover border-0 text-white font-medium px-8 py-6 text-lg"
-              >
-                Let's Connect <ExternalLink className="ml-2 h-5 w-5" />
-              </Button>
-              
-              <Button 
-                variant="outline" 
-                size="lg"
-                className="glass-morphism smooth-hover border-white/20 text-white hover:text-white px-8 py-6 text-lg"
-                onClick={() => {
-                  const link = document.createElement('a');
-                  link.href = './Shashank_Shukla_DevOps_Resume.pdf';
-                  link.download = 'Shashank_Shukla_DevOps_Resume.pdf';
-                  link.click();
-                }}
-              >
-                <Download className="mr-2 h-5 w-5" />
-                Download CV
-              </Button>
-            </motion.div>
-
-            <motion.div
-              className="flex space-x-6"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.8, delay: 1.2 }}
-            >
-              {[
-                { icon: Linkedin, href: "https://www.linkedin.com/in/shashank-shukla-b84b7a162/" },
-                { icon: Github, href: "https://github.com/sh-shukla" },
-                { icon: Mail, href: "mailto:shashank.shukla1202@gmail.com" }
-              ].map((social, index) => (
-                <motion.a
-                  key={index}
-                  href={social.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="p-3 glass-morphism smooth-hover rounded-full text-white/70 hover:text-white"
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <social.icon size={24} />
-                </motion.a>
-              ))}
-            </motion.div>
-          </motion.div>
-
-          {/* Right Content - Profile Image */}
-          <motion.div
-            className="flex justify-center"
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1, delay: 0.4 }}
-          >
-            <motion.div
-              className="relative"
-              whileHover={{ scale: 1.05 }}
-              transition={{ type: "spring", stiffness: 300, damping: 30 }}
-            >
-              <div className="w-80 h-80 lg:w-96 lg:h-96 rounded-full glass-morphism-strong floating overflow-hidden">
-                <img
-                  src="./shashank_pic.jpg"
-                  alt="Shashank Shukla"
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              
-              {/* Animated rings */}
-              <motion.div
-                className="absolute -inset-4 border-2 border-primary/30 rounded-full"
-                animate={{ rotate: 360 }}
-                transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-              />
-              <motion.div
-                className="absolute -inset-8 border border-primary/20 rounded-full"
-                animate={{ rotate: -360 }}
-                transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
-              />
-            </motion.div>
-          </motion.div>
+      <div className="container-page grid items-center gap-12 lg:grid-cols-[minmax(0,1fr)_400px] lg:gap-16">
+        <div>
+          <h1 style={d(0.05)} className="animate-rise headline-xl">
+            {profile.name}
+          </h1>
+          <p style={d(0.12)} className="animate-rise mt-3 text-[clamp(1.5rem,3vw,2.25rem)] font-semibold tracking-tighter text-faint">
+            {profile.title}
+          </p>
+          <p style={d(0.2)} className="animate-rise lede mt-6 max-w-[40ch] text-pretty">
+            {profile.intro}
+          </p>
+          <div style={d(0.28)} className="animate-rise mt-9 flex flex-wrap items-center gap-3">
+            <a href={profile.resume} download={profile.resumeDownloadName} className="btn-primary">
+              <Download size={17} aria-hidden /> Download résumé
+            </a>
+            <a href={`mailto:${profile.email}`} className="btn-secondary">
+              <Mail size={17} aria-hidden /> Email me
+            </a>
+            <a href={profile.linkedin} target="_blank" rel="noreferrer" aria-label="LinkedIn" title="LinkedIn" className="btn-icon">
+              <Linkedin size={18} aria-hidden />
+            </a>
+            <a href={profile.github} target="_blank" rel="noreferrer" aria-label="GitHub" title="GitHub" className="btn-icon">
+              <Github size={18} aria-hidden />
+            </a>
+          </div>
         </div>
 
-        {/* Stats Section */}
-        <motion.div
-          className="mt-24 grid grid-cols-2 lg:grid-cols-4 gap-8"
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 1.4 }}
-        >
-          {stats.map((stat, index) => (
-            <motion.div
-              key={index}
-              className="text-center glass-morphism p-6 rounded-2xl smooth-hover"
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 1.6 + index * 0.1 }}
-              whileHover={{ y: -8 }}
-            >
-              <motion.div
-                className="text-4xl lg:text-5xl font-bold gradient-text-premium mb-2"
-                initial={{ scale: 0 }}
-                animate={{ scale: 1 }}
-                transition={{ duration: 0.6, delay: 1.8 + index * 0.1, type: "spring" }}
-              >
-                {stat.number}
-              </motion.div>
-              <div className="text-muted-foreground text-sm font-medium">{stat.label}</div>
-            </motion.div>
-          ))}
-        </motion.div>
+        <aside style={d(0.34)} aria-label="At a glance" className="animate-rise card p-6 sm:p-7">
+          <div className="flex items-center gap-4">
+            <img
+              src={profile.photo}
+              alt={`Portrait of ${profile.name}`}
+              width={60}
+              height={60}
+              className="h-[60px] w-[60px] shrink-0 rounded-full object-cover object-[50%_25%]"
+            />
+            <div className="min-w-0">
+              <p className="text-[16px] font-semibold tracking-snug">{profile.location}</p>
+              {profile.availability && (
+                <p className="mt-0.5 flex items-start gap-2 text-[14px] leading-snug text-ok">
+                  <span aria-hidden className="mt-[0.4em] h-2 w-2 shrink-0 rounded-full bg-current" />
+                  {profile.availability}
+                </p>
+              )}
+            </div>
+          </div>
+          <dl className="mt-6 divide-y divide-line/70 border-t border-line/70">
+            {glance.map((r) => (
+              <div key={r.label} className="grid grid-cols-[88px_1fr] gap-4 py-3">
+                <dt className="text-[14px] text-faint">{r.label}</dt>
+                <dd className="text-[15px] leading-snug">{r.value}</dd>
+              </div>
+            ))}
+          </dl>
+        </aside>
       </div>
     </section>
   );
-};
-
-export default Hero;
+}
