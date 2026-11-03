@@ -32,9 +32,9 @@ export default function Reveal({ children, delay = 0, className, as = "div" }: P
 
   const style: CSSProperties | undefined = phase === "shown" ? { transitionDelay: `${delay}s` } : undefined;
   const cls = cn(
-    phase !== "static" && "transition-[opacity,transform] duration-[900ms] ease-[cubic-bezier(0.16,1,0.3,1)]",
-    phase === "waiting" && "translate-y-7 opacity-0",
-    phase === "shown" && "translate-y-0 opacity-100",
+    phase !== "static" && "transition-[opacity,transform,filter] duration-[900ms] ease-[cubic-bezier(0.16,1,0.3,1)]",
+    phase === "waiting" && "translate-y-6 opacity-0 blur-[6px]",
+    phase === "shown" && "translate-y-0 opacity-100 blur-0",
     className,
   );
   const Tag = as;

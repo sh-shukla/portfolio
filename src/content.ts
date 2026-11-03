@@ -17,14 +17,18 @@ export const profile = {
   github: "https://github.com/sh-shukla",
 };
 
-// The hero card: what a recruiter checks first.
-export const glance = [
-  { label: "Experience", value: "5+ years, since 2021" },
-  { label: "Current", value: "Senior DevOps Engineer, Nielsen" },
-  { label: "Previous", value: "Conga, Associate to Senior DevOps Engineer" },
-  { label: "Scale", value: "12 EKS clusters, 270+ microservices" },
-  { label: "Team", value: "Leads 4 DevOps engineers" },
-  { label: "Certified", value: "CKA, Terraform Associate" },
+// About section. Every fact here is on the master résumé.
+export const about = [
+  "I'm a Senior DevOps Engineer at Nielsen on the Ads and Sports platform teams, where I lead a team of four DevOps engineers supporting 5–6 application teams.",
+  "My work there covers a bring-your-own-cloud delivery platform, AI-driven incident response on Amazon Bedrock, self-hosted language models and running our EKS clusters.",
+  "Before Nielsen I spent four years at Conga, going from Associate to Senior DevOps Engineer and leading a six-member DevOps/SRE team.",
+];
+
+export const stats = [
+  { value: "5+", label: "years of experience" },
+  { value: "12", label: "EKS clusters operated" },
+  { value: "270+", label: "microservices" },
+  { value: "4", label: "engineers led" },
 ];
 
 export type Tile = {
@@ -34,8 +38,6 @@ export type Tile = {
   metricLabel: string;
   body: string;
   tech: string[];
-  tone: "feature" | "plain" | "tint";
-  wide?: boolean;
 };
 
 export const work: Tile[] = [
@@ -46,8 +48,6 @@ export const work: Tile[] = [
     metricLabel: "per customer install, was 6–7 hours",
     body: "Installs the full product into a customer's own AWS or GCP account from one config file: networking, Kubernetes, databases, then 40–45 microservices. Upgrades run through the same pipeline. Live for 4 customers.",
     tech: ["Pulumi", "AWS", "GCP", "EKS", "Argo CD", "Karpenter"],
-    tone: "feature",
-    wide: true,
   },
   {
     company: "Nielsen",
@@ -56,7 +56,6 @@ export const work: Tile[] = [
     metricLabel: "EKS clusters covered",
     body: "Bedrock models read Prometheus alerts against our runbooks, fix common failures like OOM kills, and hand the rest to on-call with a diagnosis.",
     tech: ["Amazon Bedrock", "Prometheus", "incident.io"],
-    tone: "tint",
   },
   {
     company: "Nielsen",
@@ -65,7 +64,6 @@ export const work: Tile[] = [
     metricLabel: "cheaper than managed APIs",
     body: "Two open-weight models on EKS, run as a fleet by a custom Kubernetes CRD.",
     tech: ["EKS", "Kubernetes CRDs"],
-    tone: "plain",
   },
   {
     company: "Nielsen",
@@ -74,7 +72,6 @@ export const work: Tile[] = [
     metricLabel: "response target",
     body: "Built from scratch to production on AWS Local Zones and Global Accelerator, after ScyllaDB and Aerospike trials.",
     tech: ["Local Zones", "Global Accelerator", "ScyllaDB"],
-    tone: "plain",
   },
   {
     company: "Nielsen",
@@ -83,7 +80,6 @@ export const work: Tile[] = [
     metricLabel: "a month, plus ~30% off compute",
     body: "Consolidated 20+ load balancers behind NGINX Ingress and moved workloads to Graviton.",
     tech: ["NGINX Ingress", "Graviton", "Karpenter"],
-    tone: "plain",
   },
   {
     company: "Conga",
@@ -92,8 +88,6 @@ export const work: Tile[] = [
     metricLabel: "deploys across 200+ microservices",
     body: "Blue-green deploys with under 30 seconds of downtime, shared Jenkins and Spinnaker pipelines, and auto-rollback that cut release failures 70%.",
     tech: ["Jenkins", "Spinnaker", "Terraform"],
-    tone: "tint",
-    wide: true,
   },
   {
     company: "Conga",
@@ -102,7 +96,6 @@ export const work: Tile[] = [
     metricLabel: "RTO for 200+ services",
     body: "Continuous replication and automated failover. RPO under 5 minutes, no data lost in drills or real failovers.",
     tech: ["AWS", "Replication"],
-    tone: "plain",
   },
 ];
 

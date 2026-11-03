@@ -4,7 +4,9 @@ Personal site for Shashank Shukla, Senior Platform Engineer. Live at https://sh-
 
 ## Stack
 
-React 18, TypeScript, Vite and Tailwind CSS, with light and dark themes. No backend: the contact form posts to Formspree.
+React 18, TypeScript, Vite and Tailwind CSS, with light and dark themes and a ⌘K command palette. No new dependencies. No backend: the contact form posts to Formspree.
+
+The split layout (sticky identity column, scrolling content, cursor spotlight) is inspired by [Brittany Chiang's portfolio](https://brittanychiang.com), the most-starred personal portfolio on GitHub ([bchiang7/v4](https://github.com/bchiang7/v4)). The code here is written from scratch.
 
 ## Develop
 
