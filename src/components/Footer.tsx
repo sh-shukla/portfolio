@@ -1,18 +1,16 @@
-import { ArrowUp } from "lucide-react";
+import { profile } from "@/content";
 
-const Footer = () => {
-  const scrollToTop = () => window.scrollTo({ top: 0, behavior: 'smooth' });
-
+export default function Footer() {
   return (
-    <footer className="py-8 text-center border-t border-border/50 space-y-4">
-      <button onClick={scrollToTop} className="inline-flex items-center justify-center w-16 h-16 glass-morphism-strong rounded-full group premium-hover">
-        <ArrowUp className="h-6 w-6 text-primary group-hover:text-white transition-colors" />
-      </button>
-      <p className="text-sm text-muted-foreground">
-        © {new Date().getFullYear()} Shashank Shukla. All rights reserved.
-      </p>
+    <footer className="border-t border-line">
+      <div className="mx-auto flex max-w-content flex-col gap-3 px-5 py-8 text-[13px] text-faint sm:flex-row sm:items-center sm:justify-between sm:px-8">
+        <p>
+          © {new Date().getFullYear()} {profile.name}
+        </p>
+        <a href="#top" className="transition-colors hover:text-ink">
+          Back to top
+        </a>
+      </div>
     </footer>
   );
-};
-
-export default Footer;
+}

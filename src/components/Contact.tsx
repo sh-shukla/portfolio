@@ -1,293 +1,130 @@
-import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { Mail, Phone, MapPin, Linkedin, Github, Send } from "lucide-react";
-import { useState } from "react";
-import { useToast } from "@/hooks/use-toast";
-import { motion } from "framer-motion";
+import { useEffect, useRef, useState, type FormEvent } from "react";
+import { ArrowUpRight, Check, Copy, Loader2, Phone } from "lucide-react";
+import Reveal from "./Reveal";
+import Section from "./Section";
+import { copyEmail } from "@/lib/actions";
+import { contactForm, profile } from "@/content";
 
-const Contact = () => {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    subject: "",
-    message: ""
-  });
+type Status = "idle" | "sending" | "sent" | "error";
 
-  const { toast } = useToast();
+function CopyEmail() {
+  const [copied, setCopied] = useState(false);
+  const timer = useRef<number>();
+  useEffect(() => () => window.clearTimeout(timer.current), []);
 
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  if (typeof navigator === "undefined" || !navigator.clipboard) return null;
 
-  const validateForm = () => {
-    const errors: string[] = [];
-    
-    if (!formData.name.trim()) errors.push('Name is required');
-    if (!formData.email.trim()) errors.push('Email is required');
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) errors.push('Valid email is required');
-    if (!formData.subject.trim()) errors.push('Subject is required');
-    if (!formData.message.trim()) errors.push('Message is required');
-    if (formData.message.length < 10) errors.push('Message must be at least 10 characters');
-    
-    return errors;
-  };
-
-  const sanitizeInput = (input: string) => {
-    return input.replace(/[<>"'&]/g, '').trim();
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    
-    const validationErrors = validateForm();
-    if (validationErrors.length > 0) {
-      toast({
-        title: "Validation Error",
-        description: validationErrors.join(', '),
-        variant: "destructive",
-      });
-      return;
-    }
-
-    setIsSubmitting(true);
-    
-    try {
-      const sanitizedData = {
-        name: sanitizeInput(formData.name),
-        email: sanitizeInput(formData.email),
-        subject: sanitizeInput(formData.subject),
-        message: sanitizeInput(formData.message),
-      };
-
-      const response = await fetch('https://formspree.io/f/mzzvwyol', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(sanitizedData),
-      });
-
-      if (response.ok) {
-        toast({
-          title: "Message sent!",
-          description: "Thank you for reaching out. I'll get back to you soon.",
-        });
-        setFormData({ name: "", email: "", subject: "", message: "" });
-      } else {
-        throw new Error('Failed to send message');
-      }
-    } catch (error) {
-      toast({
-        title: "Error",
-        description: "Failed to send message. Please try again or contact directly.",
-        variant: "destructive",
-      });
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData(prev => ({
-      ...prev,
-      [e.target.name]: e.target.value
-    }));
-  };
-
-  const contactInfo = [
-    {
-      icon: Mail,
-      label: "Email",
-      value: "shashank.shukla1202@gmail.com",
-      href: "mailto:shashank.shukla1202@gmail.com"
-    },
-    {
-      icon: Phone,
-      label: "Phone",
-      value: "+91 7737602733",
-      href: "tel:+917737602733"
-    },
-    {
-      icon: MapPin,
-      label: "Location",
-      value: "Bangalore, India",
-      href: "https://maps.google.com/?q=Bangalore,India"
-    }
-  ];
-
-  const socialLinks = [
-    {
-      icon: Linkedin,
-      label: "LinkedIn",
-      href: "https://linkedin.com/in/shashank-shukla-b84b7a162",
-      color: "hover:text-blue-500"
-    },
-    {
-      icon: Github,
-      label: "GitHub", 
-      href: "https://github.com/sh-shukla",
-      color: "hover:text-primary"
-    }
-  ];
+  async function copy() {
+    // If the clipboard is refused, the address stays visible and selectable.
+    if (!(await copyEmail())) return;
+    setCopied(true);
+    window.clearTimeout(timer.current);
+    timer.current = window.setTimeout(() => setCopied(false), 2000);
+  }
 
   return (
-    <section id="contact" className="py-20 relative overflow-hidden">
-      {/* Background Effects */}
-      <div className="absolute inset-0 bg-gradient-to-br from-background via-secondary/8 to-background" />
-      <div className="absolute top-1/3 left-1/4 w-96 h-96 bg-primary/6 rounded-full blur-3xl opacity-60" />
-      <div className="absolute bottom-1/3 right-1/3 w-80 h-80 bg-secondary/10 rounded-full blur-3xl opacity-50" />
-      <div className="container mx-auto px-6 relative z-10">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold mb-4">Let's Work Together</h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Open to infrastructure consulting, platform engineering roles, or just a good tech conversation.
-          </p>
-        </div>
-
-        <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-12 items-stretch">
-          {/* Contact Information */}
-          <div className="space-y-8 animate-slide-in">
-            <Card className="glass-morphism-strong premium-hover h-full">
-              <CardContent className="p-6">
-                <h3 className="text-2xl font-semibold mb-6">Get in Touch</h3>
-                <div className="space-y-6">
-                  {contactInfo.map((info, index) => (
-                    <motion.div 
-                      key={index} 
-                      className="flex items-center space-x-4 p-3 glass-morphism rounded-xl smooth-hover"
-                      whileHover={{ scale: 1.02, x: 4 }}
-                    >
-                      <div className="p-3 glass-morphism rounded-lg">
-                        <info.icon className="h-5 w-5 text-primary" />
-                      </div>
-                      <div>
-                        <p className="font-medium">{info.label}</p>
-                        {info.href ? (
-                          <a 
-                            href={info.href}
-                            className="text-muted-foreground hover:text-primary transition-colors duration-300"
-                          >
-                            {info.value}
-                          </a>
-                        ) : (
-                          <p className="text-muted-foreground">{info.value}</p>
-                        )}
-                      </div>
-                    </motion.div>
-                  ))}
-                </div>
-
-                <div className="mt-8 pt-8 border-t border-border">
-                  <h4 className="font-semibold mb-4">Follow Me</h4>
-                  <div className="flex space-x-4">
-                    {socialLinks.map((social, index) => (
-                      <motion.a
-                        key={index}
-                        href={social.href}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className={`p-3 glass-morphism rounded-lg text-muted-foreground ${social.color} smooth-hover`}
-                        aria-label={social.label}
-                        whileHover={{ scale: 1.1, y: -2 }}
-                        whileTap={{ scale: 0.95 }}
-                      >
-                        <social.icon size={20} />
-                      </motion.a>
-                    ))}
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-
-          {/* Contact Form */}
-          <div className="animate-fade-in h-full" style={{ animationDelay: '300ms' }}>
-            <Card className="glass-morphism-strong premium-hover h-full">
-              <CardContent className="p-6">
-                <h3 className="text-2xl font-semibold mb-6">Send a Message</h3>
-                <form onSubmit={handleSubmit} className="space-y-6" action="https://formspree.io/f/mzzvwyol" method="POST">
-                  <div className="grid md:grid-cols-2 gap-4">
-                    <div>
-                      <label htmlFor="name" className="block text-sm font-medium mb-2">
-                        Name
-                      </label>
-                      <Input
-                        id="name"
-                        name="name"
-                        value={formData.name}
-                        onChange={handleChange}
-                        placeholder="Your Name"
-                        required
-                        className="glass-morphism border-border focus:border-primary focus:ring-2 focus:ring-primary/20"
-                      />
-                    </div>
-                    <div>
-                      <label htmlFor="email" className="block text-sm font-medium mb-2">
-                        Email
-                      </label>
-                      <Input
-                        id="email"
-                        name="email"
-                        type="email"
-                        value={formData.email}
-                        onChange={handleChange}
-                        placeholder="your.email@example.com"
-                        required
-                        className="glass-morphism border-border focus:border-primary focus:ring-2 focus:ring-primary/20"
-                      />
-                    </div>
-                  </div>
-
-                  <div>
-                    <label htmlFor="subject" className="block text-sm font-medium mb-2">
-                      Subject
-                    </label>
-                    <Input
-                      id="subject"
-                      name="subject"
-                      value={formData.subject}
-                      onChange={handleChange}
-                      placeholder="Project Discussion / Consultation"
-                      required
-                      className="glass-morphism border-border focus:border-primary focus:ring-2 focus:ring-primary/20"
-                    />
-                  </div>
-
-                  <div>
-                    <label htmlFor="message" className="block text-sm font-medium mb-2">
-                      Message
-                    </label>
-                    <Textarea
-                      id="message"
-                      name="message"
-                      value={formData.message}
-                      onChange={handleChange}
-                      placeholder="Tell me about your project or how I can help..."
-                      required
-                      rows={5}
-                      className="glass-morphism border-border focus:border-primary focus:ring-2 focus:ring-primary/20 resize-none"
-                    />
-                  </div>
-
-                  <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
-                    <Button 
-                      type="submit" 
-                      size="lg" 
-                      disabled={isSubmitting}
-                      className="w-full glass-morphism-strong premium-hover border-0 text-white font-medium glow-pulse disabled:opacity-50"
-                    >
-                      <Send className="mr-2 h-4 w-4" />
-                      {isSubmitting ? 'Sending...' : 'Send Message'}
-                    </Button>
-                  </motion.div>
-                </form>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </div>
-    </section>
+    <button type="button" onClick={copy} className="btn-ghost h-10 px-4 text-[14px]">
+      {copied ? <Check size={15} aria-hidden className="text-accent" /> : <Copy size={15} aria-hidden />}
+      <span aria-live="polite">{copied ? "Copied" : "Copy email"}</span>
+    </button>
   );
-};
+}
 
-export default Contact;
+// ["Platform", "DevOps", "SRE", "AI Infra"] -> "Platform, DevOps, SRE and AI Infra"
+const roles = profile.openTo;
+const openTo = roles.length > 1 ? `${roles.slice(0, -1).join(", ")} and ${roles[roles.length - 1]}` : roles.join("");
+
+export default function Contact() {
+  const [status, setStatus] = useState<Status>("idle");
+
+  async function onSubmit(e: FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    const form = e.currentTarget;
+    setStatus("sending");
+    try {
+      // URL-encoded with no custom headers: a "simple" request, so the browser skips the CORS preflight
+      // that Apps Script cannot answer. Success means the script reports the email as sent.
+      const body = new URLSearchParams(new FormData(form) as unknown as Record<string, string>);
+      const res = await fetch(contactForm, { method: "POST", body });
+      const data = (await res.json()) as { ok?: boolean };
+      if (!res.ok || data.ok !== true) throw new Error("not sent");
+      form.reset();
+      setStatus("sent");
+    } catch {
+      setStatus("error");
+    }
+  }
+
+  const label = "mb-1.5 block text-[13px] font-medium text-ink/80";
+  const field =
+    "w-full rounded-xl border border-line bg-canvas px-4 py-3 text-[16px] text-ink placeholder:text-faint outline-none transition focus:border-accent focus:ring-4 focus:ring-accent/15";
+
+  return (
+    <Section id="contact" title="Get in touch">
+      <Reveal>
+        <p className="max-w-[48ch] text-[clamp(1.125rem,1.8vw,1.375rem)] leading-relaxed">
+          {openTo ? `Open to ${openTo} roles. ` : ""}Email is the fastest way to reach me.
+        </p>
+        <a
+          href={`mailto:${profile.email}`}
+          className="grad-text mt-6 inline-block pb-1 text-[clamp(1.0625rem,5.4vw,3.25rem)] font-semibold leading-tight tracking-tighter [overflow-wrap:anywhere] hover:opacity-80"
+        >
+          {profile.email}
+        </a>
+        <div className="mt-6 flex flex-wrap items-center gap-2">
+          <CopyEmail />
+          <a href={profile.linkedin} target="_blank" rel="noreferrer" className="btn-ghost h-10 px-4 text-[14px]">
+            LinkedIn <ArrowUpRight size={15} aria-hidden />
+          </a>
+          <a href={profile.github} target="_blank" rel="noreferrer" className="btn-ghost h-10 px-4 text-[14px]">
+            GitHub <ArrowUpRight size={15} aria-hidden />
+          </a>
+          <a href={`tel:${profile.phone.replace(/\s/g, "")}`} className="btn-ghost h-10 px-4 text-[14px]">
+            <Phone size={14} aria-hidden /> {profile.phone}
+          </a>
+        </div>
+      </Reveal>
+
+      {contactForm && (
+        <Reveal delay={0.06}>
+          <form onSubmit={onSubmit} className="card mt-14 p-6 sm:p-10">
+            <h3 className="text-[22px] font-semibold tracking-snug text-ink">Or send a message</h3>
+            <div className="mt-5 grid gap-4 sm:grid-cols-2">
+              <label className="block">
+                <span className={label}>Name</span>
+                <input name="name" required autoComplete="name" className={field} />
+              </label>
+              <label className="block">
+                <span className={label}>Email</span>
+                <input name="email" type="email" required autoComplete="email" className={field} />
+              </label>
+            </div>
+            <label className="mt-4 block">
+              <span className={label}>Message</span>
+              <textarea name="message" required minLength={10} rows={5} placeholder="The role, the team, or just hello." className={`${field} resize-none`} />
+            </label>
+            <input type="text" name="website" tabIndex={-1} autoComplete="off" className="hidden" aria-hidden />
+            <div className="mt-5 flex flex-wrap items-center gap-4">
+              <button type="submit" disabled={status === "sending"} className="btn-primary h-11 px-6 disabled:opacity-60">
+                {status === "sending" ? <Loader2 size={17} className="animate-spin" aria-hidden /> : status === "sent" ? <Check size={17} aria-hidden /> : null}
+                {status === "sent" ? "Message sent" : status === "sending" ? "Sending" : "Send message"}
+              </button>
+              <p role="status" aria-live="polite" className="text-[14px] text-faint">
+                {status === "sent" && "Thanks. I'll reply soon."}
+                {status === "error" && (
+                  <>
+                    Couldn't send that. Email me at{" "}
+                    <a className="text-ink underline" href={`mailto:${profile.email}`}>
+                      {profile.email}
+                    </a>
+                    .
+                  </>
+                )}
+              </p>
+            </div>
+          </form>
+        </Reveal>
+      )}
+    </Section>
+  );
+}

@@ -1,195 +1,201 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+/* Theme tokens as RGB channels. Text pairs meet WCAG AA on canvas and panel. */
+:root {
+  color-scheme: light;
+  --canvas: 255 255 255;
+  --surface: 255 255 255;
+  --panel: 245 245 247;
+  --ink: 29 29 31;
+  --mute: 66 66 69;
+  --faint: 110 110 115;
+  --line: 210 210 215;
+  --accent: 10 125 59;
+  --on-accent: 255 255 255;
+  /* Headline gradient: healthy green to cyan to blue. */
+  --g1: 10 125 59;
+  --g2: 0 113 164;
+  --g3: 0 102 204;
+  --aurora: 0.35;
+  --dots: 0.1;
+}
+
+.dark {
+  color-scheme: dark;
+  --canvas: 0 0 0;
+  --surface: 22 22 23;
+  --panel: 29 29 31;
+  --ink: 245 245 247;
+  --mute: 161 161 166;
+  --faint: 134 134 139;
+  --line: 51 51 54;
+  --accent: 48 209 88;
+  --on-accent: 0 0 0;
+  --g1: 48 209 88;
+  --g2: 100 210 255;
+  --g3: 10 132 255;
+  --aurora: 1;
+  --dots: 0.14;
+}
+
+/* Set for two frames while the theme flips, so nothing animates between palettes. */
+.theme-switching *,
+.theme-switching *::before,
+.theme-switching *::after { transition: none !important; }
+
 @layer base {
-  :root {
-    /* Apple-inspired premium theme */
-    --background: 0 0% 2%;
-    --foreground: 0 0% 98%;
-
-    --card: 0 0% 4%;
-    --card-foreground: 0 0% 95%;
-
-    --popover: 0 0% 4%;
-    --popover-foreground: 0 0% 95%;
-
-    /* Premium accent */
-    --primary: 210 100% 60%;
-    --primary-foreground: 0 0% 98%;
-
-    --secondary: 0 0% 8%;
-    --secondary-foreground: 0 0% 90%;
-
-    --muted: 0 0% 6%;
-    --muted-foreground: 0 0% 60%;
-
-    --accent: 210 100% 60%;
-    --accent-foreground: 0 0% 98%;
-
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 98%;
-
-    --border: 0 0% 12%;
-    --input: 0 0% 8%;
-    --ring: 210 100% 60%;
-
-    --radius: 1rem;
-
-    /* Premium design tokens */
-    --glass-bg: rgba(255, 255, 255, 0.05);
-    --glass-border: rgba(255, 255, 255, 0.1);
-    --shadow-premium: 0 25px 50px -12px rgba(0, 0, 0, 0.8);
-    --shadow-soft: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
-    --gradient-premium: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
-    --transition-premium: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-    --transition-smooth: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+  body {
+    @apply bg-canvas font-sans text-mute antialiased;
+    font-feature-settings: "kern" 1, "liga" 1;
+    text-rendering: optimizeLegibility;
   }
-
-  .dark {
-    --background: 0 0% 2%;
-    --foreground: 0 0% 98%;
-    --card: 0 0% 4%;
-    --card-foreground: 0 0% 95%;
-    --popover: 0 0% 4%;
-    --popover-foreground: 0 0% 95%;
-    --primary: 210 100% 60%;
-    --primary-foreground: 0 0% 98%;
-    --secondary: 0 0% 8%;
-    --secondary-foreground: 0 0% 90%;
-    --muted: 0 0% 6%;
-    --muted-foreground: 0 0% 60%;
-    --accent: 210 100% 60%;
-    --accent-foreground: 0 0% 98%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 0 0% 12%;
-    --input: 0 0% 8%;
-    --ring: 210 100% 60%;
+  ::selection { background: rgb(var(--accent) / 0.25); color: rgb(var(--ink)); }
+  :focus-visible { outline: 2px solid rgb(var(--accent)); outline-offset: 3px; border-radius: 6px; }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
   }
 }
 
-@layer base {
-  * {
-    @apply border-border;
-  }
+@keyframes rise { from { opacity: 0; transform: translateY(16px); filter: blur(8px); } to { opacity: 1; transform: none; filter: none; } }
+@keyframes blink { 50% { opacity: 0; } }
+@keyframes drift { from { transform: translate3d(-3%, -2%, 0) scale(1); } to { transform: translate3d(3%, 2%, 0) scale(1.08); } }
+@keyframes marquee { to { transform: translateX(calc(-50% - 6px)); } }
+@keyframes stage-on { 0% { transform: scale(0.6); } 60% { transform: scale(1.12); } 100% { transform: scale(1); } }
+@keyframes fill { from { transform: scaleX(0); } to { transform: scaleX(1); } }
 
-  body {
-    @apply bg-background text-foreground dark;
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    font-weight: 400;
-    line-height: 1.6;
-  }
-
-  /* Premium Apple-style effects */
-  .glass-morphism {
-    background: var(--glass-bg);
-    backdrop-filter: blur(20px) saturate(180%);
-    -webkit-backdrop-filter: blur(20px) saturate(180%);
-    border: 1px solid var(--glass-border);
-    box-shadow: var(--shadow-soft);
-  }
-
-  .glass-morphism-strong {
-    background: rgba(255, 255, 255, 0.08);
-    backdrop-filter: blur(30px) saturate(200%);
-    -webkit-backdrop-filter: blur(30px) saturate(200%);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    box-shadow: var(--shadow-premium);
-  }
-
-  .gradient-text {
-    background: linear-gradient(135deg, #ffffff 0%, #a0a0a0 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-
-  .gradient-text-premium {
-    background: linear-gradient(135deg, #60a5fa 0%, #3b82f6 50%, #1d4ed8 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-
-  .floating {
-    animation: float 8s ease-in-out infinite;
-  }
-
-  @keyframes float {
-    0%, 100% { transform: translateY(0px) rotate(0deg); }
-    25% { transform: translateY(-10px) rotate(1deg); }
-    50% { transform: translateY(-20px) rotate(0deg); }
-    75% { transform: translateY(-10px) rotate(-1deg); }
-  }
-
-  .premium-hover {
-    transition: var(--transition-premium);
-  }
-
-  .premium-hover:hover {
-    transform: translateY(-8px) scale(1.02);
-    box-shadow: var(--shadow-premium);
-  }
-
-  .smooth-hover {
-    transition: var(--transition-smooth);
-  }
-
-  .smooth-hover:hover {
-    transform: translateY(-4px);
-    box-shadow: var(--shadow-soft);
-  }
-
-  /* Smooth scrolling */
-  html {
-    scroll-behavior: smooth;
-    scroll-restoration: manual;
-  }
+@layer utilities {
+  .animate-rise { animation: rise 1s cubic-bezier(0.16, 1, 0.3, 1) both; }
+  .animate-blink { animation: blink 1.05s steps(1) infinite; }
 }
 
 @layer components {
-  .section-padding {
-    @apply py-24 lg:py-32;
+  .btn {
+    @apply inline-flex h-10 items-center justify-center gap-2 whitespace-nowrap rounded-full px-5 text-[15px] font-medium transition-[background-color,box-shadow,border-color,color] duration-200;
+  }
+  .btn-primary { @apply btn bg-accent text-on-accent hover:bg-accent/90 hover:shadow-[0_8px_28px_-8px_rgb(var(--accent)/0.7)]; }
+  .btn-ghost { @apply btn border border-line text-ink hover:border-ink/30 hover:bg-ink/[0.04]; }
+  .icon-btn {
+    @apply inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-ink/70 transition-colors duration-200 hover:bg-ink/[0.07] hover:text-ink;
+  }
+  .label { @apply font-mono text-[13px] font-medium tracking-label text-accent; }
+  .card { @apply relative rounded-[28px] bg-panel; }
+  .chip {
+    @apply inline-flex items-center gap-1.5 whitespace-nowrap rounded-full border border-line bg-canvas/70 px-2.5 py-1 text-[12.5px] font-medium leading-none text-ink/85;
+  }
+  .grad-text {
+    background: linear-gradient(90deg, rgb(var(--g1)), rgb(var(--g2)) 55%, rgb(var(--g3)));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
   }
 
-  .container-premium {
-    @apply container mx-auto px-6 lg:px-8;
+  /* Brand logos: brand colour, or the text colour where the brand colour is too faint for the theme. */
+  .logo { fill: var(--brand); }
+  :root:not(.dark) .logo-ink-light, .dark .logo-ink-dark { fill: currentColor; }
+
+  /* ---- Hero: a sticky stage driven by --a (copy out, terminal to centre) and --c (zoom into the terminal). ---- */
+  .hero-copy {
+    opacity: calc(1 - var(--a, 0) * 1.2);
+    transform: translateY(calc(var(--a, 0) * -72px)) scale(calc(1 - var(--a, 0) * 0.05));
+  }
+  .hero-term {
+    transform: translateY(calc(var(--dist, 0px) * -1 * var(--a, 0))) scale(calc(1 + (var(--zoom, 1) - 1) * var(--c, 0)));
+    will-change: transform;
+  }
+  .hero-term-content { opacity: calc(1.6 - var(--c, 0) * 2.4); }
+  .hero-term-cover { opacity: calc((var(--c, 0) - 0.82) * 5.6); }
+  .hero-fx { opacity: calc(1 - var(--c, 0) * 1.5); }
+  .aurora {
+    background:
+      radial-gradient(38% 42% at 30% 62%, rgb(var(--g1) / calc(0.22 * var(--aurora))), transparent 70%),
+      radial-gradient(36% 40% at 72% 58%, rgb(var(--g3) / calc(0.2 * var(--aurora))), transparent 70%),
+      radial-gradient(30% 34% at 52% 80%, rgb(var(--g2) / calc(0.16 * var(--aurora))), transparent 70%);
+    animation: drift 16s ease-in-out infinite alternate;
+  }
+  .dot-grid {
+    background-image: radial-gradient(rgb(var(--ink) / var(--dots)) 1px, transparent 1.2px);
+    background-size: 26px 26px;
+    /* Strongest behind the terminal, clear behind the headline copy. */
+    -webkit-mask-image: radial-gradient(ellipse 75% 50% at 50% 85%, #000 20%, transparent 75%);
+    mask-image: radial-gradient(ellipse 75% 50% at 50% 85%, #000 20%, transparent 75%);
   }
 
-  .heading-premium {
-    @apply text-4xl lg:text-6xl xl:text-7xl font-bold text-premium gradient-text;
-    font-weight: 800;
+  /* About: words light up as the paragraph scrolls through (--p 0..1, --n words, --i index). */
+  .scrub-word { opacity: clamp(0.2, calc((var(--p, 1) * var(--n, 1) - var(--i, 0)) / 4), 1); transition: opacity 0.15s linear; }
+
+  /* Bento cards: a border light that follows the pointer (--mx, --my set by Work). */
+  .glow-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    padding: 1px;
+    border-radius: inherit;
+    background: radial-gradient(360px circle at var(--mx, 50%) var(--my, 50%), rgb(var(--accent) / 0.6), transparent 45%);
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.3s;
+    pointer-events: none;
+  }
+  .glow-card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: radial-gradient(520px circle at var(--mx, 50%) var(--my, 50%), rgb(var(--accent) / 0.07), transparent 45%);
+    opacity: 0;
+    transition: opacity 0.3s;
+    pointer-events: none;
+  }
+  @media (hover: hover) {
+    .glow-card:hover::before, .glow-card:hover::after { opacity: 1; }
   }
 
-  .subheading-premium {
-    @apply text-xl lg:text-2xl text-muted-foreground text-body-premium;
-    font-weight: 400;
+  /* BYOC pipeline: stages tick green one after another once the card is in view. */
+  .pipeline .stage-dot { @apply border-line bg-canvas text-transparent; transition: background-color 0.3s, border-color 0.3s, color 0.3s; }
+  .pipeline .stage-link::after {
+    content: "";
+    @apply absolute inset-0 origin-left rounded-full bg-accent;
+    transform: scaleX(0);
   }
-
-  .card-premium {
-    @apply glass-morphism-strong premium-hover;
-    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  .pipeline.run .stage-dot {
+    @apply border-accent bg-accent text-on-accent;
+    animation: stage-on 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+    animation-delay: calc(var(--i) * 0.45s);
+    transition-delay: calc(var(--i) * 0.45s);
   }
+  /* Each step: dot ticks at i x 0.45s, then the link to the next step fills in two halves. */
+  .pipeline.run .stage-link::after { animation: fill 0.15s linear both; }
+  .pipeline.run .stage-link.r::after { animation-delay: calc(var(--i) * 0.45s + 0.15s); }
+  .pipeline.run .stage-link.l::after { animation-delay: calc((var(--i) - 1) * 0.45s + 0.3s); }
 
-  .card-premium:hover {
-    transform: translateY(-12px) scale(1.02);
-    box-shadow: 0 32px 64px -12px rgba(0, 0, 0, 0.4);
+  /* Experience rail fill (--tp 0..1). */
+  .rail-fill { transform: scaleY(var(--tp, 1)); transform-origin: top; }
+
+  /* Logo marquee. Reduced motion: one static, wrapped row. */
+  .marquee {
+    overflow: hidden;
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+    mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
   }
-
-  .text-premium {
-    letter-spacing: -0.025em;
-    line-height: 1.1;
-    font-weight: 700;
-  }
-
-  .text-body-premium {
-    letter-spacing: -0.01em;
-    line-height: 1.7;
-    font-weight: 400;
+  .marquee-track { display: flex; width: max-content; gap: 12px; animation: marquee 48s linear infinite; }
+  .marquee-group { display: flex; flex-shrink: 0; gap: 12px; }
+  .marquee-track.reverse { animation-direction: reverse; }
+  .marquee:hover .marquee-track { animation-play-state: paused; }
+  @media (prefers-reduced-motion: reduce) {
+    .marquee { -webkit-mask-image: none; mask-image: none; }
+    .marquee-track { width: auto; animation: none; }
+    .marquee-group { flex-wrap: wrap; }
+    .marquee-copy { display: none; }
+    .pipeline.run .stage-dot, .pipeline.run .stage-link.l::after, .pipeline.run .stage-link.r::after { animation-delay: 0s; transition-delay: 0s; }
   }
 }
