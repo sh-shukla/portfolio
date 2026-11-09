@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Shashank Shukla — Resume</title>
+<link rel="stylesheet" href="resume.css">
+</head>
+<body>
+
+<header>
+  <h1>Shashank Shukla</h1>
+  <p class="role">Senior Platform Engineer</p>
+  <p class="contact">
+    Bangalore, India · +91 77376 02733 · <a href="mailto:shashank.shukla1202@gmail.com">shashank.shukla1202@gmail.com</a> ·
+    <a href="https://www.linkedin.com/in/shashank-shukla-b84b7a162">LinkedIn</a> ·
+    <a href="https://github.com/sh-shukla">GitHub</a> ·
+    <a href="https://sh-shukla.github.io/portfolio/">Portfolio</a>
+  </p>
+</header>
+
+<section>
+  <h2>Summary</h2>
+  <p>Platform, DevOps and SRE engineer with 5+ years designing, building and operating production infrastructure on AWS, GCP and Kubernetes. Architected a bring-your-own-cloud (BYOC) platform that stands up a complete customer environment, from cloud infrastructure and Kubernetes to 40–45 microservices, in 45 minutes. Runs 12 EKS clusters with 270+ microservices and leads a 4-engineer DevOps team, with depth in reliability, observability, cost optimization and security.</p>
+</section>
+
+<section>
+  <h2>Experience</h2>
+
+  <div class="job">
+    <div class="jobhead"><h3>Nielsen</h3><span>Bangalore, India</span></div>
+    <div class="rolehead"><h4>Senior DevOps Engineer</h4><span>Jun 2025 – Present</span></div>
+    <ul>
+      <li>Architected a bring-your-own-cloud (BYOC) delivery platform that builds a full production environment in a customer's AWS or GCP account from one config file: Pulumi infrastructure, Argo&nbsp;CD and Karpenter, then 40–45 microservices. Cut setup and upgrades from 6–7 hours to 45 minutes; live for 4 customers.</li>
+      <li>Built AI-driven incident response on Amazon Bedrock: Prometheus alerts from 12 EKS clusters are triaged by models grounded in a Bedrock Knowledge Base of runbooks; common failures such as OOM kills are remediated automatically, and the rest reach on-call through incident.io with a diagnosis attached.</li>
+      <li>Self-hosted two open-weight small language models on EKS, run as a fleet through a custom Kubernetes CRD, at ~4x lower inference cost than managed APIs.</li>
+      <li>Operate 12 EKS clusters running 270+ microservices: zero-downtime upgrades from v1.32 to v1.34, NodeLocalDNS, Node Problem Detector, registry proxy cache and blue-green deployments; node memory swap cut OOM kills ~70%.</li>
+      <li>Reduced AWS spend by ~$1,800/month by consolidating 20+ ALBs behind NGINX Ingress for 50+ services, and compute cost by ~30% through Graviton migration, multi-arch builds and Karpenter right-sizing.</li>
+      <li>Built the real-time Ads platform infrastructure from scratch to production, designed for sub-10&nbsp;ms responses on AWS Local Zones and Global Accelerator after ScyllaDB and Aerospike evaluations.</li>
+      <li>Built the observability and on-call stack: Prometheus, Alertmanager, Loki and Grafana, with incident.io for alert routing, incident management and on-call rotations.</li>
+      <li>Hardened cluster security with Kyverno policies (resource limits, no privileged containers, health and autoscaling checks) and Vault dynamic secrets via Kubernetes and AWS STS auth; led CrowdStrike remediation with patched-AMI rollouts across 15+ AWS accounts.</li>
+      <li>Lead a 4-engineer DevOps team supporting 5–6 application teams; own GitLab CI, JFrog Artifactory with Vault integration, and the Docusaurus developer portal.</li>
+    </ul>
+  </div>
+
+  <div class="job">
+    <div class="jobhead"><h3>Conga</h3><span>Bangalore, India</span></div>
+
+    <div class="rolehead"><h4>Senior DevOps Engineer</h4><span>Apr 2024 – Jun 2025</span></div>
+    <ul>
+      <li>Led a 6-member DevOps/SRE team, setting deployment standards, runbooks and SRE practices, and ran CI/CD knowledge-sharing sessions across engineering teams.</li>
+      <li>Cut deployment time from 25 minutes to under 8 across 200+ microservices, and brought per-release downtime under 30 seconds with blue-green deployments.</li>
+      <li>Tripled deployment frequency and cut pipeline duplication 65% across 8+ teams with reusable Jenkins shared libraries and Spinnaker pipelines.</li>
+      <li>Reduced release failures 70% and manual rollback incidents 85% by adding automated validation and auto-rollback to pipelines, and fixing session-persistence and schema-migration failures during traffic shifts.</li>
+      <li>Cut manual infrastructure work 80% by automating environment provisioning with Terraform and Rancher Fleet, giving teams on-demand test environments.</li>
+      <li>Made every deployment pass blocking quality gates: Checkmarx security scans, compliance checks and Slack approvals built into the pipeline.</li>
+      <li>Designed event-driven autoscaling with KEDA for NGINX on Prometheus request metrics and for AWS SQS consumers on queue depth, replacing fixed replica counts.</li>
+      <li>Built a fault-tolerant CRM data-migration orchestrator in Python and Celery on Kafka and MongoDB, with DAG dependencies, retries and a live dashboard; ran 500+ concurrent workflows with zero data loss.</li>
+      <li>Built a SaaS API platform in FastAPI with 60+ endpoints, shipped through CI/CD with canary rollouts.</li>
+    </ul>
+
+    <div class="rolehead"><h4>DevOps Engineer</h4><span>Apr 2023 – Mar 2024</span></div>
+    <ul>
+      <li>Delivered disaster recovery for 200+ AWS services with RTO under 10 minutes and RPO under 5 minutes through continuous replication and automated failover, with zero data loss across drills and real failovers.</li>
+      <li>Cut release cycles from 2 weeks to 3 hours by automating highly available infrastructure with Terraform and adding artifact promotion, dynamic environments and rollback to pipelines.</li>
+      <li>Cut MTTR by 50% by rolling out the observability stack (Prometheus, Grafana) and centralizing secrets in Doppler.</li>
+      <li>Cut deployment time by 60% by standardizing CI/CD for React, Angular, Java and Python microservices.</li>
+      <li>Cut AWS compute spend ~25% through Karpenter node autoscaling, cost audits and EC2 right-sizing workshops with service teams.</li>
+      <li>Containerized legacy Java and Python services and migrated them to EKS with autoscaling and health probes.</li>
+      <li>Hardened Terraform operations with S3-backed remote state, locking and versioning, and wrote Groovy and shell tooling for build orchestration, pipeline linting and secret rotation.</li>
+    </ul>
+
+    <div class="rolehead"><h4>Associate DevOps Engineer</h4><span>Jul 2021 – Mar 2023</span></div>
+    <ul>
+      <li>Cut build times from 20 minutes to under 8 by parallelizing and caching Jenkins pipelines.</li>
+      <li>Cut new-service setup from 4 to 2.4 hours with templatized Helm charts for stateless and stateful services, backed by automated chart validation and best-practice documentation.</li>
+      <li>Built foundational Terraform modules for VPCs, IAM and EC2-based services across environments, supporting the move to cloud-native infrastructure.</li>
+      <li>Enabled zero-downtime upgrades with load-balanced routing through CloudFront, Cloudflare and NGINX.</li>
+      <li>Improved incident detection with centralized monitoring and logging on Grafana, Rancher and CloudWatch.</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <h2>Technical Skills</h2>
+  <ul class="skills">
+    <li><strong>Cloud:</strong> AWS (EKS, EC2, ALB, RDS, DynamoDB, S3, SQS, IAM, STS, Bedrock, Local Zones), GCP</li>
+    <li><strong>Kubernetes:</strong> EKS, Karpenter, KEDA, Helm, Argo CD, NGINX Ingress, Kyverno, CRDs and Operators, Docker</li>
+    <li><strong>IaC and CI/CD:</strong> Pulumi, Terraform, GitLab CI, Jenkins, Spinnaker, Rancher Fleet, JFrog Artifactory, Blue-Green, Canary</li>
+    <li><strong>Observability and SRE:</strong> Prometheus, Alertmanager, Grafana, Loki, CloudWatch, incident.io, On-call, Disaster Recovery</li>
+    <li><strong>AI and LLMOps:</strong> Amazon Bedrock, Bedrock Knowledge Bases, Self-hosted SLMs on EKS, Runbook Automation</li>
+    <li><strong>Security:</strong> HashiCorp Vault, Kyverno, Checkmarx, Doppler, AWS STS, CrowdStrike</li>
+    <li><strong>Networking:</strong> NGINX, CloudFront, Cloudflare, AWS Global Accelerator, Local Zones</li>
+    <li><strong>Languages and Data:</strong> Python (FastAPI, Celery), Go, Bash, Groovy; Kafka, Redis, MongoDB, ScyllaDB, Aerospike</li>
+  </ul>
+</section>
+
+<section>
+  <h2>Education</h2>
+  <div class="rolehead"><h4>B.Tech, Computer Science and Engineering — M.S. Ramaiah University of Applied Sciences</h4><span>Jul 2017 – Jun 2021</span></div>
+  <p class="edu-note">CGPA 9.0</p>
+</section>
+
+<section>
+  <h2>Certifications</h2>
+  <ul class="certs">
+    <li>Certified Kubernetes Administrator (CKA)</li>
+    <li>HashiCorp Certified: Terraform Associate</li>
+  </ul>
+</section>
+
+</body>
+</html>
