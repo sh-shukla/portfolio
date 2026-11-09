@@ -13,7 +13,7 @@ export const profile = {
   photo: `${base}shashank_pic.jpg`,
   resume: `${base}Shashank_Shukla_DevOps_Resume.pdf`,
   resumeDownloadName: "Shashank_Shukla_Resume.pdf",
-  linkedin: "https://www.linkedin.com/in/shashank-shukla-b84b7a162",
+  linkedin: "https://www.linkedin.com/in/shashank-shukla-devops",
   github: "https://github.com/sh-shukla",
 };
 
