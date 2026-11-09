@@ -1,4 +1,4 @@
-// All site copy lives here. Facts mirror the master resume (resume/src/content.js).
+// All site copy lives here. Facts mirror the resume PDF in public/.
 const base = import.meta.env.BASE_URL;
 
 export const profile = {
@@ -33,7 +33,7 @@ export const stats = [
   { value: "5+", label: "years of experience" },
   { value: "12", label: "EKS clusters operated" },
   { value: "270+", label: "microservices" },
-  { value: "4", label: "engineers led" },
+  { value: "6", label: "largest team led" },
 ];
 
 export type Tile = {
@@ -163,7 +163,7 @@ export const experience: Job[] = [
         points: [
           ["Led a 6-member DevOps/SRE team", ", setting deployment standards, runbooks and SRE practices."],
           ["Cut deployment time from 25 to under 8 minutes", " across 200+ microservices, with under 30 seconds of downtime per release."],
-          ["Reduced release failures 70% and rollback incidents 85%", " with automated validation and auto-rollback."],
+          ["Reduced release failures 70% and manual rollback incidents 85%", " with automated validation and auto-rollback."],
           ["Tripled deployment frequency", " across 8+ teams with reusable Jenkins shared libraries and Spinnaker pipelines."],
           ["Built a CRM data-migration orchestrator", " in Python and Celery that ran 500+ concurrent workflows with zero data loss."],
           ["Built a SaaS API platform in FastAPI", " with 60+ endpoints."],
