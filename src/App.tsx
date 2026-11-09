@@ -4,6 +4,7 @@ import About from "@/components/About";
 import Work from "@/components/Work";
 import Experience from "@/components/Experience";
 import Skills from "@/components/Skills";
+import OpenSource from "@/components/OpenSource";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import { useTheme } from "@/lib/theme";
@@ -28,6 +29,7 @@ export default function App() {
         <Work />
         <Experience />
         <Skills />
+        <OpenSource />
         <Contact />
       </main>
       <Footer />

@@ -1,4 +1,4 @@
-// All site copy lives here. Facts mirror the master resume (resume/src/content.js).
+// All site copy lives here. Facts mirror the resume PDF in public/.
 const base = import.meta.env.BASE_URL;
 
 export const profile = {
@@ -190,6 +190,49 @@ export const experience: Job[] = [
         ],
       },
     ],
+  },
+];
+
+export type Project = { name: string; tagline: string; tech: string[]; repo: string; live?: string };
+
+// Open-source work. Repos live under github.com/sh-shukla.
+export const projects: Project[] = [
+  {
+    name: "zombiewatch",
+    tagline: "Kubernetes operator + CRD that hunts undead resources — stuck Terminating pods, dead nodes, orphaned PVs — and reports them to your webhook. Detect, don't delete.",
+    tech: ["Go", "Kubernetes", "CRDs and Operators"],
+    repo: "https://github.com/sh-shukla/zombiewatch",
+  },
+  {
+    name: "kube-doctor",
+    tagline: "One-command, read-only cluster triage: finds what's wrong and says what to try next. Exit codes double as a CI gate.",
+    tech: ["Go", "Kubernetes"],
+    repo: "https://github.com/sh-shukla/kube-doctor",
+  },
+  {
+    name: "Indian Tax Calculator",
+    tagline: "FY 2026-27 tax configurator — old vs new regime, 44ADA for freelancers, surcharge and marginal relief done right. Verified engine, 23 tests, zero dependencies.",
+    tech: ["JavaScript", "GitHub Pages"],
+    repo: "https://github.com/sh-shukla/income-tax-calculator",
+    live: "https://sh-shukla.github.io/income-tax-calculator/",
+  },
+  {
+    name: "ClipStack",
+    tagline: "Native macOS clipboard history — menu-bar app, global-hotkey search panel, guided permission onboarding. One Swift file, no dependencies.",
+    tech: ["Swift", "macOS"],
+    repo: "https://github.com/sh-shukla/ClipStack",
+  },
+  {
+    name: "claude-devops-skills",
+    tagline: "Hand-written Claude Code skills that encode senior DevOps workflows: k8s triage, Terraform plan review, incident command, AWS cost audits.",
+    tech: ["Claude Code", "DevOps"],
+    repo: "https://github.com/sh-shukla/claude-devops-skills",
+  },
+  {
+    name: "devops-bootstrap",
+    tagline: "Blank Mac to full DevOps workstation in one idempotent command — 45 tools, shell aliases and completions, and a doctor that fails loudly.",
+    tech: ["Homebrew", "Bash"],
+    repo: "https://github.com/sh-shukla/devops-bootstrap",
   },
 ];
 
