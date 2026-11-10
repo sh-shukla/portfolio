@@ -1,0 +1,47 @@
+/* Print-grade resume stylesheet. Rendered by WeasyPrint (see build.sh). */
+@page {
+  size: A4;
+  margin: 13mm 14mm;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font: 9.6pt/1.42 "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: #1a1d24;
+}
+
+a { color: #1a56a0; text-decoration: none; }
+
+/* header */
+h1 { font-size: 21pt; letter-spacing: -0.015em; }
+.role { font-size: 11pt; color: #1a56a0; font-weight: 600; margin-top: 1pt; }
+.contact { font-size: 8.8pt; color: #454b57; margin-top: 3pt; }
+
+/* sections */
+section { margin-top: 9pt; }
+h2 {
+  font-size: 9.4pt; text-transform: uppercase; letter-spacing: 0.09em;
+  color: #1a56a0; border-bottom: 0.6pt solid #c9cfd9;
+  padding-bottom: 2pt; margin-bottom: 5pt;
+}
+
+/* jobs */
+.job { margin-bottom: 6pt; }
+.job + .job { margin-top: 7pt; }
+.jobhead, .rolehead {
+  display: flex; justify-content: space-between; align-items: baseline;
+  page-break-after: avoid;
+}
+.jobhead h3 { font-size: 11pt; }
+.jobhead span, .rolehead span { font-size: 8.8pt; color: #454b57; white-space: nowrap; }
+.rolehead { margin-top: 3pt; }
+.rolehead h4 { font-size: 10pt; font-weight: 600; }
+
+ul { margin: 2.5pt 0 0 11pt; }
+li { margin-bottom: 2.2pt; page-break-inside: avoid; }
+
+/* skills & certs */
+.skills li, .certs li { margin-bottom: 1.6pt; }
+.skills strong { color: #10131a; }
+.edu-note { font-size: 9pt; color: #454b57; margin-top: 1pt; }
